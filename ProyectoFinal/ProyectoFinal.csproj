@@ -71,6 +71,10 @@
     <Content Include="CSS\EstilosLogin.css" />
     <Content Include="CSS\principalCSS.css" />
     <Content Include="default.aspx" />
+    <Content Include="img\entrega.png" />
+    <Content Include="img\informe.png" />
+    <Content Include="img\cliente.png" />
+    <Content Include="img\menu.png" />
     <Content Include="img\usuario.png" />
     <Content Include="JS\JSLogin.js" />
     <Content Include="JS\PrincipalJS.js" />

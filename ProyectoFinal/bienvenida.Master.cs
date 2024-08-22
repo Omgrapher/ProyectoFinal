@@ -13,5 +13,10 @@ namespace ProyectoFinal
         {
 
         }
+
+        protected void OnClickButtonCerrarSesion(object sender, EventArgs e)
+        {
+            Response.Redirect("default.aspx");
+        }
     }
 }
