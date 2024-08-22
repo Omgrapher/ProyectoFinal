@@ -1,0 +1,18 @@
+﻿body {
+    background-color: #f9f2ec; /* Cream background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding: 20px;
+    background-color: #e0d9d4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
