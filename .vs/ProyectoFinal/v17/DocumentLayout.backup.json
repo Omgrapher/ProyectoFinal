@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\css\\principalcss.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\css\\principalcss.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\bienvenida.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\bienvenida.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\cliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\cliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\cliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\default.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,6 +17,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\css\\principalcss.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\css\\principalcss.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\bienvenida.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\bienvenida.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,24 +34,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "bienvenida.Master.cs",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\bienvenida.Master.cs",
               "RelativeDocumentMoniker": "ProyectoFinal\\bienvenida.Master.cs",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\bienvenida.Master.cs*",
-              "RelativeToolTip": "ProyectoFinal\\bienvenida.Master.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\bienvenida.Master.cs",
+              "RelativeToolTip": "ProyectoFinal\\bienvenida.Master.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-22T19:42:25.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-22T19:42:25.065Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "principalCSS.css",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\CSS\\principalCSS.css",
               "RelativeDocumentMoniker": "ProyectoFinal\\CSS\\principalCSS.css",
@@ -59,12 +58,11 @@
               "RelativeToolTip": "ProyectoFinal\\CSS\\principalCSS.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-22T18:39:08.321Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-22T18:39:08.321Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Cliente.aspx",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\Cliente.aspx",
               "RelativeDocumentMoniker": "ProyectoFinal\\Cliente.aspx",
@@ -72,11 +70,12 @@
               "RelativeToolTip": "ProyectoFinal\\Cliente.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-22T16:55:47.106Z"
+              "WhenOpened": "2024-08-22T16:55:47.106Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "bienvenida.Master",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\bienvenida.Master",
               "RelativeDocumentMoniker": "ProyectoFinal\\bienvenida.Master",
@@ -89,19 +88,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "default.aspx.cs",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\default.aspx.cs",
               "RelativeDocumentMoniker": "ProyectoFinal\\default.aspx.cs",
               "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\default.aspx.cs",
               "RelativeToolTip": "ProyectoFinal\\default.aspx.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwCIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwCIAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-21T03:00:13.069Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "default.aspx",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\default.aspx",
               "RelativeDocumentMoniker": "ProyectoFinal\\default.aspx",
