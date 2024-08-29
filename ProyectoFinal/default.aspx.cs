@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+
 
 namespace ProyectoFinal
 {
     public partial class _default : System.Web.UI.Page
     {
+        string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -20,7 +24,8 @@ namespace ProyectoFinal
         }
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            bool isAuthenticated = AuthenticateUser(UserTextBox.Text, PasswordTextBox.Text);
+            string nombreCompleto;
+            bool isAuthenticated = AuthenticateUser(UserTextBox.Text,PasswordTextBox.Text, out nombreCompleto);
 
 
             if (isAuthenticated)
@@ -37,9 +42,19 @@ namespace ProyectoFinal
             }
         }
 
-        private bool AuthenticateUser(string user, string password)
+        private bool AuthenticateUser(string user, string password, out string NombreCompleto)
         {
-            return user == "Marlon" && password == "1234";
+            NombreCompleto = null; 
+
+            if (user == "Marlon" && password == "1234")
+            {
+                NombreCompleto = "Marlon";
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
