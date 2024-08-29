@@ -12,12 +12,12 @@ namespace ProyectoFinal
 {
     public partial class _default : System.Web.UI.Page
     {
-        string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
+        public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
+        BaseDatos.milinqDataContext mibd = new BaseDatos.milinqDataContext(conec);
         protected void limpiar()
         {
             UserTextBox.Text = PasswordTextBox.Text = "";
@@ -44,11 +44,20 @@ namespace ProyectoFinal
 
         private bool AuthenticateUser(string user, string password, out string NombreCompleto)
         {
-            NombreCompleto = null; 
+            NombreCompleto = null;
 
-            if (user == "Marlon" && password == "1234")
+            var UserPass = from u in mibd.Empleados
+                           where user == u.user && password == u.password
+                           select new { 
+                               User = u.user,
+                               Pass = u.password,
+                               nombreEmpleado = u.nombre1+" "+u.apellido1
+                           };
+
+
+            if (UserPass.FirstOrDefault() != null)
             {
-                NombreCompleto = "Marlon";
+                NombreCompleto = UserPass.ToList()[0].nombreEmpleado.ToString();
                 return true;
             }
             else
