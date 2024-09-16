@@ -1,10 +1,12 @@
 ﻿body {
-    background-color: #f9f2ec; /* Cream background */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+}
+.form-floating > label {
+    transition: transform 0.8s ease, opacity 1.5s ease;
 }
 
 .login-container {
@@ -12,7 +14,7 @@
     max-width: 400px;
     height: auto;
     padding: 20px;
-    background-color: #e0d9d4;
+    background-color: #FFFDFB;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
 }

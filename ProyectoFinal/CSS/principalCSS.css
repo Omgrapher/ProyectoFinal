@@ -1,9 +1,9 @@
 ﻿body {
-    background-color: #f9f2ec;
 }
 
 .nav-customColor {
-    background-color: #e0d9d4;
+    background-color: #FFFDFB;
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
 }
 
 /*ICONO DE USUARIO*/
@@ -28,3 +28,16 @@
 .dropdown-menu {
     display: none; /* Inicialmente oculto */
 }
+
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: transparent;
+        color: inherit;
+        cursor: default;
+    }
+
+    .dropdown-menu .dropdown-item:focus {
+        background-color: transparent;
+        color: inherit;
+    }
+

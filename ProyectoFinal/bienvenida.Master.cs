@@ -13,12 +13,17 @@ namespace ProyectoFinal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserName"] != null)
+            {
+                string userName = Session["UserName"].ToString();
+                lblUserName.Text = "Hola, " + userName;
+            }
         }
 
         protected void OnClickButtonCerrarSesion(object sender, EventArgs e)
         {
             Response.Redirect("default.aspx");
+            Session.Clear();
         }
     }
 }

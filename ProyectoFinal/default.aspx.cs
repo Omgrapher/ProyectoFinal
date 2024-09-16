@@ -32,7 +32,13 @@ namespace ProyectoFinal
             {
                 limpiar();
                 // Mostrar modal de bienvenida
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeModal", "var myModal = new bootstrap.Modal(document.getElementById('welcomeModal')); myModal.show();", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeModalAndRedirect",
+                $"var myModal = new bootstrap.Modal(document.getElementById('welcomeModal')); " +
+                $"document.getElementById('welcomeModalBody').innerHTML = '¡Hola, {nombreCompleto}! Has iniciado sesión correctamente!'; " +
+                $"myModal.show(); " +
+                $"setTimeout(function() {{" +
+                $"    window.location.href = 'inicioF.aspx'; " + $"}} , 2000);", true);
+                Session["UserName"] = nombreCompleto;
             }
             else
             {
