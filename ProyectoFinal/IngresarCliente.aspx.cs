@@ -13,5 +13,11 @@ namespace ProyectoFinal
         {
 
         }
+
+        protected void btnEnviar_Click(object sender, EventArgs e)
+        {
+            string script = SweetAlertUtils.ShowConfirm("Confirmar Envío", "¿Estás seguro de que deseas enviar los datos?");
+            ClientScript.RegisterStartupScript(this.GetType(), "SweetAlertConfirm", script, true);
+        }
     }
 }

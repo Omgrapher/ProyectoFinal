@@ -2171,6 +2171,7 @@
     <Compile Include="bienvenida.Master.designer.cs">
       <DependentUpon>bienvenida.Master</DependentUpon>
     </Compile>
+    <Compile Include="classAlert.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

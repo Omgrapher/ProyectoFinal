@@ -29,3 +29,20 @@
     display: none; /* Inicialmente oculto */
 }
 
+.form-check {
+    text-align: center;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+.d-inline-flex {
+    display: inline-flex;
+    align-items: start;
+}
