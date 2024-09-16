@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoFinal
 {
-    public partial class Cliente : System.Web.UI.Page
+    public partial class IngresarCliente : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

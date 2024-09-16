@@ -29,15 +29,3 @@
     display: none; /* Inicialmente oculto */
 }
 
-
-    .dropdown-menu .dropdown-item:hover {
-        background-color: transparent;
-        color: inherit;
-        cursor: default;
-    }
-
-    .dropdown-menu .dropdown-item:focus {
-        background-color: transparent;
-        color: inherit;
-    }
-

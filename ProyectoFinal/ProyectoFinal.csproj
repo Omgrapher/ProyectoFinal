@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cliente.aspx" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.css" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.min.css" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css" />
@@ -2153,6 +2152,7 @@
     <Content Include="img\cliente.png" />
     <Content Include="img\menu.png" />
     <Content Include="img\usuario.png" />
+    <Content Include="IngresarCliente.aspx" />
     <Content Include="inicioF.aspx" />
     <Content Include="JS\Login.js" />
     <Content Include="JS\PrincipalJS.js" />
@@ -2171,19 +2171,19 @@
     <Compile Include="bienvenida.Master.designer.cs">
       <DependentUpon>bienvenida.Master</DependentUpon>
     </Compile>
-    <Compile Include="Cliente.aspx.cs">
-      <DependentUpon>Cliente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Cliente.aspx.designer.cs">
-      <DependentUpon>Cliente.aspx</DependentUpon>
-    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IngresarCliente.aspx.cs">
+      <DependentUpon>IngresarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresarCliente.aspx.designer.cs">
+      <DependentUpon>IngresarCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="inicioF.aspx.cs">
       <DependentUpon>inicioF.aspx</DependentUpon>
