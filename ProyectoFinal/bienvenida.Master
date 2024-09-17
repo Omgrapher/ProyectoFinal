@@ -40,7 +40,7 @@
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
                                     <li><a class="dropdown-item" href="IngresarCliente.aspx">Ingresar Cliente</a></li>
-                                    <li><a class="dropdown-item" href="#">Buscar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="BuscarCliente.aspx">Buscar Cliente</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

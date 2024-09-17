@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BuscarCliente.aspx" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.css" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.min.css" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css" />
@@ -2170,6 +2171,13 @@
     </Compile>
     <Compile Include="bienvenida.Master.designer.cs">
       <DependentUpon>bienvenida.Master</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarCliente.aspx.cs">
+      <DependentUpon>BuscarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuscarCliente.aspx.designer.cs">
+      <DependentUpon>BuscarCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="classAlert.cs" />
     <Compile Include="default.aspx.cs">
