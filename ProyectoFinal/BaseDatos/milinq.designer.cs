@@ -63,9 +63,6 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertEnca_Venta(Enca_Venta instance);
     partial void UpdateEnca_Venta(Enca_Venta instance);
     partial void DeleteEnca_Venta(Enca_Venta instance);
-    partial void InsertEstado_Credito(Estado_Credito instance);
-    partial void UpdateEstado_Credito(Estado_Credito instance);
-    partial void DeleteEstado_Credito(Estado_Credito instance);
     partial void InsertForma_Pago(Forma_Pago instance);
     partial void UpdateForma_Pago(Forma_Pago instance);
     partial void DeleteForma_Pago(Forma_Pago instance);
@@ -87,12 +84,15 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertRol(Rol instance);
     partial void UpdateRol(Rol instance);
     partial void DeleteRol(Rol instance);
-    partial void InsertTipo_Cuenta(Tipo_Cuenta instance);
-    partial void UpdateTipo_Cuenta(Tipo_Cuenta instance);
-    partial void DeleteTipo_Cuenta(Tipo_Cuenta instance);
     partial void InsertTipo_Producto(Tipo_Producto instance);
     partial void UpdateTipo_Producto(Tipo_Producto instance);
     partial void DeleteTipo_Producto(Tipo_Producto instance);
+    partial void InsertEstado_Credito(Estado_Credito instance);
+    partial void UpdateEstado_Credito(Estado_Credito instance);
+    partial void DeleteEstado_Credito(Estado_Credito instance);
+    partial void InsertTipo_Cuenta(Tipo_Cuenta instance);
+    partial void UpdateTipo_Cuenta(Tipo_Cuenta instance);
+    partial void DeleteTipo_Cuenta(Tipo_Cuenta instance);
     #endregion
 		
 		public milinqDataContext(string connection) : 
@@ -207,14 +207,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Estado_Credito> Estado_Creditos
-		{
-			get
-			{
-				return this.GetTable<Estado_Credito>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Forma_Pago> Forma_Pagos
 		{
 			get
@@ -271,19 +263,27 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Tipo_Cuenta> Tipo_Cuentas
-		{
-			get
-			{
-				return this.GetTable<Tipo_Cuenta>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Tipo_Producto> Tipo_Productos
 		{
 			get
 			{
 				return this.GetTable<Tipo_Producto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Estado_Credito> Estado_Creditos
+		{
+			get
+			{
+				return this.GetTable<Estado_Credito>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tipo_Cuenta> Tipo_Cuentas
+		{
+			get
+			{
+				return this.GetTable<Tipo_Cuenta>();
 			}
 		}
 	}
@@ -322,9 +322,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private EntitySet<Enca_Compra> _Enca_Compras;
 		
-		private EntityRef<Estado_Credito> _Estado_Credito;
-		
 		private EntityRef<Municipio> _Municipio;
+		
+		private EntityRef<Estado_Credito> _Estado_Credito;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -360,8 +360,8 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this._Cuenta_Bancaria_Clientes = new EntitySet<Cuenta_Bancaria_Cliente>(new Action<Cuenta_Bancaria_Cliente>(this.attach_Cuenta_Bancaria_Clientes), new Action<Cuenta_Bancaria_Cliente>(this.detach_Cuenta_Bancaria_Clientes));
 			this._Enca_Compras = new EntitySet<Enca_Compra>(new Action<Enca_Compra>(this.attach_Enca_Compras), new Action<Enca_Compra>(this.detach_Enca_Compras));
-			this._Estado_Credito = default(EntityRef<Estado_Credito>);
 			this._Municipio = default(EntityRef<Municipio>);
+			this._Estado_Credito = default(EntityRef<Estado_Credito>);
 			OnCreated();
 		}
 		
@@ -639,40 +639,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
-		public Estado_Credito Estado_Credito
-		{
-			get
-			{
-				return this._Estado_Credito.Entity;
-			}
-			set
-			{
-				Estado_Credito previousValue = this._Estado_Credito.Entity;
-				if (((previousValue != value) 
-							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Estado_Credito.Entity = null;
-						previousValue.Clientes.Remove(this);
-					}
-					this._Estado_Credito.Entity = value;
-					if ((value != null))
-					{
-						value.Clientes.Add(this);
-						this._id_credito = value.id_credito;
-					}
-					else
-					{
-						this._id_credito = default(int);
-					}
-					this.SendPropertyChanged("Estado_Credito");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Cliente", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
 		public Municipio Municipio
 		{
@@ -703,6 +669,40 @@ namespace ProyectoFinal.BaseDatos
 						this._id_muni = default(int);
 					}
 					this.SendPropertyChanged("Municipio");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
+		public Estado_Credito Estado_Credito
+		{
+			get
+			{
+				return this._Estado_Credito.Entity;
+			}
+			set
+			{
+				Estado_Credito previousValue = this._Estado_Credito.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_Credito.Entity = null;
+						previousValue.Clientes.Remove(this);
+					}
+					this._Estado_Credito.Entity = value;
+					if ((value != null))
+					{
+						value.Clientes.Add(this);
+						this._id_credito = value.id_credito;
+					}
+					else
+					{
+						this._id_credito = default(int);
+					}
+					this.SendPropertyChanged("Estado_Credito");
 				}
 			}
 		}
@@ -3818,172 +3818,6 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_Credito")]
-	public partial class Estado_Credito : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_credito;
-		
-		private string _nombre;
-		
-		private string _descripcion;
-		
-		private EntitySet<Cliente> _Clientes;
-		
-		private EntitySet<Proveedore> _Proveedores;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_creditoChanging(int value);
-    partial void Onid_creditoChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    partial void OndescripcionChanging(string value);
-    partial void OndescripcionChanged();
-    #endregion
-		
-		public Estado_Credito()
-		{
-			this._Clientes = new EntitySet<Cliente>(new Action<Cliente>(this.attach_Clientes), new Action<Cliente>(this.detach_Clientes));
-			this._Proveedores = new EntitySet<Proveedore>(new Action<Proveedore>(this.attach_Proveedores), new Action<Proveedore>(this.detach_Proveedores));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_credito
-		{
-			get
-			{
-				return this._id_credito;
-			}
-			set
-			{
-				if ((this._id_credito != value))
-				{
-					this.Onid_creditoChanging(value);
-					this.SendPropertyChanging();
-					this._id_credito = value;
-					this.SendPropertyChanged("id_credito");
-					this.Onid_creditoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string descripcion
-		{
-			get
-			{
-				return this._descripcion;
-			}
-			set
-			{
-				if ((this._descripcion != value))
-				{
-					this.OndescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._descripcion = value;
-					this.SendPropertyChanged("descripcion");
-					this.OndescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Clientes", ThisKey="id_credito", OtherKey="id_credito")]
-		public EntitySet<Cliente> Clientes
-		{
-			get
-			{
-				return this._Clientes;
-			}
-			set
-			{
-				this._Clientes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Proveedores", ThisKey="id_credito", OtherKey="id_credito")]
-		public EntitySet<Proveedore> Proveedores
-		{
-			get
-			{
-				return this._Proveedores;
-			}
-			set
-			{
-				this._Proveedores.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Clientes(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = this;
-		}
-		
-		private void detach_Clientes(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = null;
-		}
-		
-		private void attach_Proveedores(Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = this;
-		}
-		
-		private void detach_Proveedores(Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Forma_Pago")]
 	public partial class Forma_Pago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5172,9 +5006,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private EntitySet<Enca_Venta> _Enca_Ventas;
 		
-		private EntityRef<Estado_Credito> _Estado_Credito;
-		
 		private EntityRef<Municipio> _Municipio;
+		
+		private EntityRef<Estado_Credito> _Estado_Credito;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5206,8 +5040,8 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this._Cuentas_Bancarias_Proveedores = new EntitySet<Cuentas_Bancarias_Proveedore>(new Action<Cuentas_Bancarias_Proveedore>(this.attach_Cuentas_Bancarias_Proveedores), new Action<Cuentas_Bancarias_Proveedore>(this.detach_Cuentas_Bancarias_Proveedores));
 			this._Enca_Ventas = new EntitySet<Enca_Venta>(new Action<Enca_Venta>(this.attach_Enca_Ventas), new Action<Enca_Venta>(this.detach_Enca_Ventas));
-			this._Estado_Credito = default(EntityRef<Estado_Credito>);
 			this._Municipio = default(EntityRef<Municipio>);
+			this._Estado_Credito = default(EntityRef<Estado_Credito>);
 			OnCreated();
 		}
 		
@@ -5445,40 +5279,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
-		public Estado_Credito Estado_Credito
-		{
-			get
-			{
-				return this._Estado_Credito.Entity;
-			}
-			set
-			{
-				Estado_Credito previousValue = this._Estado_Credito.Entity;
-				if (((previousValue != value) 
-							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Estado_Credito.Entity = null;
-						previousValue.Proveedores.Remove(this);
-					}
-					this._Estado_Credito.Entity = value;
-					if ((value != null))
-					{
-						value.Proveedores.Add(this);
-						this._id_credito = value.id_credito;
-					}
-					else
-					{
-						this._id_credito = default(int);
-					}
-					this.SendPropertyChanged("Estado_Credito");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Proveedore", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
 		public Municipio Municipio
 		{
@@ -5509,6 +5309,40 @@ namespace ProyectoFinal.BaseDatos
 						this._id_muni = default(int);
 					}
 					this.SendPropertyChanged("Municipio");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
+		public Estado_Credito Estado_Credito
+		{
+			get
+			{
+				return this._Estado_Credito.Entity;
+			}
+			set
+			{
+				Estado_Credito previousValue = this._Estado_Credito.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_Credito.Entity = null;
+						previousValue.Proveedores.Remove(this);
+					}
+					this._Estado_Credito.Entity = value;
+					if ((value != null))
+					{
+						value.Proveedores.Add(this);
+						this._id_credito = value.id_credito;
+					}
+					else
+					{
+						this._id_credito = default(int);
+					}
+					this.SendPropertyChanged("Estado_Credito");
 				}
 			}
 		}
@@ -5672,6 +5506,286 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
+	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_tipo_producto;
+		
+		private string _nombre;
+		
+		private EntitySet<Producto> _Productos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tipo_productoChanging(int value);
+    partial void Onid_tipo_productoChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    #endregion
+		
+		public Tipo_Producto()
+		{
+			this._Productos = new EntitySet<Producto>(new Action<Producto>(this.attach_Productos), new Action<Producto>(this.detach_Productos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_producto", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_tipo_producto
+		{
+			get
+			{
+				return this._id_tipo_producto;
+			}
+			set
+			{
+				if ((this._id_tipo_producto != value))
+				{
+					this.Onid_tipo_productoChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_producto = value;
+					this.SendPropertyChanged("id_tipo_producto");
+					this.Onid_tipo_productoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Producto", Storage="_Productos", ThisKey="id_tipo_producto", OtherKey="id_tipo_producto")]
+		public EntitySet<Producto> Productos
+		{
+			get
+			{
+				return this._Productos;
+			}
+			set
+			{
+				this._Productos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Producto = this;
+		}
+		
+		private void detach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Producto = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_Credito")]
+	public partial class Estado_Credito : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_credito;
+		
+		private string _nombre;
+		
+		private string _descripcion;
+		
+		private EntitySet<Cliente> _Clientes;
+		
+		private EntitySet<Proveedore> _Proveedores;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_creditoChanging(int value);
+    partial void Onid_creditoChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    #endregion
+		
+		public Estado_Credito()
+		{
+			this._Clientes = new EntitySet<Cliente>(new Action<Cliente>(this.attach_Clientes), new Action<Cliente>(this.detach_Clientes));
+			this._Proveedores = new EntitySet<Proveedore>(new Action<Proveedore>(this.attach_Proveedores), new Action<Proveedore>(this.detach_Proveedores));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_credito
+		{
+			get
+			{
+				return this._id_credito;
+			}
+			set
+			{
+				if ((this._id_credito != value))
+				{
+					this.Onid_creditoChanging(value);
+					this.SendPropertyChanging();
+					this._id_credito = value;
+					this.SendPropertyChanged("id_credito");
+					this.Onid_creditoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Clientes", ThisKey="id_credito", OtherKey="id_credito")]
+		public EntitySet<Cliente> Clientes
+		{
+			get
+			{
+				return this._Clientes;
+			}
+			set
+			{
+				this._Clientes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Proveedores", ThisKey="id_credito", OtherKey="id_credito")]
+		public EntitySet<Proveedore> Proveedores
+		{
+			get
+			{
+				return this._Proveedores;
+			}
+			set
+			{
+				this._Proveedores.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Clientes(Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = this;
+		}
+		
+		private void detach_Clientes(Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = null;
+		}
+		
+		private void attach_Proveedores(Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = this;
+		}
+		
+		private void detach_Proveedores(Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Cuenta")]
 	public partial class Tipo_Cuenta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5811,120 +5925,6 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this.SendPropertyChanging();
 			entity.Tipo_Cuenta = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
-	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_tipo_producto;
-		
-		private string _nombre;
-		
-		private EntitySet<Producto> _Productos;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_tipo_productoChanging(int value);
-    partial void Onid_tipo_productoChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    #endregion
-		
-		public Tipo_Producto()
-		{
-			this._Productos = new EntitySet<Producto>(new Action<Producto>(this.attach_Productos), new Action<Producto>(this.detach_Productos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_producto", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_tipo_producto
-		{
-			get
-			{
-				return this._id_tipo_producto;
-			}
-			set
-			{
-				if ((this._id_tipo_producto != value))
-				{
-					this.Onid_tipo_productoChanging(value);
-					this.SendPropertyChanging();
-					this._id_tipo_producto = value;
-					this.SendPropertyChanged("id_tipo_producto");
-					this.Onid_tipo_productoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Producto", Storage="_Productos", ThisKey="id_tipo_producto", OtherKey="id_tipo_producto")]
-		public EntitySet<Producto> Productos
-		{
-			get
-			{
-				return this._Productos;
-			}
-			set
-			{
-				this._Productos.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Productos(Producto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = this;
-		}
-		
-		private void detach_Productos(Producto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = null;
 		}
 	}
 }
