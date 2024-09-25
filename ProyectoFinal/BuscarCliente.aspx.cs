@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -10,92 +11,33 @@ namespace ProyectoFinal
 {
     public partial class BuscarCliente : System.Web.UI.Page
     {
+        public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
+        BaseDatos.milinqDataContext mibd = new BaseDatos.milinqDataContext(conec);
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindGridView();
-                BindPagination();
+
             }
         }
 
-        protected void GridViewResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            GridViewResultado.PageIndex = e.NewPageIndex;
-            BindGridView();
-            BindPagination();
-        }
-
-        private void BindGridView()
-        {
-            string searchQuery = TextBoxBuscar.Text.Trim();
-            List<Cliente> datos = GetDatos(searchQuery);
-
-            GridViewResultado.DataSource = datos;
-            GridViewResultado.DataBind();
-        }
-
-        private void BindPagination()
-        {
-            int pageCount = (int)Math.Ceiling((double)GetDatos(TextBoxBuscar.Text.Trim()).Count / GridViewResultado.PageSize);
-            
-        }
-
-        protected void rptPaging_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "Page")
+            var buscar = from b in mibd.Clientes
+                         where b.nombre1_cliente.Contains(TextBoxBuscar.Text) || b.nit_cliente.Contains(TextBoxBuscar.Text) ||
+                         b.nombre2_cliente.Contains(TextBoxBuscar.Text)
+                         select new
+                         {
+                             Nit = b.nit_cliente,
+                             Nombre = b.nombre1_cliente + " " + b.nombre2_cliente,
+                             Apellido = b.apellido1_cliente + " " + b.apellido2_cliente
+                         };
+            if (buscar.FirstOrDefault() != null)
             {
-                int pageIndex = 0;
-
-                switch (e.CommandArgument.ToString())
-                {
-                    case "First":
-                        pageIndex = 0;
-                        break;
-                    case "Prev":
-                        pageIndex = GridViewResultado.PageIndex - 1;
-                        break;
-                    case "Next":
-                        pageIndex = GridViewResultado.PageIndex + 1;
-                        break;
-                    case "Last":
-                        pageIndex = GridViewResultado.PageCount - 1;
-                        break;
-                }
-
-                if (pageIndex >= 0 && pageIndex < GridViewResultado.PageCount)
-                {
-                    GridViewResultado.PageIndex = pageIndex;
-                    BindGridView();
-                    BindPagination();
-                }
+                GridViewResultado.DataSource = buscar;
+                GridViewResultado.DataBind();
+                GridViewResultado.Visible = true;
             }
-        }
-
-        private List<Cliente> GetDatos(string searchQuery)
-        {
-            // Ejemplo de datos
-            List<Cliente> datos = new List<Cliente>
-            {
-                new Cliente { Codigo = "1", Nombre = "Juan", Apellido = "Pérez" },
-                new Cliente { Codigo = "2", Nombre = "Ana", Apellido = "Gómez" },
-                new Cliente { Codigo = "3", Nombre = "Carlos", Apellido = "López" },
-                new Cliente { Codigo = "4", Nombre = "María", Apellido = "Rodríguez" },
-                // Agrega más datos aquí para probar la paginación
-            };
-
-            var resultados = string.IsNullOrEmpty(searchQuery)
-                ? datos
-                : datos.Where(d => d.Nombre.IndexOf(searchQuery, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-
-            return resultados;
-        }
-
-        public class Cliente
-        {
-            public string Codigo { get; set; }
-            public string Nombre { get; set; }
-            public string Apellido { get; set; }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace ProyectoFinal
     public partial class _default : System.Web.UI.Page
     {
         public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
+        public string ModalClass { get; set; } = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -31,20 +32,21 @@ namespace ProyectoFinal
             if (isAuthenticated)
             {
                 limpiar();
-                // Mostrar modal de bienvenida
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeModalAndRedirect",
-                $"var myModal = new bootstrap.Modal(document.getElementById('welcomeModal')); " +
-                $"document.getElementById('welcomeModalBody').innerHTML = '¡Hola, {nombreCompleto}! Has iniciado sesión correctamente!'; " +
-                $"myModal.show(); " +
-                $"setTimeout(function() {{" +
-                $"    window.location.href = 'inicioF.aspx'; " + $"}} , 2000);", true);
+                // Mostrar SweetAlert de bienvenida con redirección
+                string alertScript = $"setTimeout(function() {{ " +
+                    $"{SweetAlertUtils.ShowSuccess($"¡Hola, {nombreCompleto}!", "Has iniciado sesión correctamente!")} " +
+                    $"setTimeout(function() {{ window.location.href = 'inicioF.aspx'; }}, 1000); " +
+                    $"}} , 10);";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeAlert", alertScript, true);
                 Session["UserName"] = nombreCompleto;
             }
             else
             {
                 limpiar();
-                // Mostrar modal de error
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorModal", "var myModal = new bootstrap.Modal(document.getElementById('errorModal')); myModal.show();", true);
+                // Mostrar SweetAlert de error
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorAlert",
+                    SweetAlertUtils.ShowError("Error!", "Usuario o contraseña incorrectos."), true);
             }
         }
 

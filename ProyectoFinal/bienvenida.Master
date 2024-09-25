@@ -86,7 +86,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="dropdown-item-btn">
-                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-danger btn-sm" />
+                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-outline-danger btn-sm" />
                             </li>
                         </ul>
                     </div>

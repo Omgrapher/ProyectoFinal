@@ -46,9 +46,3 @@
     display: inline-flex;
     align-items: start;
 }
-
-/*PAGINACION*/
-.pagination {
-    justify-items: center;
-    margin: 0,200px,0,0;
-}

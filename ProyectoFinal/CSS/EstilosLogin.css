@@ -4,7 +4,9 @@
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-color: #F8F9FA; /* Cambia el color de fondo si lo deseas */
 }
+
 .form-floating > label {
     transition: transform 0.8s ease, opacity 1.5s ease;
 }
@@ -12,9 +14,17 @@
 .login-container {
     width: 100%;
     max-width: 400px;
-    height: auto;
     padding: 20px;
-    background-color: #FFFDFB;
+    background-color: #FFFDFB; /* Color de fondo del formulario */
     border-radius: 8px;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+    position: relative; /* Asegura que el contenedor sea estático respecto a su padre */
+}
+
+.invalid-feedback {
+    display: none; /* Oculta por defecto */
+}
+
+input:invalid + .invalid-feedback {
+    display: block; /* Muestra el mensaje de error cuando el input es inválido */
 }

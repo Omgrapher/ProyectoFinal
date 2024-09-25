@@ -3,36 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\ingresarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\ingresarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\ingresarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\ingresarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\buscarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\buscarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\ingresarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\ingresarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\basedatos\\milinq.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\basedatos\\milinq.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\classalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\classalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\bienvenida.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\proyectofinal\\buscarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\buscarcliente.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\buscarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\buscarcliente.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|c:\\users\\marlo\\onedrive\\documents\\universidad\\generales\\proyecto de grado\\3er paso\\proyectofinal\\proyectofinal\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{1C06164F-7244-4181-BD0E-91933108D3CD}|ProyectoFinal\\ProyectoFinal.csproj|solutionrelative:proyectofinal\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,44 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "classAlert.cs",
-              "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\classAlert.cs",
-              "RelativeDocumentMoniker": "ProyectoFinal\\classAlert.cs",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\classAlert.cs",
-              "RelativeToolTip": "ProyectoFinal\\classAlert.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-16T22:37:29.399Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\Web.config",
-              "RelativeDocumentMoniker": "ProyectoFinal\\Web.config",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\Web.config",
-              "RelativeToolTip": "ProyectoFinal\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-09-24T00:29:44.738Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "IngresarCliente.aspx.cs",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\IngresarCliente.aspx.cs",
               "RelativeDocumentMoniker": "ProyectoFinal\\IngresarCliente.aspx.cs",
               "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\IngresarCliente.aspx.cs",
               "RelativeToolTip": "ProyectoFinal\\IngresarCliente.aspx.cs",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAAAK8AAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAADwv4kAAADVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T00:20:39.575Z",
               "EditorCaption": ""
@@ -90,8 +47,8 @@
               "Title": "IngresarCliente.aspx",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\IngresarCliente.aspx",
               "RelativeDocumentMoniker": "ProyectoFinal\\IngresarCliente.aspx",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\IngresarCliente.aspx",
-              "RelativeToolTip": "ProyectoFinal\\IngresarCliente.aspx",
+              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\IngresarCliente.aspx*",
+              "RelativeToolTip": "ProyectoFinal\\IngresarCliente.aspx*",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-09-16T21:20:23.689Z",
@@ -99,20 +56,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BuscarCliente.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\BuscarCliente.aspx.cs",
-              "RelativeDocumentMoniker": "ProyectoFinal\\BuscarCliente.aspx.cs",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\BuscarCliente.aspx.cs",
-              "RelativeToolTip": "ProyectoFinal\\BuscarCliente.aspx.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAqwCgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T00:09:50.227Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "BuscarCliente.aspx",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\BuscarCliente.aspx",
               "RelativeDocumentMoniker": "ProyectoFinal\\BuscarCliente.aspx",
@@ -125,19 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "milinq.dbml",
-              "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\BaseDatos\\milinq.dbml",
-              "RelativeDocumentMoniker": "ProyectoFinal\\BaseDatos\\milinq.dbml",
-              "ToolTip": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\BaseDatos\\milinq.dbml",
-              "RelativeToolTip": "ProyectoFinal\\BaseDatos\\milinq.dbml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
-              "WhenOpened": "2024-08-29T02:35:43.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "bienvenida.Master",
               "DocumentMoniker": "C:\\Users\\marlo\\OneDrive\\Documents\\Universidad\\Generales\\Proyecto de Grado\\3er Paso\\ProyectoFinal\\ProyectoFinal\\bienvenida.Master",
               "RelativeDocumentMoniker": "ProyectoFinal\\bienvenida.Master",

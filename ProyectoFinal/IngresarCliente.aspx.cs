@@ -14,6 +14,15 @@ namespace ProyectoFinal
     {
         public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
         BaseDatos.milinqDataContext mibd = new BaseDatos.milinqDataContext(conec);
+        protected void limpiar()
+        {
+            txtPrimerNombre.Text = txtSegundoNombre.Text = txtPrimerApellido.Text = txtSegundoApellido.Text =
+                txtDireccion.Text = txtTelefono.Text = txtNIT.Text = txtEmail.Text = "";
+            ddlDepartamento.SelectedIndex = 0;
+            ddlMunicipio.SelectedIndex = 0;
+            ddlTipoCuenta.SelectedIndex = 0;
+            chkCredito.Checked = false;
+        }
         protected void cargarDepa()
         {
             var departamento = from d in mibd.Departamentos
@@ -62,12 +71,42 @@ namespace ProyectoFinal
         protected int GenerarCodigoUnico()
         {
             Random random = new Random();
-
-            // Generar un número aleatorio de 4 dígitos
-            int codigoUnico = random.Next(1000, 9999);
+            int codigoUnico;
+            bool codigoExiste;
+            do
+            {
+                codigoUnico = random.Next(1000, 9999);
+                codigoExiste = mibd.Clientes.Any(c => c.id_cliente == codigoUnico);
+            } while (codigoExiste);
 
             return codigoUnico;
         }
+
+        protected void guardarCliente()
+        {
+            int codigoAlumno = GenerarCodigoUnico();
+
+            Cliente nuevoCliente = new Cliente
+            {
+                id_cliente = codigoAlumno,
+                nombre1_cliente = txtPrimerNombre.Text.Trim(),
+                nombre2_cliente = txtSegundoNombre.Text.Trim(),
+                apellido1_cliente = txtPrimerApellido.Text.Trim(),
+                apellido2_cliente = txtSegundoApellido.Text.Trim(),
+                direccion = txtDireccion.Text.Trim(),
+                telefono = txtTelefono.Text.Trim(),
+                email = txtEmail.Text.Trim(),
+                nit_cliente = txtNIT.Text.Trim(),
+                id_muni = Convert.ToInt32(ddlMunicipio.SelectedValue),
+                id_credito = chkCredito.Checked ? 1 : 0,
+                estado = true
+            };
+
+            mibd.Clientes.InsertOnSubmit(nuevoCliente);
+            mibd.SubmitChanges();
+        }
+
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -80,14 +119,24 @@ namespace ProyectoFinal
         {
             string nitCliente = txtNIT.Text.Trim();
 
-            var clienteExistente = (from c in mibd.Clientes
-                                    where c.nit_cliente == nitCliente
-                                    select c).FirstOrDefault();
+            var clienteExistente = from c in mibd.Clientes
+                                   where c.nit_cliente == nitCliente
+                                   select new 
+                                   {
+                                        Nit = c.nit_cliente,
+                                        Nombre = c.nombre1_cliente + " " + c.nombre2_cliente,
+                                        Apellido = c.apellido1_cliente + " " + c.apellido2_cliente,
+                                   };
 
-            if (clienteExistente != null)
+
+            if (clienteExistente.FirstOrDefault() != null)
             {
-                string script = SweetAlertUtils.ShowAlert("Cliente Existente", "El cliente con este NIT ya existe.");
-                ClientScript.RegisterStartupScript(this.GetType(), "ClienteExistente", script, true);
+
+                lblDatosClienteExistente.Text = $"NIT: {clienteExistente.ToList()[0].Nit.ToString()} <br /> " +
+                                        $"Nombre: {clienteExistente.ToList()[0].Nombre.ToString()} {clienteExistente.ToList()[0].Apellido.ToString()}";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowclienteExistenteModal", "var myModal = new bootstrap.Modal(document.getElementById('clienteExistenteModal')); myModal.show();", true);
+                limpiar();
                 return;
             }
             else
@@ -105,30 +154,11 @@ namespace ProyectoFinal
         {
             try
             {
-                int codigoAlumno = GenerarCodigoUnico();
-
-                Cliente nuevoCliente = new Cliente
-                {
-                    id_cliente = codigoAlumno,
-                    nombre1_cliente = txtPrimerNombre.Text.Trim(),
-                    nombre2_cliente = txtSegundoNombre.Text.Trim(),
-                    apellido1_cliente = txtPrimerApellido.Text.Trim(),
-                    apellido2_cliente = txtSegundoApellido.Text.Trim(),
-                    direccion = txtDireccion.Text.Trim(),
-                    telefono = txtTelefono.Text.Trim(),
-                    email = txtEmail.Text.Trim(),
-                    nit_cliente = txtNIT.Text.Trim(),
-                    id_muni = Convert.ToInt32(ddlMunicipio.SelectedValue),
-                    id_credito = chkCredito.Checked ? 1 : 0,
-                    estado = true
-                };
-
-                mibd.Clientes.InsertOnSubmit(nuevoCliente);
-                mibd.SubmitChanges();
+                guardarCliente();
 
                 string script = SweetAlertUtils.ShowSuccess("Cliente Agregado", "El cliente ha sido agregado exitosamente.");
                 ClientScript.RegisterStartupScript(this.GetType(), "ClienteAgregado", script, true);
-
+                limpiar();
                 // Redireccionar a la página de Clientes o a la página que desees
                 // Response.Redirect("Clientes.aspx");
             }
@@ -188,7 +218,7 @@ namespace ProyectoFinal
 
                     // Si todo va bien, confirmar la transacción
                     transa.Complete();
-
+                    limpiar();
                     string script = SweetAlertUtils.ShowSuccess("Cliente y Cuenta Agregados", "El cliente y la cuenta han sido agregados exitosamente.");
                     ClientScript.RegisterStartupScript(this.GetType(), "ClienteCuentaAgregados", script, true);
                 }
@@ -200,6 +230,11 @@ namespace ProyectoFinal
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('" + errorMessage + "');", true);
                 }
             }
+        }
+
+        protected void btnEditarCliente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BuscarCliente.aspx");
         }
     }
 }
