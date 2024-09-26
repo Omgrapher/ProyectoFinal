@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/bienvenida.Master" AutoEventWireup="true" CodeBehind="BuscarCliente.aspx.cs" Inherits="ProyectoFinal.BuscarCliente" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/bienvenida.Master" AutoEventWireup="true" CodeBehind="BuscarCliente.aspx.cs" Inherits="ProyectoFinal.BuscarCliente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,7 +8,6 @@
             <div class="card-header text-center">
                 <h5 class="card-title">Busqueda de Cliente</h5>
             </div>
-
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -21,13 +20,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <!-- GridView Aquí -->
-                            <asp:GridView ID="GridViewResultado" CssClass="table table-striped" runat="server" AutoGenerateColumns="false"
-                                AllowPaging="true" PageSize="2" Visible="false">
+                            <asp:GridView ID="GridViewResultado" CssClass="table table-bordered" runat="server" AutoGenerateColumns="false"
+                                AllowPaging="true" PageSize="2" Visible="false" OnPageIndexChanging="GridViewResultado_PageIndexChanging">
                                 <Columns>
                                     <asp:BoundField DataField="NIT" HeaderText="NIT" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombres" />
@@ -37,6 +35,8 @@
                                         <ControlStyle CssClass="btn btn-outline-primary" />
                                     </asp:ButtonField>
                                 </Columns>
+                                <PagerSettings Mode="NumericFirstLast" PageButtonCount="8" FirstPageText="Primero" LastPageText="Ultimo"/>
+                                <PagerStyle CssClass="pagination-ys" HorizontalAlign="Center"/>
                             </asp:GridView>
                         </div>
                     </div>
@@ -44,8 +44,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="container" style="margin-top: 5px;">
         <div class="card card-custom">
             <div class="card-header text-center">
@@ -114,7 +112,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <asp:DropDownList ID="ddlDepartamento" runat="server" CssClass="form-select"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDepartamento" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlDepartamento_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                             <label for="ddlDepartamento">Departamento</label>
                         </div>
                     </div>
@@ -135,7 +133,7 @@
                 </div>
 
                 <div class="card-footer text-start">
-                    <asp:Button ID="btnEnviar" runat="server" Text="Guardar" CssClass="btn btn-outline-primary" />
+                    <asp:Button ID="btnEnviar" runat="server" Text="Editar" CssClass="btn btn-outline-primary" />
                 </div>
             </div>
         </div>

@@ -136,7 +136,7 @@ namespace ProyectoFinal
                                         $"Nombre: {clienteExistente.ToList()[0].Nombre.ToString()} {clienteExistente.ToList()[0].Apellido.ToString()}";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowclienteExistenteModal", "var myModal = new bootstrap.Modal(document.getElementById('clienteExistenteModal')); myModal.show();", true);
-                limpiar();
+                
                 return;
             }
             else
@@ -234,7 +234,8 @@ namespace ProyectoFinal
 
         protected void btnEditarCliente_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuscarCliente.aspx");
+            string nitCliente = txtNIT.Text; // Obtén el valor del NIT del cliente
+            Response.Redirect("BuscarCliente.aspx?nit=" + nitCliente);
         }
     }
 }
