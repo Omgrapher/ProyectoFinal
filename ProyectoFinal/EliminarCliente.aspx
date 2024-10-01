@@ -30,9 +30,9 @@
                                     <asp:BoundField DataField="NIT" HeaderText="NIT" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombres" />
                                     <asp:BoundField DataField="Apellido" HeaderText="Apellidos" />
-                                    <asp:ButtonField Text="Seleccionar" CommandName="Select" ButtonType="Button">
+                                    <asp:ButtonField Text="Eliminar" CommandName="Select" ButtonType="Button">
                                         <ItemStyle CssClass="text-center" />
-                                        <ControlStyle CssClass="btn btn-outline-primary" />
+                                        <ControlStyle CssClass="btn btn-outline-danger" />
                                     </asp:ButtonField>
                                 </Columns>
                                 <PagerSettings Mode="NumericFirstLast" PageButtonCount="8" FirstPageText="Primero" LastPageText="Ultimo" />
@@ -45,22 +45,22 @@
         </div>
     </div>
 
-        <!-- Modal para preguntar si desea editar al cliente-->
-<div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title w-100 text-center" id="eliminarModallLabel">Editar Cliente</h5>
-            </div>
-            <div class="modal-body text-center">
-                ¿Deseas editar a este cliente?
+    <!-- Modal para preguntar si desea editar al cliente-->
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center" id="eliminarModallLabel">Elimnar Cliente</h5>
+                </div>
+                <div class="modal-body text-center">
+                    ¿Deseas eliminar a este cliente?
        
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <asp:Button ID="btnSi" runat="server" Text="Sí" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnSi_Click" />
-                <asp:Button ID="btnNo" runat="server" Text="Más tarde" CssClass="btn btn-outline-secondary flex-fill mx-1" OnClick="btnNo_Click"/>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <asp:Button ID="btnSi" runat="server" Text="Sí" CssClass="btn btn-outline-success flex-fill mx-1" OnClick="btnSi_Click" />
+                    <asp:Button ID="btnNo" runat="server" Text="Más tarde" CssClass="btn btn-outline-secondary flex-fill mx-1" OnClick="btnNo_Click" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 </asp:Content>

@@ -32,7 +32,7 @@
                                     <asp:BoundField DataField="Apellido" HeaderText="Apellidos" />
                                     <asp:ButtonField Text="Seleccionar" CommandName="Select" ButtonType="Button">
                                         <ItemStyle CssClass="text-center" />
-                                        <ControlStyle CssClass="btn btn-outline-primary" />
+                                        <ControlStyle CssClass="btn btn-outline-info" />
                                     </asp:ButtonField>
                                 </Columns>
                                 <PagerSettings Mode="NumericFirstLast" PageButtonCount="8" FirstPageText="Primero" LastPageText="Ultimo"/>
@@ -151,8 +151,8 @@
        
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <asp:Button ID="btnSi" runat="server" Text="Sí" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnSi_Click" />
-                <asp:Button ID="btnNo" runat="server" Text="Más tarde" CssClass="btn btn-outline-secondary flex-fill mx-1" OnClick="btnNo_Click"/>
+                <asp:Button ID="btnSi" runat="server" Text="Sí" CssClass="btn btn-outline-success flex-fill mx-1" OnClick="btnSi_Click" />
+                <asp:Button ID="btnNo" runat="server" Text="Más tarde" CssClass="btn btn-outline-info flex-fill mx-1" OnClick="btnNo_Click"/>
             </div>
         </div>
     </div>

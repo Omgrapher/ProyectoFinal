@@ -111,7 +111,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <asp:Button ID="btnSiCuenta" runat="server" Text="Sí" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnSiCuenta_Click" />
-                    <asp:Button ID="btnNoCuenta" runat="server" Text="Más tarde" CssClass="btn btn-outline-secondary flex-fill mx-1" OnClick="btnNoCuenta_Click" />
+                    <asp:Button ID="btnNoCuenta" runat="server" Text="Más tarde" CssClass="btn btn-outline-info flex-fill mx-1" OnClick="btnNoCuenta_Click" />
                 </div>
             </div>
         </div>
@@ -152,8 +152,8 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnAgregar_Click" />
-                    <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" CssClass="btn btn-outline-secondary flex-fill mx-1" data-bs-dismiss="modal" />
+                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-outline-success flex-fill mx-1" OnClick="btnAgregar_Click" />
+                    <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" CssClass="btn btn-outline-info flex-fill mx-1" data-bs-dismiss="modal" />
                 </div>
             </div>
         </div>
