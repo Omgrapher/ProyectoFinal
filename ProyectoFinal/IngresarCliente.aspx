@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin-top: 5px;">
+    <div class="container" style="margin-top: 15px;">
         <div class="card card-custom">
             <div class="card-header text-center">
                 <h5 class="card-title">Ingreso de Cliente</h5>

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="bienvenida.master.cs" Inherits="ProyectoFinal.bienvenida" %>
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="bienvenida.master.cs" Inherits="ProyectoFinal.bienvenida" %>
 
 <!DOCTYPE html>
 
@@ -40,11 +40,11 @@
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
                                     <li><a class="dropdown-item" href="IngresarCliente.aspx">Ingresar Cliente</a></li>
-                                    <li><a class="dropdown-item" href="BuscarCliente.aspx">Buscar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="BuscarCliente.aspx">Buscar o Editar Cliente</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Editar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="#">Eliminar Cliente</a></li>
                                 </ul>
                             </li>
 
@@ -56,11 +56,11 @@
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
                                     <li><a class="dropdown-item" href="#">Ingresar Proveedores</a></li>
-                                    <li><a class="dropdown-item" href="#">Buscar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="#">Buscar o Editar Proveedores</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Editar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="#">Eliminar Proveedores</a></li>
                                 </ul>
                             </li>
 

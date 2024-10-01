@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin-top: 5px;">
+    <div class="container" style="margin-top: 15px;">
         <div class="card card-custom">
             <div class="card-header text-center">
                 <h5 class="card-title">Busqueda de Cliente</h5>
@@ -25,7 +25,7 @@
                         <div class="col-md-12">
                             <!-- GridView Aquí -->
                             <asp:GridView ID="GridViewResultado" CssClass="table table-bordered" runat="server" AutoGenerateColumns="false"
-                                AllowPaging="true" PageSize="2" Visible="false" OnPageIndexChanging="GridViewResultado_PageIndexChanging">
+                                AllowPaging="true" PageSize="2" Visible="false" OnPageIndexChanging="GridViewResultado_PageIndexChanging" OnSelectedIndexChanged="GridViewResultado_SelectedIndexChanged">
                                 <Columns>
                                     <asp:BoundField DataField="NIT" HeaderText="NIT" />
                                     <asp:BoundField DataField="Nombre" HeaderText="Nombres" />
@@ -133,9 +133,28 @@
                 </div>
 
                 <div class="card-footer text-start">
-                    <asp:Button ID="btnEnviar" runat="server" Text="Editar" CssClass="btn btn-outline-primary" />
+                    <asp:Button ID="btnEnviar" runat="server" Text="Editar" CssClass="btn btn-outline-primary" OnClick="btnEnviar_Click"/>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal para preguntar si desea editar al cliente-->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="editarModalLabel">Editar Cliente</h5>
+            </div>
+            <div class="modal-body text-center">
+                ¿Deseas editar a este cliente?
+       
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <asp:Button ID="btnSi" runat="server" Text="Sí" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnSi_Click" />
+                <asp:Button ID="btnNo" runat="server" Text="Más tarde" CssClass="btn btn-outline-secondary flex-fill mx-1" OnClick="btnNo_Click"/>
+            </div>
+        </div>
+    </div>
+</div>
 </asp:Content>
