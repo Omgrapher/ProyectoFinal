@@ -44,7 +44,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Eliminar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="EliminarCliente.aspx">Eliminar Cliente</a></li>
                                 </ul>
                             </li>
 

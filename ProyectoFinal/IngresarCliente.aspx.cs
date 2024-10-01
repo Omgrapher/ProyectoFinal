@@ -120,7 +120,7 @@ namespace ProyectoFinal
             string nitCliente = txtNIT.Text.Trim();
 
             var clienteExistente = from c in mibd.Clientes
-                                   where c.nit_cliente == nitCliente
+                                   where c.nit_cliente == nitCliente && c.estado == true
                                    select new 
                                    {
                                         Nit = c.nit_cliente,
@@ -165,7 +165,8 @@ namespace ProyectoFinal
             catch (Exception ex)
             {
                 string errorMessage = "Ha ocurrido un error al intentar guardar el cliente: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('" + errorMessage + "');", true);
+                string script = SweetAlertUtils.ShowError("Error", errorMessage);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
             }
         }
 
@@ -226,8 +227,9 @@ namespace ProyectoFinal
                 {
                     // Si ocurre un error, revertir la transacción
                     transa.Dispose();
-                    string errorMessage = "Ha ocurrido un error al intentar guardar el cliente y la cuenta: " + ex.Message;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('" + errorMessage + "');", true);
+                    string errorMessage = "Ha ocurrido un error al intentar guardar el cliente: " + ex.Message;
+                    string script = SweetAlertUtils.ShowError("Error", errorMessage);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
                 }
             }
         }

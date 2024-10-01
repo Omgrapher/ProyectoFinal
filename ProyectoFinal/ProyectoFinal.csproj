@@ -2148,6 +2148,7 @@
     <Content Include="CSS\EstilosLogin.css" />
     <Content Include="CSS\principalCSS.css" />
     <Content Include="default.aspx" />
+    <Content Include="EliminarCliente.aspx" />
     <Content Include="img\entrega.png" />
     <Content Include="img\informe.png" />
     <Content Include="img\cliente.png" />
@@ -2186,6 +2187,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarCliente.aspx.cs">
+      <DependentUpon>EliminarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarCliente.aspx.designer.cs">
+      <DependentUpon>EliminarCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="IngresarCliente.aspx.cs">
       <DependentUpon>IngresarCliente.aspx</DependentUpon>

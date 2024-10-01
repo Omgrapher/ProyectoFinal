@@ -25,9 +25,10 @@ namespace ProyectoFinal
         private void CargarDatos(int pageIndex)
         {
             var buscar = from b in mibd.Clientes
-                         where b.nombre1_cliente.Contains(TextBoxBuscar.Text) ||
-                               b.nit_cliente.Contains(TextBoxBuscar.Text) ||
-                               b.nombre2_cliente.Contains(TextBoxBuscar.Text)
+                         where (b.nombre1_cliente.Contains(TextBoxBuscar.Text) ||
+                                b.nit_cliente.Contains(TextBoxBuscar.Text) ||
+                                b.nombre2_cliente.Contains(TextBoxBuscar.Text))
+                               && b.estado == true
                          select new
                          {
                              Nit = b.nit_cliente,
@@ -47,6 +48,9 @@ namespace ProyectoFinal
             else
             {
                 GridViewResultado.Visible = false; // No mostrar la tabla si no hay resultados
+                string errorMessage = "No se encontraron similares...";
+                string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
             }
         }
 
