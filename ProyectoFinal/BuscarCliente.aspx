@@ -53,13 +53,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtPrimerNombre" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtPrimerNombre" runat="server" CssClass="form-control" required/>
                             <label for="txtPrimerNombre">Primer Nombre</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtSegundoNombre" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtSegundoNombre" runat="server" CssClass="form-control" required/>
                             <label for="txtSegundoNombre">Segundo Nombre</label>
                         </div>
                     </div>
@@ -67,13 +67,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtPrimerApellido" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtPrimerApellido" runat="server" CssClass="form-control" required/>
                             <label for="txtPrimerApellido">Primer Apellido</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtSegundoApellido" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtSegundoApellido" runat="server" CssClass="form-control" required/>
                             <label for="txtSegundoApellido">Segundo Apellido</label>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" required/>
                             <label for="txtTelefono">Teléfono</label>
                         </div>
                     </div>
@@ -97,13 +97,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" required/>
                             <label for="txtEmail">Email</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <asp:TextBox ID="txtNIT" runat="server" CssClass="form-control" TextMode="Number" />
+                            <asp:TextBox ID="txtNIT" runat="server" CssClass="form-control" TextMode="Number" required/>
                             <label for="txtNIT">NIT</label>
                         </div>
                     </div>

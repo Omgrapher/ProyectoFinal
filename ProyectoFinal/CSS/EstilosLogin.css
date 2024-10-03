@@ -22,10 +22,10 @@
     position: relative; /* Asegura que el contenedor sea estático respecto a su padre */
 }
 
-.invalid-feedback {
-    display: none; /* Oculta por defecto */
-}
+/*.invalid-feedback {
+    display: none;*/ /* Oculta por defecto */
+/*}
 
 input:invalid + .invalid-feedback {
-    display: block; /* Muestra el mensaje de error cuando el input es inválido */
-}
+    display: block;*/ /* Muestra el mensaje de error cuando el input es inválido */
+/*}*/

@@ -17,7 +17,7 @@ namespace ProyectoFinal
         protected void limpiar()
         {
             txtPrimerNombre.Text = txtSegundoNombre.Text = txtPrimerApellido.Text = txtSegundoApellido.Text =
-                txtDireccion.Text = txtTelefono.Text = txtNIT.Text = txtEmail.Text = "";
+                txtDireccion.Text = txtTelefono.Text = txtNIT.Text = txtEmail.Text = TextBoxBuscar.Text = "";
             ddlDepartamento.SelectedIndex = 0;
             ddlMunicipio.SelectedIndex = 0;
             chkCredito.Checked = false;
@@ -51,6 +51,7 @@ namespace ProyectoFinal
                 string errorMessage = "No se encontraron similares...";
                 string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
+                limpiar();
             }
         }
 

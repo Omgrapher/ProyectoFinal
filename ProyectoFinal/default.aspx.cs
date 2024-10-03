@@ -35,7 +35,7 @@ namespace ProyectoFinal
                 // Mostrar SweetAlert de bienvenida con redirección
                 string alertScript = $"setTimeout(function() {{ " +
                     $"{SweetAlertUtils.ShowSuccess($"¡Hola, {nombreCompleto}!", "Has iniciado sesión correctamente!")} " +
-                    $"setTimeout(function() {{ window.location.href = 'inicioF.aspx'; }}, 1000); " +
+                    $"setTimeout(function() {{ window.location.href = '/inicioF.aspx'; }}, 1000); " +
                     $"}} , 10);";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeAlert", alertScript, true);

@@ -47,6 +47,7 @@ namespace ProyectoFinal
                 string errorMessage = "No se encontraron similares...";
                 string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
+                limpiar();
             }
         }
         public static string nit = "";
