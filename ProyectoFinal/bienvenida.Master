@@ -7,10 +7,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Librería San Bartolomé</title>
-    <link href="CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="CSS/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css"/>
+    <link href="<%= ResolveUrl("~/CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/css/bootstrap.min.css")%>" rel="stylesheet"/>
+    <link rel="stylesheet" href="<%= ResolveUrl("~/CSS/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css") %>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="CSS/principalCSS.css" rel="stylesheet" />
+    <link href="<%= ResolveUrl("~/CSS/principalCSS.css") %>" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -39,12 +39,12 @@
                                     <span>Clientes</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="IngresarCliente.aspx">Ingresar Cliente</a></li>
-                                    <li><a class="dropdown-item" href="BuscarCliente.aspx">Buscar o Editar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="Clientes/IngresarCliente.aspx">Ingresar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="Clientes/BuscarCliente.aspx">Buscar o Editar Cliente</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="EliminarCliente.aspx">Eliminar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="Clientes/EliminarCliente.aspx">Eliminar Cliente</a></li>
                                 </ul>
                             </li>
 
@@ -55,12 +55,12 @@
                                     <span>Proveedores</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="#">Ingresar Proveedores</a></li>
-                                    <li><a class="dropdown-item" href="#">Buscar o Editar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="Proveedores/IngresarProveedor.aspx">Ingresar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="Proveedores/BuscarProveedor.aspx">Buscar o Editar Proveedores</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Eliminar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="Proveedores/EliminarProveedor.aspx">Eliminar Proveedor</a></li>
                                 </ul>
                             </li>
 
@@ -94,9 +94,9 @@
             </div>
         </nav>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-        <script src="CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        <script src="<%= ResolveUrl("~/CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/js/bootstrap.min.js") %>"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="JS/PrincipalJS.js"></script>
+        <script src="<%= ResolveUrl("~/JS/PrincipalJS.js") %>"></script>
         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>
 </body>

@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <!-- Modal para preguntar si desea editar al cliente-->
+    <!-- Modal para preguntar si desea eliminar al cliente-->
     <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="eliminarModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

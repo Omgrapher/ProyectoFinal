@@ -78,9 +78,6 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertProducto(Producto instance);
     partial void UpdateProducto(Producto instance);
     partial void DeleteProducto(Producto instance);
-    partial void InsertProveedore(Proveedore instance);
-    partial void UpdateProveedore(Proveedore instance);
-    partial void DeleteProveedore(Proveedore instance);
     partial void InsertRol(Rol instance);
     partial void UpdateRol(Rol instance);
     partial void DeleteRol(Rol instance);
@@ -93,6 +90,9 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertTipo_Cuenta(Tipo_Cuenta instance);
     partial void UpdateTipo_Cuenta(Tipo_Cuenta instance);
     partial void DeleteTipo_Cuenta(Tipo_Cuenta instance);
+    partial void InsertProveedore(Proveedore instance);
+    partial void UpdateProveedore(Proveedore instance);
+    partial void DeleteProveedore(Proveedore instance);
     #endregion
 		
 		public milinqDataContext(string connection) : 
@@ -247,14 +247,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Proveedore> Proveedores
-		{
-			get
-			{
-				return this.GetTable<Proveedore>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Rol> Rols
 		{
 			get
@@ -284,6 +276,14 @@ namespace ProyectoFinal.BaseDatos
 			get
 			{
 				return this.GetTable<Tipo_Cuenta>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Proveedore> Proveedores
+		{
+			get
+			{
+				return this.GetTable<Proveedore>();
 			}
 		}
 	}
@@ -1086,9 +1086,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private bool _estado;
 		
-		private EntityRef<Proveedore> _Proveedore;
-		
 		private EntityRef<Tipo_Cuenta> _Tipo_Cuenta;
+		
+		private EntityRef<Proveedore> _Proveedore;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1114,8 +1114,8 @@ namespace ProyectoFinal.BaseDatos
 		
 		public Cuentas_Bancarias_Proveedore()
 		{
-			this._Proveedore = default(EntityRef<Proveedore>);
 			this._Tipo_Cuenta = default(EntityRef<Tipo_Cuenta>);
+			this._Proveedore = default(EntityRef<Proveedore>);
 			OnCreated();
 		}
 		
@@ -1287,40 +1287,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Cuentas_Bancarias_Proveedore", Storage="_Proveedore", ThisKey="id_proveedores", OtherKey="id_proveedores", IsForeignKey=true)]
-		public Proveedore Proveedore
-		{
-			get
-			{
-				return this._Proveedore.Entity;
-			}
-			set
-			{
-				Proveedore previousValue = this._Proveedore.Entity;
-				if (((previousValue != value) 
-							|| (this._Proveedore.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Proveedore.Entity = null;
-						previousValue.Cuentas_Bancarias_Proveedores.Remove(this);
-					}
-					this._Proveedore.Entity = value;
-					if ((value != null))
-					{
-						value.Cuentas_Bancarias_Proveedores.Add(this);
-						this._id_proveedores = value.id_proveedores;
-					}
-					else
-					{
-						this._id_proveedores = default(int);
-					}
-					this.SendPropertyChanged("Proveedore");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore", Storage="_Tipo_Cuenta", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta", IsForeignKey=true)]
 		public Tipo_Cuenta Tipo_Cuenta
 		{
@@ -1351,6 +1317,40 @@ namespace ProyectoFinal.BaseDatos
 						this._id_tipo_cuenta = default(int);
 					}
 					this.SendPropertyChanged("Tipo_Cuenta");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Cuentas_Bancarias_Proveedore", Storage="_Proveedore", ThisKey="id_proveedores", OtherKey="id_proveedores", IsForeignKey=true)]
+		public Proveedore Proveedore
+		{
+			get
+			{
+				return this._Proveedore.Entity;
+			}
+			set
+			{
+				Proveedore previousValue = this._Proveedore.Entity;
+				if (((previousValue != value) 
+							|| (this._Proveedore.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Proveedore.Entity = null;
+						previousValue.Cuentas_Bancarias_Proveedores.Remove(this);
+					}
+					this._Proveedore.Entity = value;
+					if ((value != null))
+					{
+						value.Cuentas_Bancarias_Proveedores.Add(this);
+						this._id_proveedores = value.id_proveedores;
+					}
+					else
+					{
+						this._id_proveedores = default(int);
+					}
+					this.SendPropertyChanged("Proveedore");
 				}
 			}
 		}
@@ -4976,422 +4976,6 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Proveedores")]
-	public partial class Proveedore : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_proveedores;
-		
-		private string _nombre_proveedores;
-		
-		private string _apellido_proveedor;
-		
-		private string _direccion;
-		
-		private string _telefono_proveedor;
-		
-		private string _telefono_alterno_proveedor;
-		
-		private string _descripcion;
-		
-		private int _id_muni;
-		
-		private int _id_credito;
-		
-		private bool _estado;
-		
-		private EntitySet<Cuentas_Bancarias_Proveedore> _Cuentas_Bancarias_Proveedores;
-		
-		private EntitySet<Enca_Venta> _Enca_Ventas;
-		
-		private EntityRef<Municipio> _Municipio;
-		
-		private EntityRef<Estado_Credito> _Estado_Credito;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_proveedoresChanging(int value);
-    partial void Onid_proveedoresChanged();
-    partial void Onnombre_proveedoresChanging(string value);
-    partial void Onnombre_proveedoresChanged();
-    partial void Onapellido_proveedorChanging(string value);
-    partial void Onapellido_proveedorChanged();
-    partial void OndireccionChanging(string value);
-    partial void OndireccionChanged();
-    partial void Ontelefono_proveedorChanging(string value);
-    partial void Ontelefono_proveedorChanged();
-    partial void Ontelefono_alterno_proveedorChanging(string value);
-    partial void Ontelefono_alterno_proveedorChanged();
-    partial void OndescripcionChanging(string value);
-    partial void OndescripcionChanged();
-    partial void Onid_muniChanging(int value);
-    partial void Onid_muniChanged();
-    partial void Onid_creditoChanging(int value);
-    partial void Onid_creditoChanged();
-    partial void OnestadoChanging(bool value);
-    partial void OnestadoChanged();
-    #endregion
-		
-		public Proveedore()
-		{
-			this._Cuentas_Bancarias_Proveedores = new EntitySet<Cuentas_Bancarias_Proveedore>(new Action<Cuentas_Bancarias_Proveedore>(this.attach_Cuentas_Bancarias_Proveedores), new Action<Cuentas_Bancarias_Proveedore>(this.detach_Cuentas_Bancarias_Proveedores));
-			this._Enca_Ventas = new EntitySet<Enca_Venta>(new Action<Enca_Venta>(this.attach_Enca_Ventas), new Action<Enca_Venta>(this.detach_Enca_Ventas));
-			this._Municipio = default(EntityRef<Municipio>);
-			this._Estado_Credito = default(EntityRef<Estado_Credito>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_proveedores", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_proveedores
-		{
-			get
-			{
-				return this._id_proveedores;
-			}
-			set
-			{
-				if ((this._id_proveedores != value))
-				{
-					this.Onid_proveedoresChanging(value);
-					this.SendPropertyChanging();
-					this._id_proveedores = value;
-					this.SendPropertyChanged("id_proveedores");
-					this.Onid_proveedoresChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_proveedores", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string nombre_proveedores
-		{
-			get
-			{
-				return this._nombre_proveedores;
-			}
-			set
-			{
-				if ((this._nombre_proveedores != value))
-				{
-					this.Onnombre_proveedoresChanging(value);
-					this.SendPropertyChanging();
-					this._nombre_proveedores = value;
-					this.SendPropertyChanged("nombre_proveedores");
-					this.Onnombre_proveedoresChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_apellido_proveedor", DbType="NVarChar(100)")]
-		public string apellido_proveedor
-		{
-			get
-			{
-				return this._apellido_proveedor;
-			}
-			set
-			{
-				if ((this._apellido_proveedor != value))
-				{
-					this.Onapellido_proveedorChanging(value);
-					this.SendPropertyChanging();
-					this._apellido_proveedor = value;
-					this.SendPropertyChanged("apellido_proveedor");
-					this.Onapellido_proveedorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direccion", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
-		public string direccion
-		{
-			get
-			{
-				return this._direccion;
-			}
-			set
-			{
-				if ((this._direccion != value))
-				{
-					this.OndireccionChanging(value);
-					this.SendPropertyChanging();
-					this._direccion = value;
-					this.SendPropertyChanged("direccion");
-					this.OndireccionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telefono_proveedor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
-		public string telefono_proveedor
-		{
-			get
-			{
-				return this._telefono_proveedor;
-			}
-			set
-			{
-				if ((this._telefono_proveedor != value))
-				{
-					this.Ontelefono_proveedorChanging(value);
-					this.SendPropertyChanging();
-					this._telefono_proveedor = value;
-					this.SendPropertyChanged("telefono_proveedor");
-					this.Ontelefono_proveedorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telefono_alterno_proveedor", DbType="NVarChar(10)")]
-		public string telefono_alterno_proveedor
-		{
-			get
-			{
-				return this._telefono_alterno_proveedor;
-			}
-			set
-			{
-				if ((this._telefono_alterno_proveedor != value))
-				{
-					this.Ontelefono_alterno_proveedorChanging(value);
-					this.SendPropertyChanging();
-					this._telefono_alterno_proveedor = value;
-					this.SendPropertyChanged("telefono_alterno_proveedor");
-					this.Ontelefono_alterno_proveedorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string descripcion
-		{
-			get
-			{
-				return this._descripcion;
-			}
-			set
-			{
-				if ((this._descripcion != value))
-				{
-					this.OndescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._descripcion = value;
-					this.SendPropertyChanged("descripcion");
-					this.OndescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_muni", DbType="Int NOT NULL")]
-		public int id_muni
-		{
-			get
-			{
-				return this._id_muni;
-			}
-			set
-			{
-				if ((this._id_muni != value))
-				{
-					if (this._Municipio.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_muniChanging(value);
-					this.SendPropertyChanging();
-					this._id_muni = value;
-					this.SendPropertyChanged("id_muni");
-					this.Onid_muniChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL")]
-		public int id_credito
-		{
-			get
-			{
-				return this._id_credito;
-			}
-			set
-			{
-				if ((this._id_credito != value))
-				{
-					if (this._Estado_Credito.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_creditoChanging(value);
-					this.SendPropertyChanging();
-					this._id_credito = value;
-					this.SendPropertyChanged("id_credito");
-					this.Onid_creditoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Bit NOT NULL")]
-		public bool estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Cuentas_Bancarias_Proveedore", Storage="_Cuentas_Bancarias_Proveedores", ThisKey="id_proveedores", OtherKey="id_proveedores")]
-		public EntitySet<Cuentas_Bancarias_Proveedore> Cuentas_Bancarias_Proveedores
-		{
-			get
-			{
-				return this._Cuentas_Bancarias_Proveedores;
-			}
-			set
-			{
-				this._Cuentas_Bancarias_Proveedores.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Enca_Venta", Storage="_Enca_Ventas", ThisKey="id_proveedores", OtherKey="id_proveedores")]
-		public EntitySet<Enca_Venta> Enca_Ventas
-		{
-			get
-			{
-				return this._Enca_Ventas;
-			}
-			set
-			{
-				this._Enca_Ventas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Proveedore", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
-		public Municipio Municipio
-		{
-			get
-			{
-				return this._Municipio.Entity;
-			}
-			set
-			{
-				Municipio previousValue = this._Municipio.Entity;
-				if (((previousValue != value) 
-							|| (this._Municipio.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Municipio.Entity = null;
-						previousValue.Proveedores.Remove(this);
-					}
-					this._Municipio.Entity = value;
-					if ((value != null))
-					{
-						value.Proveedores.Add(this);
-						this._id_muni = value.id_muni;
-					}
-					else
-					{
-						this._id_muni = default(int);
-					}
-					this.SendPropertyChanged("Municipio");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
-		public Estado_Credito Estado_Credito
-		{
-			get
-			{
-				return this._Estado_Credito.Entity;
-			}
-			set
-			{
-				Estado_Credito previousValue = this._Estado_Credito.Entity;
-				if (((previousValue != value) 
-							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Estado_Credito.Entity = null;
-						previousValue.Proveedores.Remove(this);
-					}
-					this._Estado_Credito.Entity = value;
-					if ((value != null))
-					{
-						value.Proveedores.Add(this);
-						this._id_credito = value.id_credito;
-					}
-					else
-					{
-						this._id_credito = default(int);
-					}
-					this.SendPropertyChanged("Estado_Credito");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Proveedore = this;
-		}
-		
-		private void detach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Proveedore = null;
-		}
-		
-		private void attach_Enca_Ventas(Enca_Venta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Proveedore = this;
-		}
-		
-		private void detach_Enca_Ventas(Enca_Venta entity)
-		{
-			this.SendPropertyChanging();
-			entity.Proveedore = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rol")]
 	public partial class Rol : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5925,6 +5509,422 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this.SendPropertyChanging();
 			entity.Tipo_Cuenta = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Proveedores")]
+	public partial class Proveedore : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_proveedores;
+		
+		private string _nombre_proveedores;
+		
+		private string _apellido_proveedor;
+		
+		private string _direccion;
+		
+		private string _telefono_proveedor;
+		
+		private string _telefono_alterno_proveedor;
+		
+		private string _descripcion;
+		
+		private int _id_muni;
+		
+		private int _id_credito;
+		
+		private bool _estado;
+		
+		private EntitySet<Cuentas_Bancarias_Proveedore> _Cuentas_Bancarias_Proveedores;
+		
+		private EntitySet<Enca_Venta> _Enca_Ventas;
+		
+		private EntityRef<Estado_Credito> _Estado_Credito;
+		
+		private EntityRef<Municipio> _Municipio;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_proveedoresChanging(int value);
+    partial void Onid_proveedoresChanged();
+    partial void Onnombre_proveedoresChanging(string value);
+    partial void Onnombre_proveedoresChanged();
+    partial void Onapellido_proveedorChanging(string value);
+    partial void Onapellido_proveedorChanged();
+    partial void OndireccionChanging(string value);
+    partial void OndireccionChanged();
+    partial void Ontelefono_proveedorChanging(string value);
+    partial void Ontelefono_proveedorChanged();
+    partial void Ontelefono_alterno_proveedorChanging(string value);
+    partial void Ontelefono_alterno_proveedorChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    partial void Onid_muniChanging(int value);
+    partial void Onid_muniChanged();
+    partial void Onid_creditoChanging(int value);
+    partial void Onid_creditoChanged();
+    partial void OnestadoChanging(bool value);
+    partial void OnestadoChanged();
+    #endregion
+		
+		public Proveedore()
+		{
+			this._Cuentas_Bancarias_Proveedores = new EntitySet<Cuentas_Bancarias_Proveedore>(new Action<Cuentas_Bancarias_Proveedore>(this.attach_Cuentas_Bancarias_Proveedores), new Action<Cuentas_Bancarias_Proveedore>(this.detach_Cuentas_Bancarias_Proveedores));
+			this._Enca_Ventas = new EntitySet<Enca_Venta>(new Action<Enca_Venta>(this.attach_Enca_Ventas), new Action<Enca_Venta>(this.detach_Enca_Ventas));
+			this._Estado_Credito = default(EntityRef<Estado_Credito>);
+			this._Municipio = default(EntityRef<Municipio>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_proveedores", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_proveedores
+		{
+			get
+			{
+				return this._id_proveedores;
+			}
+			set
+			{
+				if ((this._id_proveedores != value))
+				{
+					this.Onid_proveedoresChanging(value);
+					this.SendPropertyChanging();
+					this._id_proveedores = value;
+					this.SendPropertyChanged("id_proveedores");
+					this.Onid_proveedoresChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_proveedores", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_proveedores
+		{
+			get
+			{
+				return this._nombre_proveedores;
+			}
+			set
+			{
+				if ((this._nombre_proveedores != value))
+				{
+					this.Onnombre_proveedoresChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_proveedores = value;
+					this.SendPropertyChanged("nombre_proveedores");
+					this.Onnombre_proveedoresChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_apellido_proveedor", DbType="NVarChar(100)")]
+		public string apellido_proveedor
+		{
+			get
+			{
+				return this._apellido_proveedor;
+			}
+			set
+			{
+				if ((this._apellido_proveedor != value))
+				{
+					this.Onapellido_proveedorChanging(value);
+					this.SendPropertyChanging();
+					this._apellido_proveedor = value;
+					this.SendPropertyChanged("apellido_proveedor");
+					this.Onapellido_proveedorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direccion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string direccion
+		{
+			get
+			{
+				return this._direccion;
+			}
+			set
+			{
+				if ((this._direccion != value))
+				{
+					this.OndireccionChanging(value);
+					this.SendPropertyChanging();
+					this._direccion = value;
+					this.SendPropertyChanged("direccion");
+					this.OndireccionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telefono_proveedor", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string telefono_proveedor
+		{
+			get
+			{
+				return this._telefono_proveedor;
+			}
+			set
+			{
+				if ((this._telefono_proveedor != value))
+				{
+					this.Ontelefono_proveedorChanging(value);
+					this.SendPropertyChanging();
+					this._telefono_proveedor = value;
+					this.SendPropertyChanged("telefono_proveedor");
+					this.Ontelefono_proveedorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_telefono_alterno_proveedor", DbType="NVarChar(10)")]
+		public string telefono_alterno_proveedor
+		{
+			get
+			{
+				return this._telefono_alterno_proveedor;
+			}
+			set
+			{
+				if ((this._telefono_alterno_proveedor != value))
+				{
+					this.Ontelefono_alterno_proveedorChanging(value);
+					this.SendPropertyChanging();
+					this._telefono_alterno_proveedor = value;
+					this.SendPropertyChanged("telefono_alterno_proveedor");
+					this.Ontelefono_alterno_proveedorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_muni", DbType="Int NOT NULL")]
+		public int id_muni
+		{
+			get
+			{
+				return this._id_muni;
+			}
+			set
+			{
+				if ((this._id_muni != value))
+				{
+					if (this._Municipio.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_muniChanging(value);
+					this.SendPropertyChanging();
+					this._id_muni = value;
+					this.SendPropertyChanged("id_muni");
+					this.Onid_muniChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL")]
+		public int id_credito
+		{
+			get
+			{
+				return this._id_credito;
+			}
+			set
+			{
+				if ((this._id_credito != value))
+				{
+					if (this._Estado_Credito.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_creditoChanging(value);
+					this.SendPropertyChanging();
+					this._id_credito = value;
+					this.SendPropertyChanged("id_credito");
+					this.Onid_creditoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Bit NOT NULL")]
+		public bool estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Cuentas_Bancarias_Proveedore", Storage="_Cuentas_Bancarias_Proveedores", ThisKey="id_proveedores", OtherKey="id_proveedores")]
+		public EntitySet<Cuentas_Bancarias_Proveedore> Cuentas_Bancarias_Proveedores
+		{
+			get
+			{
+				return this._Cuentas_Bancarias_Proveedores;
+			}
+			set
+			{
+				this._Cuentas_Bancarias_Proveedores.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Enca_Venta", Storage="_Enca_Ventas", ThisKey="id_proveedores", OtherKey="id_proveedores")]
+		public EntitySet<Enca_Venta> Enca_Ventas
+		{
+			get
+			{
+				return this._Enca_Ventas;
+			}
+			set
+			{
+				this._Enca_Ventas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
+		public Estado_Credito Estado_Credito
+		{
+			get
+			{
+				return this._Estado_Credito.Entity;
+			}
+			set
+			{
+				Estado_Credito previousValue = this._Estado_Credito.Entity;
+				if (((previousValue != value) 
+							|| (this._Estado_Credito.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estado_Credito.Entity = null;
+						previousValue.Proveedores.Remove(this);
+					}
+					this._Estado_Credito.Entity = value;
+					if ((value != null))
+					{
+						value.Proveedores.Add(this);
+						this._id_credito = value.id_credito;
+					}
+					else
+					{
+						this._id_credito = default(int);
+					}
+					this.SendPropertyChanged("Estado_Credito");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Proveedore", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
+		public Municipio Municipio
+		{
+			get
+			{
+				return this._Municipio.Entity;
+			}
+			set
+			{
+				Municipio previousValue = this._Municipio.Entity;
+				if (((previousValue != value) 
+							|| (this._Municipio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Municipio.Entity = null;
+						previousValue.Proveedores.Remove(this);
+					}
+					this._Municipio.Entity = value;
+					if ((value != null))
+					{
+						value.Proveedores.Add(this);
+						this._id_muni = value.id_muni;
+					}
+					else
+					{
+						this._id_muni = default(int);
+					}
+					this.SendPropertyChanged("Municipio");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Proveedore = this;
+		}
+		
+		private void detach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Proveedore = null;
+		}
+		
+		private void attach_Enca_Ventas(Enca_Venta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Proveedore = this;
+		}
+		
+		private void detach_Enca_Ventas(Enca_Venta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Proveedore = null;
 		}
 	}
 }
