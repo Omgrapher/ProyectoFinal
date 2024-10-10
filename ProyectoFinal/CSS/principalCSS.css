@@ -108,3 +108,38 @@
     background-color: #eeeeee;
     border-color: #dddddd;
 }
+/* Estilo para el texto de bienvenida */
+.welcome-text {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+.carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima para ocupar toda la pantalla */
+}
+/* Ajustar altura del carrusel en pantallas pequeñas */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 250px; /* Altura más baja para móviles */
+    }
+
+    .welcome-text {
+        font-size: 2.5rem; /* Texto más pequeño en móviles */
+    }
+}
+
+/* Ajustar altura del carrusel en pantallas grandes */
+@media (min-width: 769px) {
+    .carousel-container {
+        height: 400px; /* Altura mayor en pantallas grandes */
+    }
+
+    .welcome-text {
+        font-size: 3.5rem; /* Texto más grande en pantallas medianas y grandes */
+    }
+}

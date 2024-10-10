@@ -2149,6 +2149,8 @@
     <Content Include="CSS\principalCSS.css" />
     <Content Include="default.aspx" />
     <Content Include="Clientes\EliminarCliente.aspx" />
+    <Content Include="img\112.jpg" />
+    <Content Include="img\3242341.jpg" />
     <Content Include="img\entrega.png" />
     <Content Include="img\informe.png" />
     <Content Include="img\cliente.png" />

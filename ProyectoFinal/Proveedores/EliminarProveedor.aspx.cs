@@ -100,5 +100,10 @@ namespace ProyectoFinal.Proveedores
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
             }
         }
+
+        protected void btnNo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
