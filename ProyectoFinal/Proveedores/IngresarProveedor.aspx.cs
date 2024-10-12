@@ -123,7 +123,7 @@ namespace ProyectoFinal.Proveedores
                                      {
                                          id = p.id_proveedores,
                                          nombre = p.nombre_proveedores,
-                                         apellido = p.apellido_proveedor
+                                         telefono = p.telefono_proveedor
                                      };  
 
 
@@ -131,10 +131,11 @@ namespace ProyectoFinal.Proveedores
             {
 
                 lblDatosProveedorExistente.Text = $"ID: {ProveedorExistente.ToList()[0].id.ToString()} <br /> " +
-                                        $"Nombre: {ProveedorExistente.ToList()[0].nombre.ToString()} {ProveedorExistente.ToList()[0].apellido.ToString()}";
+                                        $"Nombre: {ProveedorExistente.ToList()[0].nombre.ToString()}, Telefono: {ProveedorExistente.ToList()[0].telefono.ToString()}";
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowproveedorExistenteModal", "var myModal = new bootstrap.Modal(document.getElementById('proveedorExistenteModal')); myModal.show();", true);
 
+                limpiar();
                 return;
             }
             else
@@ -189,19 +190,20 @@ namespace ProyectoFinal.Proveedores
 
                     int codigoCuenta = GenerarCodigoUnico();
 
-                    // Crear la cuenta bancaria
-                    Cuenta_Bancaria_Cliente nuevaCuenta = new Cuenta_Bancaria_Cliente
+
+                    Cuentas_Bancarias_Proveedore nuevaCuenta = new Cuentas_Bancarias_Proveedore
                     {
-                        id_cuenta_cliente = codigoCuenta,
+                        id_cuenta_provee = codigoCuenta,
                         banco = TxtNBanco.Text.Trim(),
                         no_cuenta = TxtBoxNoCuenta.Text.Trim(),
                         descripcion_cuenta = TxtBoxDes.Text.Trim(),
                         nombre_propietario_cuenta = TxtBoxPropietario.Text.Trim(),
                         id_tipo_cuenta = Convert.ToInt32(ddlTipoCuenta.SelectedValue),
-                        id_cliente = nuevoProveedor.id_proveedores,
-                        estado = true
+                        id_proveedores = nuevoProveedor.id_proveedores,
+                        estado = true,
                     };
-                    mibd.Cuenta_Bancaria_Clientes.InsertOnSubmit(nuevaCuenta);
+
+                    mibd.Cuentas_Bancarias_Proveedores.InsertOnSubmit(nuevaCuenta);
                     mibd.SubmitChanges();
 
                     transa.Complete();

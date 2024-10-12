@@ -40,7 +40,7 @@
 
                 <!-- Botón de inicio de sesión -->
                 <div class="d-flex justify-content-center" style="padding-top:10px;">
-                    <asp:Button ID="LoginButton" CssClass="btn btn-light" Text="Iniciar Sesión" OnClick="LoginButton_Click" runat="server" />
+                    <asp:Button ID="LoginButton" CssClass="btn btn-light" Text="Iniciar Sesión" OnClick="LoginButton_Click" runat="server"/>
                 </div>
             </div>
         </div>

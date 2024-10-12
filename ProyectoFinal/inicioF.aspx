@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-     <div class="d-flex flex-column align-items-center justify-content-center vh-100 mt-4">
+     <div class="d-flex flex-column align-items-center justify-content-center vh-100" style="margin-top:60px;">
         <h1 class="welcome-text text-center">¡Bienvenido al centro de control de Librería San Bartolomé!</h1>
 
         <div id="carouselExampleCaptions" class="carousel slide shadow-lg carousel-container d-none d-lg-flex" data-bs-ride="carousel" style="width: 80%; height: 800px; border-radius: 15px; overflow: hidden;">

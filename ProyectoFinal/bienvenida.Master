@@ -17,7 +17,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         <nav class="navbar nav-customColor fixed-top">
+        <nav class="navbar nav-customColor">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,9 @@
                 <div class="offcanvas offcanvas-start nav-customColor" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header">
                         <h3 class="offcanvas-title d-flex align-items-center" id="offcanvasNavbarLabel">
-                            <i class="bi bi-shop me-2" style="font-size: 1.5rem; cursor: pointer;"></i>
+                            <a href="<%= ResolveUrl("inicioF.aspx") %>" class="text-decoration-none" style="outline: none; color: black; text-decoration: none; color: black !important; color: inherit;">
+                                <i class="bi bi-shop me-2" style="font-size: 1.5rem; cursor: pointer;"></i>
+                            </a>
                             <span class="ms-2">Menú</span>
                         </h3>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -39,12 +41,12 @@
                                     <span>Clientes</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="Clientes/IngresarCliente.aspx">Ingresar Cliente</a></li>
-                                    <li><a class="dropdown-item" href="Clientes/BuscarCliente.aspx">Buscar o Editar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Clientes/IngresarCliente.aspx") %>">Ingresar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Clientes/BuscarCliente.aspx") %>">Buscar o Editar Cliente</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="Clientes/EliminarCliente.aspx">Eliminar Cliente</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Clientes/EliminarCliente.aspx") %>">Eliminar Cliente</a></li>
                                 </ul>
                             </li>
 
@@ -55,19 +57,35 @@
                                     <span>Proveedores</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="Proveedores/IngresarProveedor.aspx">Ingresar Proveedores</a></li>
-                                    <li><a class="dropdown-item" href="Proveedores/BuscarProveedor.aspx">Buscar o Editar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/IngresarProveedor.aspx") %>">Ingresar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/BuscarProveedor.aspx") %>">Buscar o Editar Proveedores</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="Proveedores/EliminarProveedor.aspx">Eliminar Proveedor</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/EliminarProveedor.aspx") %>">Eliminar Proveedor</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- VENTAS -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-cash me-2" style="font-size: 1.5rem;"></i>
+                                    <span>Ventas</span>
+                                </a>
+                                <ul class="dropdown-menu nav-customColor">
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/IngresarProveedor.aspx") %>">Ingresar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/BuscarProveedor.aspx") %>">Buscar o Editar Proveedores</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/EliminarProveedor.aspx") %>">Eliminar Proveedor</a></li>
                                 </ul>
                             </li>
 
                             <!-- REPORTES -->
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center" href="#" role="button" aria-expanded="false">
-                                    <i class="bi bi-bar-chart me-2" style="font-size: 1.5rem;"></i>
+                                <a class="nav-link d-flex align-items-center" href="<%= ResolveUrl("~/Reportes/ReporteGeneral.aspx") %>" role="button" aria-expanded="false">
+                                    <i class="bi bi-file-earmark-pdf me-2" style="font-size: 1.5rem;"></i>
                                     <span>Reportes</span>
                                 </a>
                             </li>
@@ -86,7 +104,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="dropdown-item-btn">
-                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-outline-danger btn-sm" />
+                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-outline-danger btn-sm" CausesValidation="false" UseSubmitBehavior="false"/>
                             </li>
                         </ul>
                     </div>

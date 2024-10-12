@@ -5,6 +5,18 @@
     background-color: #FFFDFB;
     box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
 }
+a {
+    color: black; /* Color por defecto del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+    a:hover, a:focus, a:active {
+        color: black !important; /* Asegura que el color se mantenga negro en hover y focus */
+    }
+
+i {
+    color: inherit; /* Asegura que el ícono herede el color del enlace */
+}
 
 /*ICONO DE USUARIO*/
 .dropdown-menu-center {
@@ -143,3 +155,15 @@
         font-size: 3.5rem; /* Texto más grande en pantallas medianas y grandes */
     }
 }
+
+/*
+
+    Reportes
+*/
+.card {
+    cursor: pointer;
+}
+
+    .card:hover {
+        background-color: #f8f9fa;
+    }

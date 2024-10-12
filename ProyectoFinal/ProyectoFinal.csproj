@@ -2163,6 +2163,8 @@
     <Content Include="Proveedores\BuscarProveedor.aspx" />
     <Content Include="Proveedores\EliminarProveedor.aspx" />
     <Content Include="Proveedores\IngresarProveedor.aspx" />
+    <Content Include="Reportes\ReporteGeneral.aspx" />
+    <Content Include="Ventas\RealizarVenta.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2235,6 +2237,20 @@
     </Compile>
     <Compile Include="Proveedores\IngresarProveedor.aspx.designer.cs">
       <DependentUpon>IngresarProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ReporteGeneral.aspx.cs">
+      <DependentUpon>ReporteGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteGeneral.aspx.designer.cs">
+      <DependentUpon>ReporteGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\RealizarVenta.aspx.cs">
+      <DependentUpon>RealizarVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ventas\RealizarVenta.aspx.designer.cs">
+      <DependentUpon>RealizarVenta.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -22,8 +22,9 @@ namespace ProyectoFinal
 
         protected void OnClickButtonCerrarSesion(object sender, EventArgs e)
         {
-            Response.Redirect("default.aspx");
+            Session.Abandon();
             Session.Clear();
+            Response.Redirect(ResolveUrl("~/default.aspx"));
         }
     }
 }
