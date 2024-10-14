@@ -22,7 +22,7 @@ namespace ProyectoFinal.BaseDatos
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Libreria1")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LibreriaP")]
 	public partial class milinqDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -63,6 +63,9 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertEnca_Venta(Enca_Venta instance);
     partial void UpdateEnca_Venta(Enca_Venta instance);
     partial void DeleteEnca_Venta(Enca_Venta instance);
+    partial void InsertEstado_Credito(Estado_Credito instance);
+    partial void UpdateEstado_Credito(Estado_Credito instance);
+    partial void DeleteEstado_Credito(Estado_Credito instance);
     partial void InsertForma_Pago(Forma_Pago instance);
     partial void UpdateForma_Pago(Forma_Pago instance);
     partial void DeleteForma_Pago(Forma_Pago instance);
@@ -78,21 +81,18 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertProducto(Producto instance);
     partial void UpdateProducto(Producto instance);
     partial void DeleteProducto(Producto instance);
-    partial void InsertRol(Rol instance);
-    partial void UpdateRol(Rol instance);
-    partial void DeleteRol(Rol instance);
-    partial void InsertTipo_Producto(Tipo_Producto instance);
-    partial void UpdateTipo_Producto(Tipo_Producto instance);
-    partial void DeleteTipo_Producto(Tipo_Producto instance);
-    partial void InsertEstado_Credito(Estado_Credito instance);
-    partial void UpdateEstado_Credito(Estado_Credito instance);
-    partial void DeleteEstado_Credito(Estado_Credito instance);
-    partial void InsertTipo_Cuenta(Tipo_Cuenta instance);
-    partial void UpdateTipo_Cuenta(Tipo_Cuenta instance);
-    partial void DeleteTipo_Cuenta(Tipo_Cuenta instance);
     partial void InsertProveedore(Proveedore instance);
     partial void UpdateProveedore(Proveedore instance);
     partial void DeleteProveedore(Proveedore instance);
+    partial void InsertRol(Rol instance);
+    partial void UpdateRol(Rol instance);
+    partial void DeleteRol(Rol instance);
+    partial void InsertTipo_Cuenta(Tipo_Cuenta instance);
+    partial void UpdateTipo_Cuenta(Tipo_Cuenta instance);
+    partial void DeleteTipo_Cuenta(Tipo_Cuenta instance);
+    partial void InsertTipo_Producto(Tipo_Producto instance);
+    partial void UpdateTipo_Producto(Tipo_Producto instance);
+    partial void DeleteTipo_Producto(Tipo_Producto instance);
     #endregion
 		
 		public milinqDataContext(string connection) : 
@@ -207,6 +207,14 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
+		public System.Data.Linq.Table<Estado_Credito> Estado_Creditos
+		{
+			get
+			{
+				return this.GetTable<Estado_Credito>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Forma_Pago> Forma_Pagos
 		{
 			get
@@ -247,27 +255,19 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
+		public System.Data.Linq.Table<Proveedore> Proveedores
+		{
+			get
+			{
+				return this.GetTable<Proveedore>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Rol> Rols
 		{
 			get
 			{
 				return this.GetTable<Rol>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tipo_Producto> Tipo_Productos
-		{
-			get
-			{
-				return this.GetTable<Tipo_Producto>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Estado_Credito> Estado_Creditos
-		{
-			get
-			{
-				return this.GetTable<Estado_Credito>();
 			}
 		}
 		
@@ -279,11 +279,11 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Proveedore> Proveedores
+		public System.Data.Linq.Table<Tipo_Producto> Tipo_Productos
 		{
 			get
 			{
-				return this.GetTable<Proveedore>();
+				return this.GetTable<Tipo_Producto>();
 			}
 		}
 	}
@@ -322,9 +322,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private EntitySet<Enca_Compra> _Enca_Compras;
 		
-		private EntityRef<Municipio> _Municipio;
-		
 		private EntityRef<Estado_Credito> _Estado_Credito;
+		
+		private EntityRef<Municipio> _Municipio;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -360,8 +360,8 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this._Cuenta_Bancaria_Clientes = new EntitySet<Cuenta_Bancaria_Cliente>(new Action<Cuenta_Bancaria_Cliente>(this.attach_Cuenta_Bancaria_Clientes), new Action<Cuenta_Bancaria_Cliente>(this.detach_Cuenta_Bancaria_Clientes));
 			this._Enca_Compras = new EntitySet<Enca_Compra>(new Action<Enca_Compra>(this.attach_Enca_Compras), new Action<Enca_Compra>(this.detach_Enca_Compras));
-			this._Municipio = default(EntityRef<Municipio>);
 			this._Estado_Credito = default(EntityRef<Estado_Credito>);
+			this._Municipio = default(EntityRef<Municipio>);
 			OnCreated();
 		}
 		
@@ -639,40 +639,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Cliente", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
-		public Municipio Municipio
-		{
-			get
-			{
-				return this._Municipio.Entity;
-			}
-			set
-			{
-				Municipio previousValue = this._Municipio.Entity;
-				if (((previousValue != value) 
-							|| (this._Municipio.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Municipio.Entity = null;
-						previousValue.Clientes.Remove(this);
-					}
-					this._Municipio.Entity = value;
-					if ((value != null))
-					{
-						value.Clientes.Add(this);
-						this._id_muni = value.id_muni;
-					}
-					else
-					{
-						this._id_muni = default(int);
-					}
-					this.SendPropertyChanged("Municipio");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Estado_Credito", ThisKey="id_credito", OtherKey="id_credito", IsForeignKey=true)]
 		public Estado_Credito Estado_Credito
 		{
@@ -703,6 +669,40 @@ namespace ProyectoFinal.BaseDatos
 						this._id_credito = default(int);
 					}
 					this.SendPropertyChanged("Estado_Credito");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Municipio_Cliente", Storage="_Municipio", ThisKey="id_muni", OtherKey="id_muni", IsForeignKey=true)]
+		public Municipio Municipio
+		{
+			get
+			{
+				return this._Municipio.Entity;
+			}
+			set
+			{
+				Municipio previousValue = this._Municipio.Entity;
+				if (((previousValue != value) 
+							|| (this._Municipio.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Municipio.Entity = null;
+						previousValue.Clientes.Remove(this);
+					}
+					this._Municipio.Entity = value;
+					if ((value != null))
+					{
+						value.Clientes.Add(this);
+						this._id_muni = value.id_muni;
+					}
+					else
+					{
+						this._id_muni = default(int);
+					}
+					this.SendPropertyChanged("Municipio");
 				}
 			}
 		}
@@ -1086,9 +1086,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private bool _estado;
 		
-		private EntityRef<Tipo_Cuenta> _Tipo_Cuenta;
-		
 		private EntityRef<Proveedore> _Proveedore;
+		
+		private EntityRef<Tipo_Cuenta> _Tipo_Cuenta;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1114,8 +1114,8 @@ namespace ProyectoFinal.BaseDatos
 		
 		public Cuentas_Bancarias_Proveedore()
 		{
-			this._Tipo_Cuenta = default(EntityRef<Tipo_Cuenta>);
 			this._Proveedore = default(EntityRef<Proveedore>);
+			this._Tipo_Cuenta = default(EntityRef<Tipo_Cuenta>);
 			OnCreated();
 		}
 		
@@ -1287,40 +1287,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore", Storage="_Tipo_Cuenta", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta", IsForeignKey=true)]
-		public Tipo_Cuenta Tipo_Cuenta
-		{
-			get
-			{
-				return this._Tipo_Cuenta.Entity;
-			}
-			set
-			{
-				Tipo_Cuenta previousValue = this._Tipo_Cuenta.Entity;
-				if (((previousValue != value) 
-							|| (this._Tipo_Cuenta.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tipo_Cuenta.Entity = null;
-						previousValue.Cuentas_Bancarias_Proveedores.Remove(this);
-					}
-					this._Tipo_Cuenta.Entity = value;
-					if ((value != null))
-					{
-						value.Cuentas_Bancarias_Proveedores.Add(this);
-						this._id_tipo_cuenta = value.id_tipo_cuenta;
-					}
-					else
-					{
-						this._id_tipo_cuenta = default(int);
-					}
-					this.SendPropertyChanged("Tipo_Cuenta");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Proveedore_Cuentas_Bancarias_Proveedore", Storage="_Proveedore", ThisKey="id_proveedores", OtherKey="id_proveedores", IsForeignKey=true)]
 		public Proveedore Proveedore
 		{
@@ -1351,6 +1317,40 @@ namespace ProyectoFinal.BaseDatos
 						this._id_proveedores = default(int);
 					}
 					this.SendPropertyChanged("Proveedore");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore", Storage="_Tipo_Cuenta", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta", IsForeignKey=true)]
+		public Tipo_Cuenta Tipo_Cuenta
+		{
+			get
+			{
+				return this._Tipo_Cuenta.Entity;
+			}
+			set
+			{
+				Tipo_Cuenta previousValue = this._Tipo_Cuenta.Entity;
+				if (((previousValue != value) 
+							|| (this._Tipo_Cuenta.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tipo_Cuenta.Entity = null;
+						previousValue.Cuentas_Bancarias_Proveedores.Remove(this);
+					}
+					this._Tipo_Cuenta.Entity = value;
+					if ((value != null))
+					{
+						value.Cuentas_Bancarias_Proveedores.Add(this);
+						this._id_tipo_cuenta = value.id_tipo_cuenta;
+					}
+					else
+					{
+						this._id_tipo_cuenta = default(int);
+					}
+					this.SendPropertyChanged("Tipo_Cuenta");
 				}
 			}
 		}
@@ -3818,6 +3818,172 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_Credito")]
+	public partial class Estado_Credito : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_credito;
+		
+		private string _nombre;
+		
+		private string _descripcion;
+		
+		private EntitySet<Cliente> _Clientes;
+		
+		private EntitySet<Proveedore> _Proveedores;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_creditoChanging(int value);
+    partial void Onid_creditoChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    partial void OndescripcionChanging(string value);
+    partial void OndescripcionChanged();
+    #endregion
+		
+		public Estado_Credito()
+		{
+			this._Clientes = new EntitySet<Cliente>(new Action<Cliente>(this.attach_Clientes), new Action<Cliente>(this.detach_Clientes));
+			this._Proveedores = new EntitySet<Proveedore>(new Action<Proveedore>(this.attach_Proveedores), new Action<Proveedore>(this.detach_Proveedores));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_credito
+		{
+			get
+			{
+				return this._id_credito;
+			}
+			set
+			{
+				if ((this._id_credito != value))
+				{
+					this.Onid_creditoChanging(value);
+					this.SendPropertyChanging();
+					this._id_credito = value;
+					this.SendPropertyChanged("id_credito");
+					this.Onid_creditoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string descripcion
+		{
+			get
+			{
+				return this._descripcion;
+			}
+			set
+			{
+				if ((this._descripcion != value))
+				{
+					this.OndescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion = value;
+					this.SendPropertyChanged("descripcion");
+					this.OndescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Clientes", ThisKey="id_credito", OtherKey="id_credito")]
+		public EntitySet<Cliente> Clientes
+		{
+			get
+			{
+				return this._Clientes;
+			}
+			set
+			{
+				this._Clientes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Proveedores", ThisKey="id_credito", OtherKey="id_credito")]
+		public EntitySet<Proveedore> Proveedores
+		{
+			get
+			{
+				return this._Proveedores;
+			}
+			set
+			{
+				this._Proveedores.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Clientes(Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = this;
+		}
+		
+		private void detach_Clientes(Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = null;
+		}
+		
+		private void attach_Proveedores(Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = this;
+		}
+		
+		private void detach_Proveedores(Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estado_Credito = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Forma_Pago")]
 	public partial class Forma_Pago : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4976,542 +5142,6 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rol")]
-	public partial class Rol : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_rol;
-		
-		private string _nombre;
-		
-		private EntitySet<Empleado> _Empleados;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_rolChanging(int value);
-    partial void Onid_rolChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    #endregion
-		
-		public Rol()
-		{
-			this._Empleados = new EntitySet<Empleado>(new Action<Empleado>(this.attach_Empleados), new Action<Empleado>(this.detach_Empleados));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_rol
-		{
-			get
-			{
-				return this._id_rol;
-			}
-			set
-			{
-				if ((this._id_rol != value))
-				{
-					this.Onid_rolChanging(value);
-					this.SendPropertyChanging();
-					this._id_rol = value;
-					this.SendPropertyChanged("id_rol");
-					this.Onid_rolChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Rol_Empleado", Storage="_Empleados", ThisKey="id_rol", OtherKey="id_rol")]
-		public EntitySet<Empleado> Empleados
-		{
-			get
-			{
-				return this._Empleados;
-			}
-			set
-			{
-				this._Empleados.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Empleados(Empleado entity)
-		{
-			this.SendPropertyChanging();
-			entity.Rol = this;
-		}
-		
-		private void detach_Empleados(Empleado entity)
-		{
-			this.SendPropertyChanging();
-			entity.Rol = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
-	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_tipo_producto;
-		
-		private string _nombre;
-		
-		private EntitySet<Producto> _Productos;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_tipo_productoChanging(int value);
-    partial void Onid_tipo_productoChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    #endregion
-		
-		public Tipo_Producto()
-		{
-			this._Productos = new EntitySet<Producto>(new Action<Producto>(this.attach_Productos), new Action<Producto>(this.detach_Productos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_producto", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_tipo_producto
-		{
-			get
-			{
-				return this._id_tipo_producto;
-			}
-			set
-			{
-				if ((this._id_tipo_producto != value))
-				{
-					this.Onid_tipo_productoChanging(value);
-					this.SendPropertyChanging();
-					this._id_tipo_producto = value;
-					this.SendPropertyChanged("id_tipo_producto");
-					this.Onid_tipo_productoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Producto", Storage="_Productos", ThisKey="id_tipo_producto", OtherKey="id_tipo_producto")]
-		public EntitySet<Producto> Productos
-		{
-			get
-			{
-				return this._Productos;
-			}
-			set
-			{
-				this._Productos.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Productos(Producto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = this;
-		}
-		
-		private void detach_Productos(Producto entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estado_Credito")]
-	public partial class Estado_Credito : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_credito;
-		
-		private string _nombre;
-		
-		private string _descripcion;
-		
-		private EntitySet<Cliente> _Clientes;
-		
-		private EntitySet<Proveedore> _Proveedores;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_creditoChanging(int value);
-    partial void Onid_creditoChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
-    partial void OndescripcionChanging(string value);
-    partial void OndescripcionChanged();
-    #endregion
-		
-		public Estado_Credito()
-		{
-			this._Clientes = new EntitySet<Cliente>(new Action<Cliente>(this.attach_Clientes), new Action<Cliente>(this.detach_Clientes));
-			this._Proveedores = new EntitySet<Proveedore>(new Action<Proveedore>(this.attach_Proveedores), new Action<Proveedore>(this.detach_Proveedores));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_credito", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_credito
-		{
-			get
-			{
-				return this._id_credito;
-			}
-			set
-			{
-				if ((this._id_credito != value))
-				{
-					this.Onid_creditoChanging(value);
-					this.SendPropertyChanging();
-					this._id_credito = value;
-					this.SendPropertyChanged("id_credito");
-					this.Onid_creditoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string descripcion
-		{
-			get
-			{
-				return this._descripcion;
-			}
-			set
-			{
-				if ((this._descripcion != value))
-				{
-					this.OndescripcionChanging(value);
-					this.SendPropertyChanging();
-					this._descripcion = value;
-					this.SendPropertyChanged("descripcion");
-					this.OndescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Cliente", Storage="_Clientes", ThisKey="id_credito", OtherKey="id_credito")]
-		public EntitySet<Cliente> Clientes
-		{
-			get
-			{
-				return this._Clientes;
-			}
-			set
-			{
-				this._Clientes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estado_Credito_Proveedore", Storage="_Proveedores", ThisKey="id_credito", OtherKey="id_credito")]
-		public EntitySet<Proveedore> Proveedores
-		{
-			get
-			{
-				return this._Proveedores;
-			}
-			set
-			{
-				this._Proveedores.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Clientes(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = this;
-		}
-		
-		private void detach_Clientes(Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = null;
-		}
-		
-		private void attach_Proveedores(Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = this;
-		}
-		
-		private void detach_Proveedores(Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estado_Credito = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Cuenta")]
-	public partial class Tipo_Cuenta : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_tipo_cuenta;
-		
-		private string _nombre_tipo_cuenta;
-		
-		private EntitySet<Cuenta_Bancaria_Cliente> _Cuenta_Bancaria_Clientes;
-		
-		private EntitySet<Cuentas_Bancarias_Proveedore> _Cuentas_Bancarias_Proveedores;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_tipo_cuentaChanging(int value);
-    partial void Onid_tipo_cuentaChanged();
-    partial void Onnombre_tipo_cuentaChanging(string value);
-    partial void Onnombre_tipo_cuentaChanged();
-    #endregion
-		
-		public Tipo_Cuenta()
-		{
-			this._Cuenta_Bancaria_Clientes = new EntitySet<Cuenta_Bancaria_Cliente>(new Action<Cuenta_Bancaria_Cliente>(this.attach_Cuenta_Bancaria_Clientes), new Action<Cuenta_Bancaria_Cliente>(this.detach_Cuenta_Bancaria_Clientes));
-			this._Cuentas_Bancarias_Proveedores = new EntitySet<Cuentas_Bancarias_Proveedore>(new Action<Cuentas_Bancarias_Proveedore>(this.attach_Cuentas_Bancarias_Proveedores), new Action<Cuentas_Bancarias_Proveedore>(this.detach_Cuentas_Bancarias_Proveedores));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_cuenta", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_tipo_cuenta
-		{
-			get
-			{
-				return this._id_tipo_cuenta;
-			}
-			set
-			{
-				if ((this._id_tipo_cuenta != value))
-				{
-					this.Onid_tipo_cuentaChanging(value);
-					this.SendPropertyChanging();
-					this._id_tipo_cuenta = value;
-					this.SendPropertyChanged("id_tipo_cuenta");
-					this.Onid_tipo_cuentaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_tipo_cuenta", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string nombre_tipo_cuenta
-		{
-			get
-			{
-				return this._nombre_tipo_cuenta;
-			}
-			set
-			{
-				if ((this._nombre_tipo_cuenta != value))
-				{
-					this.Onnombre_tipo_cuentaChanging(value);
-					this.SendPropertyChanging();
-					this._nombre_tipo_cuenta = value;
-					this.SendPropertyChanged("nombre_tipo_cuenta");
-					this.Onnombre_tipo_cuentaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuenta_Bancaria_Cliente", Storage="_Cuenta_Bancaria_Clientes", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta")]
-		public EntitySet<Cuenta_Bancaria_Cliente> Cuenta_Bancaria_Clientes
-		{
-			get
-			{
-				return this._Cuenta_Bancaria_Clientes;
-			}
-			set
-			{
-				this._Cuenta_Bancaria_Clientes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore", Storage="_Cuentas_Bancarias_Proveedores", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta")]
-		public EntitySet<Cuentas_Bancarias_Proveedore> Cuentas_Bancarias_Proveedores
-		{
-			get
-			{
-				return this._Cuentas_Bancarias_Proveedores;
-			}
-			set
-			{
-				this._Cuentas_Bancarias_Proveedores.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Cuenta_Bancaria_Clientes(Cuenta_Bancaria_Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Cuenta = this;
-		}
-		
-		private void detach_Cuenta_Bancaria_Clientes(Cuenta_Bancaria_Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Cuenta = null;
-		}
-		
-		private void attach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Cuenta = this;
-		}
-		
-		private void detach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Cuenta = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Proveedores")]
 	public partial class Proveedore : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -5925,6 +5555,376 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this.SendPropertyChanging();
 			entity.Proveedore = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rol")]
+	public partial class Rol : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_rol;
+		
+		private string _nombre;
+		
+		private EntitySet<Empleado> _Empleados;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_rolChanging(int value);
+    partial void Onid_rolChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    #endregion
+		
+		public Rol()
+		{
+			this._Empleados = new EntitySet<Empleado>(new Action<Empleado>(this.attach_Empleados), new Action<Empleado>(this.detach_Empleados));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_rol", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_rol
+		{
+			get
+			{
+				return this._id_rol;
+			}
+			set
+			{
+				if ((this._id_rol != value))
+				{
+					this.Onid_rolChanging(value);
+					this.SendPropertyChanging();
+					this._id_rol = value;
+					this.SendPropertyChanged("id_rol");
+					this.Onid_rolChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Rol_Empleado", Storage="_Empleados", ThisKey="id_rol", OtherKey="id_rol")]
+		public EntitySet<Empleado> Empleados
+		{
+			get
+			{
+				return this._Empleados;
+			}
+			set
+			{
+				this._Empleados.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Empleados(Empleado entity)
+		{
+			this.SendPropertyChanging();
+			entity.Rol = this;
+		}
+		
+		private void detach_Empleados(Empleado entity)
+		{
+			this.SendPropertyChanging();
+			entity.Rol = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Cuenta")]
+	public partial class Tipo_Cuenta : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_tipo_cuenta;
+		
+		private string _nombre_tipo_cuenta;
+		
+		private EntitySet<Cuenta_Bancaria_Cliente> _Cuenta_Bancaria_Clientes;
+		
+		private EntitySet<Cuentas_Bancarias_Proveedore> _Cuentas_Bancarias_Proveedores;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tipo_cuentaChanging(int value);
+    partial void Onid_tipo_cuentaChanged();
+    partial void Onnombre_tipo_cuentaChanging(string value);
+    partial void Onnombre_tipo_cuentaChanged();
+    #endregion
+		
+		public Tipo_Cuenta()
+		{
+			this._Cuenta_Bancaria_Clientes = new EntitySet<Cuenta_Bancaria_Cliente>(new Action<Cuenta_Bancaria_Cliente>(this.attach_Cuenta_Bancaria_Clientes), new Action<Cuenta_Bancaria_Cliente>(this.detach_Cuenta_Bancaria_Clientes));
+			this._Cuentas_Bancarias_Proveedores = new EntitySet<Cuentas_Bancarias_Proveedore>(new Action<Cuentas_Bancarias_Proveedore>(this.attach_Cuentas_Bancarias_Proveedores), new Action<Cuentas_Bancarias_Proveedore>(this.detach_Cuentas_Bancarias_Proveedores));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_cuenta", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_tipo_cuenta
+		{
+			get
+			{
+				return this._id_tipo_cuenta;
+			}
+			set
+			{
+				if ((this._id_tipo_cuenta != value))
+				{
+					this.Onid_tipo_cuentaChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_cuenta = value;
+					this.SendPropertyChanged("id_tipo_cuenta");
+					this.Onid_tipo_cuentaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre_tipo_cuenta", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string nombre_tipo_cuenta
+		{
+			get
+			{
+				return this._nombre_tipo_cuenta;
+			}
+			set
+			{
+				if ((this._nombre_tipo_cuenta != value))
+				{
+					this.Onnombre_tipo_cuentaChanging(value);
+					this.SendPropertyChanging();
+					this._nombre_tipo_cuenta = value;
+					this.SendPropertyChanged("nombre_tipo_cuenta");
+					this.Onnombre_tipo_cuentaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuenta_Bancaria_Cliente", Storage="_Cuenta_Bancaria_Clientes", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta")]
+		public EntitySet<Cuenta_Bancaria_Cliente> Cuenta_Bancaria_Clientes
+		{
+			get
+			{
+				return this._Cuenta_Bancaria_Clientes;
+			}
+			set
+			{
+				this._Cuenta_Bancaria_Clientes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore", Storage="_Cuentas_Bancarias_Proveedores", ThisKey="id_tipo_cuenta", OtherKey="id_tipo_cuenta")]
+		public EntitySet<Cuentas_Bancarias_Proveedore> Cuentas_Bancarias_Proveedores
+		{
+			get
+			{
+				return this._Cuentas_Bancarias_Proveedores;
+			}
+			set
+			{
+				this._Cuentas_Bancarias_Proveedores.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Cuenta_Bancaria_Clientes(Cuenta_Bancaria_Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Cuenta = this;
+		}
+		
+		private void detach_Cuenta_Bancaria_Clientes(Cuenta_Bancaria_Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Cuenta = null;
+		}
+		
+		private void attach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Cuenta = this;
+		}
+		
+		private void detach_Cuentas_Bancarias_Proveedores(Cuentas_Bancarias_Proveedore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Cuenta = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
+	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_tipo_producto;
+		
+		private string _nombre;
+		
+		private EntitySet<Producto> _Productos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_tipo_productoChanging(int value);
+    partial void Onid_tipo_productoChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    #endregion
+		
+		public Tipo_Producto()
+		{
+			this._Productos = new EntitySet<Producto>(new Action<Producto>(this.attach_Productos), new Action<Producto>(this.detach_Productos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_tipo_producto", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_tipo_producto
+		{
+			get
+			{
+				return this._id_tipo_producto;
+			}
+			set
+			{
+				if ((this._id_tipo_producto != value))
+				{
+					this.Onid_tipo_productoChanging(value);
+					this.SendPropertyChanging();
+					this._id_tipo_producto = value;
+					this.SendPropertyChanged("id_tipo_producto");
+					this.Onid_tipo_productoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Producto", Storage="_Productos", ThisKey="id_tipo_producto", OtherKey="id_tipo_producto")]
+		public EntitySet<Producto> Productos
+		{
+			get
+			{
+				return this._Productos;
+			}
+			set
+			{
+				this._Productos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Producto = this;
+		}
+		
+		private void detach_Productos(Producto entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tipo_Producto = null;
 		}
 	}
 }

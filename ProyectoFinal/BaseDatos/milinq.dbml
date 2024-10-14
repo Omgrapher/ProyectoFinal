@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Libreria1" Class="milinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LibreriaP" Class="milinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="dbo.Cliente" Member="Clientes">
     <Type Name="Cliente">
       <Column Name="id_cliente" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -15,8 +15,8 @@
       <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Cliente_Cuenta_Bancaria_Cliente" Member="Cuenta_Bancaria_Clientes" ThisKey="id_cliente" OtherKey="id_cliente" Type="Cuenta_Bancaria_Cliente" />
       <Association Name="Cliente_Enca_Compra" Member="Enca_Compras" ThisKey="id_cliente" OtherKey="id_cliente" Type="Enca_Compra" />
-      <Association Name="Municipio_Cliente" Member="Municipio" ThisKey="id_muni" OtherKey="id_muni" Type="Municipio" IsForeignKey="true" />
       <Association Name="Estado_Credito_Cliente" Member="Estado_Credito" ThisKey="id_credito" OtherKey="id_credito" Type="Estado_Credito" IsForeignKey="true" />
+      <Association Name="Municipio_Cliente" Member="Municipio" ThisKey="id_muni" OtherKey="id_muni" Type="Municipio" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Cuenta_Bancaria_Cliente" Member="Cuenta_Bancaria_Clientes">
@@ -43,8 +43,8 @@
       <Column Name="id_tipo_cuenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="id_proveedores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore" Member="Tipo_Cuenta" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Tipo_Cuenta" IsForeignKey="true" />
       <Association Name="Proveedore_Cuentas_Bancarias_Proveedore" Member="Proveedore" ThisKey="id_proveedores" OtherKey="id_proveedores" Type="Proveedore" IsForeignKey="true" />
+      <Association Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore" Member="Tipo_Cuenta" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Tipo_Cuenta" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Departamento" Member="Departamentos">
@@ -157,6 +157,15 @@
       <Association Name="Proveedore_Enca_Venta" Member="Proveedore" ThisKey="id_proveedores" OtherKey="id_proveedores" Type="Proveedore" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Estado_Credito" Member="Estado_Creditos">
+    <Type Name="Estado_Credito">
+      <Column Name="id_credito" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Estado_Credito_Cliente" Member="Clientes" ThisKey="id_credito" OtherKey="id_credito" Type="Cliente" />
+      <Association Name="Estado_Credito_Proveedore" Member="Proveedores" ThisKey="id_credito" OtherKey="id_credito" Type="Proveedore" />
+    </Type>
+  </Table>
   <Table Name="dbo.Forma_Pago" Member="Forma_Pagos">
     <Type Name="Forma_Pago">
       <Column Name="id_forma_pago" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -213,37 +222,6 @@
       <Association Name="Tipo_Producto_Producto" Member="Tipo_Producto" ThisKey="id_tipo_producto" OtherKey="id_tipo_producto" Type="Tipo_Producto" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Rol" Member="Rols">
-    <Type Name="Rol">
-      <Column Name="id_rol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Rol_Empleado" Member="Empleados" ThisKey="id_rol" OtherKey="id_rol" Type="Empleado" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tipo_Producto" Member="Tipo_Productos">
-    <Type Name="Tipo_Producto">
-      <Column Name="id_tipo_producto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
-      <Association Name="Tipo_Producto_Producto" Member="Productos" ThisKey="id_tipo_producto" OtherKey="id_tipo_producto" Type="Producto" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Estado_Credito" Member="Estado_Creditos">
-    <Type Name="Estado_Credito">
-      <Column Name="id_credito" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nombre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="descripcion" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="Estado_Credito_Cliente" Member="Clientes" ThisKey="id_credito" OtherKey="id_credito" Type="Cliente" />
-      <Association Name="Estado_Credito_Proveedore" Member="Proveedores" ThisKey="id_credito" OtherKey="id_credito" Type="Proveedore" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tipo_Cuenta" Member="Tipo_Cuentas">
-    <Type Name="Tipo_Cuenta">
-      <Column Name="id_tipo_cuenta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nombre_tipo_cuenta" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="Tipo_Cuenta_Cuenta_Bancaria_Cliente" Member="Cuenta_Bancaria_Clientes" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Cuenta_Bancaria_Cliente" />
-      <Association Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore" Member="Cuentas_Bancarias_Proveedores" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Cuentas_Bancarias_Proveedore" />
-    </Type>
-  </Table>
   <Table Name="dbo.Proveedores" Member="Proveedores">
     <Type Name="Proveedore">
       <Column Name="id_proveedores" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -260,6 +238,28 @@
       <Association Name="Proveedore_Enca_Venta" Member="Enca_Ventas" ThisKey="id_proveedores" OtherKey="id_proveedores" Type="Enca_Venta" />
       <Association Name="Estado_Credito_Proveedore" Member="Estado_Credito" ThisKey="id_credito" OtherKey="id_credito" Type="Estado_Credito" IsForeignKey="true" />
       <Association Name="Municipio_Proveedore" Member="Municipio" ThisKey="id_muni" OtherKey="id_muni" Type="Municipio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rol" Member="Rols">
+    <Type Name="Rol">
+      <Column Name="id_rol" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Rol_Empleado" Member="Empleados" ThisKey="id_rol" OtherKey="id_rol" Type="Empleado" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_Cuenta" Member="Tipo_Cuentas">
+    <Type Name="Tipo_Cuenta">
+      <Column Name="id_tipo_cuenta" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre_tipo_cuenta" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Tipo_Cuenta_Cuenta_Bancaria_Cliente" Member="Cuenta_Bancaria_Clientes" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Cuenta_Bancaria_Cliente" />
+      <Association Name="Tipo_Cuenta_Cuentas_Bancarias_Proveedore" Member="Cuentas_Bancarias_Proveedores" ThisKey="id_tipo_cuenta" OtherKey="id_tipo_cuenta" Type="Cuentas_Bancarias_Proveedore" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_Producto" Member="Tipo_Productos">
+    <Type Name="Tipo_Producto">
+      <Column Name="id_tipo_producto" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="Tipo_Producto_Producto" Member="Productos" ThisKey="id_tipo_producto" OtherKey="id_tipo_producto" Type="Producto" />
     </Type>
   </Table>
 </Database>
