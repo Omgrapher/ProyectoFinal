@@ -1,0 +1,43 @@
+﻿body {
+}
+
+.nav-customColor {
+    background-color: #FFFDFB;
+    box-shadow: 0 0 5px rgb(0, 0, 0, 0.2);
+}
+
+/*ICONO DE USUARIO*/
+.dropdown-menu-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .dropdown-menu-center .dropdown-item {
+        text-align: center;
+    }
+
+.dropdown-item-btn {
+    text-align: center;
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    justify-content: center;
+}
+.dropdown-menu {
+    display: none; /* Inicialmente oculto */
+}
+
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: transparent;
+        color: inherit;
+        cursor: default;
+    }
+
+    .dropdown-menu .dropdown-item:focus {
+        background-color: transparent;
+        color: inherit;
+    }
+
