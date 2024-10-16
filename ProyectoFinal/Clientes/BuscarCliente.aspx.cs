@@ -1,4 +1,5 @@
-﻿using ProyectoFinal.BaseDatos;
+﻿using Parcial2.Util;
+using ProyectoFinal.BaseDatos;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -49,8 +50,7 @@ namespace ProyectoFinal
             {
                 GridViewResultado.Visible = false; // No mostrar la tabla si no hay resultados
                 string errorMessage = "No se encontraron similares...";
-                string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
+                Swal.Fire(errorMessage,"Alerta",SwalIcon.Warning);
                 limpiar();
             }
         }
@@ -272,9 +272,7 @@ namespace ProyectoFinal
                     cliente.id_credito = chkCredito.Checked ? 1 : 0;
 
                     mibd.SubmitChanges();
-
-                    string script = SweetAlertUtils.ShowSuccess("Cliente Editado", "El cliente ha sido editado exitosamente.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "ClienteEditado", script, true);
+                    Swal.Fire("El cliente ha sido editado exitosamente","Cliente Editado",SwalIcon.Success);
                     limpiar();
                 }
             }
@@ -282,7 +280,8 @@ namespace ProyectoFinal
             {
                 limpiar();
                 string errorMessage = "Ha ocurrido un error al intentar editar el cliente: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('" + errorMessage + "');", true);
+
+                Swal.Fire(errorMessage,"Error",SwalIcon.Error);
             }
         }
 

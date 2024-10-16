@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Transactions;
+using Parcial2.Util;
 
 namespace ProyectoFinal
 {
@@ -131,7 +132,7 @@ namespace ProyectoFinal
 
             if (clienteExistente.FirstOrDefault() != null)
             {
-
+                limpiar();
                 lblDatosClienteExistente.Text = $"NIT: {clienteExistente.ToList()[0].Nit.ToString()} <br /> " +
                                         $"Nombre: {clienteExistente.ToList()[0].Nombre.ToString()} {clienteExistente.ToList()[0].Apellido.ToString()}";
 
@@ -156,17 +157,14 @@ namespace ProyectoFinal
             {
                 guardarCliente();
 
-                string script = SweetAlertUtils.ShowSuccess("Cliente Agregado", "El cliente ha sido agregado exitosamente.");
-                ClientScript.RegisterStartupScript(this.GetType(), "ClienteAgregado", script, true);
+                Swal.Fire("El cliente ha sido agregado exitosamente","Cliente Agregado",SwalIcon.Success);
                 limpiar();
-                // Redireccionar a la página de Clientes o a la página que desees
-                // Response.Redirect("Clientes.aspx");
             }
             catch (Exception ex)
             {
                 string errorMessage = "Ha ocurrido un error al intentar guardar el cliente: " + ex.Message;
-                string script = SweetAlertUtils.ShowError("Error", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
+
+                Swal.Fire(errorMessage,"Error",SwalIcon.Error);
             }
         }
 
@@ -220,16 +218,15 @@ namespace ProyectoFinal
                     // Si todo va bien, confirmar la transacción
                     transa.Complete();
                     limpiar();
-                    string script = SweetAlertUtils.ShowSuccess("Cliente y Cuenta Agregados", "El cliente y la cuenta han sido agregados exitosamente.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "ClienteCuentaAgregados", script, true);
+
+                    Swal.Fire("El cliente y la cuenta han sido agregados exitosamente.", "Cliente y Cuenta Agregados",SwalIcon.Success);
                 }
                 catch (Exception ex)
                 {
                     // Si ocurre un error, revertir la transacción
                     transa.Dispose();
                     string errorMessage = "Ha ocurrido un error al intentar guardar el cliente: " + ex.Message;
-                    string script = SweetAlertUtils.ShowError("Error", errorMessage);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
+                    Swal.Fire(errorMessage,"Error",SwalIcon.Error);
                 }
             }
         }
