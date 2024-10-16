@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parcial2.Util;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -46,8 +47,7 @@ namespace ProyectoFinal.Proveedores
             {
                 GridViewResultado.Visible = false; // No mostrar la tabla si no hay resultados
                 string errorMessage = "No se encontraron similares...";
-                string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
+                Swal.Fire(errorMessage, "Error", SwalIcon.Error);
                 limpiar();
             }
         }
@@ -258,16 +258,15 @@ namespace ProyectoFinal.Proveedores
 
                     mibd.SubmitChanges();
 
-                    string script = SweetAlertUtils.ShowSuccess("Cliente Editado", "El cliente ha sido editado exitosamente.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "ClienteEditado", script, true);
+                    Swal.Fire("El proveedor ha sido editado exitosamente.","Cliente Editado",SwalIcon.Success);
                     limpiar();
                 }
             }
             catch (Exception ex)
             {
                 limpiar();
-                string errorMessage = "Ha ocurrido un error al intentar editar el cliente: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('" + errorMessage + "');", true);
+                string errorMessage = "Ha ocurrido un error al intentar editar el proveedor: " + ex.Message;
+                Swal.Fire(errorMessage, "Error", SwalIcon.Error);
             }
         }
         protected void btnNo_Click(object sender, EventArgs e)

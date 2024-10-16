@@ -1,4 +1,5 @@
-﻿using ProyectoFinal.BaseDatos;
+﻿using Parcial2.Util;
+using ProyectoFinal.BaseDatos;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -152,16 +153,14 @@ namespace ProyectoFinal.Proveedores
             try
             {
                 guardarProveedor();
-
-                string script = SweetAlertUtils.ShowSuccess("Proveedor Agregado", "El proveedor ha sido agregado exitosamente.");
-                ClientScript.RegisterStartupScript(this.GetType(), "ProveedorAgregado", script, true);
+                Swal.Fire("El proveedor ha sido agregado exitosamente.", "Proveedor Agregado",SwalIcon.Success);
                 limpiar();
             }
             catch (Exception ex)
             {
                 string errorMessage = "Ha ocurrido un error al intentar guardar al proveedor: " + ex.Message;
-                string script = SweetAlertUtils.ShowError("Error", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
+                Swal.Fire(errorMessage, "Error", SwalIcon.Error);
+                limpiar();
             }
         }
 
@@ -208,15 +207,13 @@ namespace ProyectoFinal.Proveedores
 
                     transa.Complete();
                     limpiar();
-                    string script = SweetAlertUtils.ShowSuccess("Proveedor y Cuenta Agregados", "El proveedor y la cuenta han sido agregados exitosamente.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "ProveedorCuentaAgregados", script, true);
+                    Swal.Fire("El proveedor y la cuenta han sido agregados exitosamente.", "Proveedor y Cuenta Agregados",SwalIcon.Success);
                 }
                 catch (Exception ex)
                 {
                     transa.Dispose();
                     string errorMessage = "Ha ocurrido un error al intentar guardar al proveedor: " + ex.Message;
-                    string script = SweetAlertUtils.ShowError("Error", errorMessage);
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
+                    Swal.Fire(errorMessage, "Error", SwalIcon.Error);
                 }
             }
         }

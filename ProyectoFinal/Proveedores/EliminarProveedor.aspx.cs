@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parcial2.Util;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -43,8 +44,7 @@ namespace ProyectoFinal.Proveedores
             {
                 GridViewResultado.Visible = false; // No mostrar la tabla si no hay resultados
                 string errorMessage = "No se encontraron similares...";
-                string script = SweetAlertUtils.ShowAlert("Alerta", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Alerta", script, true);
+                Swal.Fire(errorMessage, "Error", SwalIcon.Error);
                 limpiar();
             }
         }
@@ -82,28 +82,25 @@ namespace ProyectoFinal.Proveedores
 
                     mibd.SubmitChanges();
 
-                    string script = SweetAlertUtils.ShowSuccess("Proveedor Eliminado", "El proveedor ha sido Eliminado exitosamente.");
-                    ClientScript.RegisterStartupScript(this.GetType(), "proveedorEliminado", script, true);
+                    Swal.Fire("El proveedor ha sido Eliminado exitosamente.", "Proveedor Eliminado",SwalIcon.Success);
                     limpiar();
                 }
                 else
                 {
-                    string script = SweetAlertUtils.ShowAlert("proveedor ya eliminado", "El proveedor ya no se encuentra vigente");
-                    ClientScript.RegisterStartupScript(this.GetType(), "proveedorEliminado", script, true);
+                    Swal.Fire("El proveedor ya no se encuentra vigente", "proveedor ya eliminado",SwalIcon.Info);
                 }
             }
             catch (Exception ex)
             {
                 limpiar();
                 string errorMessage = "Ha ocurrido un error al intentar eliminar el proveedor: " + ex.Message;
-                string script = SweetAlertUtils.ShowError("Error", errorMessage);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "error", script, true);
+                Swal.Fire(errorMessage, "Error", SwalIcon.Error);
             }
         }
 
         protected void btnNo_Click(object sender, EventArgs e)
         {
-
+            limpiar();
         }
     }
 }
