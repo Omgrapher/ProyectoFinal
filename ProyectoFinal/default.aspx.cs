@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using Parcial2.Util;
 
 
 namespace ProyectoFinal
@@ -13,6 +14,7 @@ namespace ProyectoFinal
     public partial class _default : System.Web.UI.Page
     {
         public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
+        public string ModalClass { get; set; } = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -30,21 +32,21 @@ namespace ProyectoFinal
 
             if (isAuthenticated)
             {
+                string redirectUrl = "inicioF.aspx";
                 limpiar();
-                // Mostrar modal de bienvenida
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeModalAndRedirect",
-                $"var myModal = new bootstrap.Modal(document.getElementById('welcomeModal')); " +
-                $"document.getElementById('welcomeModalBody').innerHTML = '¡Hola, {nombreCompleto}! Has iniciado sesión correctamente!'; " +
-                $"myModal.show(); " +
-                $"setTimeout(function() {{" +
-                $"    window.location.href = 'inicioF.aspx'; " + $"}} , 2000);", true);
+
+                Swal.Fire("Has iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success,redirectUrl);
+
                 Session["UserName"] = nombreCompleto;
             }
             else
             {
                 limpiar();
-                // Mostrar modal de error
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorModal", "var myModal = new bootstrap.Modal(document.getElementById('errorModal')); myModal.show();", true);
+                // Mostrar SweetAlert de error
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorAlert",
+                    SweetAlertUtils.ShowError("Error!", "Usuario o contraseña incorrectos."), true);
+
+                Swal.Fire("Usuario o contraseña incorrectos","¡Error!",SwalIcon.Error);
             }
         }
 

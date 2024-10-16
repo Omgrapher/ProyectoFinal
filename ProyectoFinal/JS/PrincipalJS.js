@@ -1,13 +1,20 @@
-﻿//JS DEL POPOVER
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize popover
-    var popoverTriggerEl = document.getElementById('popover-trigger');
-    var popover = new bootstrap.Popover(popoverTriggerEl, {
-        html: true,
-        content: function () {
-            return document.getElementById('popover-content').innerHTML;
-        },
-        placement: 'bottom',
-        trigger: 'click'
-    });
-});
+﻿//// Example starter JavaScript for disabling form submissions if there are invalid fields
+//(() => {
+//    'use strict'
+
+//    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//    const forms = document.querySelectorAll('.needs-validation')
+
+//    // Loop over them and prevent submission
+//    Array.from(forms).forEach(form => {
+//        form.addEventListener('submit', event => {
+//            if (!form.checkValidity()) {
+//                event.preventDefault()
+//                event.stopPropagation()
+//            }
+
+//            form.classList.add('was-validated')
+//        }, false)
+//    })
+//})()
+

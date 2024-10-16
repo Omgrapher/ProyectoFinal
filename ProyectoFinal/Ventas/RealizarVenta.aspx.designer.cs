@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProyectoFinal
+namespace ProyectoFinal.Ventas
 {
 
 
-    public partial class Cliente
+    public partial class RealizarVenta
     {
     }
 }

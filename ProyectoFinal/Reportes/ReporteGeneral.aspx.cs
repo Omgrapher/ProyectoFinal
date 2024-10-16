@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ProyectoFinal
+namespace ProyectoFinal.Reportes
 {
-    public partial class Cliente : System.Web.UI.Page
+    public partial class ReporteGeneral : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

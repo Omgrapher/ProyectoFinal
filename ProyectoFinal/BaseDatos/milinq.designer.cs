@@ -22,7 +22,7 @@ namespace ProyectoFinal.BaseDatos
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Libreria1")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LibreriaP")]
 	public partial class milinqDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -5271,7 +5271,7 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direccion", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_direccion", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string direccion
 		{
 			get
