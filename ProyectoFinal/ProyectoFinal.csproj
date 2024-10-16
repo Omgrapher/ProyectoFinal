@@ -2245,6 +2245,9 @@
     <Compile Include="Reportes\ReporteGeneral.aspx.designer.cs">
       <DependentUpon>ReporteGeneral.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util\Swal.cs" />
+    <Compile Include="Util\SwalBuilder.cs" />
+    <Compile Include="Util\SwalResources.cs" />
     <Compile Include="Ventas\RealizarVenta.aspx.cs">
       <DependentUpon>RealizarVenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

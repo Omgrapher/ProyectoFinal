@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using Parcial2.Util;
 
 
 namespace ProyectoFinal
@@ -31,14 +32,11 @@ namespace ProyectoFinal
 
             if (isAuthenticated)
             {
+                string redirectUrl = "inicioF.aspx";
                 limpiar();
-                // Mostrar SweetAlert de bienvenida con redirección
-                string alertScript = $"setTimeout(function() {{ " +
-                    $"{SweetAlertUtils.ShowSuccess($"¡Hola, {nombreCompleto}!", "Has iniciado sesión correctamente!")} " +
-                    $"setTimeout(function() {{ window.location.href = 'inicioF.aspx'; }}, 1000); " +
-                    $"}} , 10);";
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowWelcomeAlert", alertScript, true);
+                Swal.Fire("Has iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success,redirectUrl);
+
                 Session["UserName"] = nombreCompleto;
             }
             else
@@ -47,6 +45,8 @@ namespace ProyectoFinal
                 // Mostrar SweetAlert de error
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorAlert",
                     SweetAlertUtils.ShowError("Error!", "Usuario o contraseña incorrectos."), true);
+
+                Swal.Fire("Usuario o contraseña incorrectos","¡Error!",SwalIcon.Error);
             }
         }
 
