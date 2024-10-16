@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using Parcial2.Util;
+using System.Web.Security;
 
 
 namespace ProyectoFinal
@@ -32,6 +33,7 @@ namespace ProyectoFinal
 
             if (isAuthenticated)
             {
+                FormsAuthentication.SetAuthCookie(UserTextBox.Text, false); // 'false' para no recordar sesión.
                 string redirectUrl = "inicioF.aspx";
                 limpiar();
 
@@ -42,9 +44,6 @@ namespace ProyectoFinal
             else
             {
                 limpiar();
-                // Mostrar SweetAlert de error
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowErrorAlert",
-                    SweetAlertUtils.ShowError("Error!", "Usuario o contraseña incorrectos."), true);
 
                 Swal.Fire("Usuario o contraseña incorrectos","¡Error!",SwalIcon.Error);
             }

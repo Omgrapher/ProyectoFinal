@@ -47,7 +47,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="JS/Login.js"></script>
     </form>
 </body>

@@ -157,7 +157,7 @@
                     <asp:Button ID="btnEditarProveedor" runat="server" Text="¿Deseas Editarlo?" CssClass="btn btn-outline-primary flex-fill mx-1" OnClick="btnEditarCliente_Click" />
 
                     <!-- Botón para Cerrar el modal -->
-                    <button type="button" class="btn btn-outline-secondary flex-fill mx-1" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="Button1" runat="server" Text="Cerrar" class="btn btn-outline-secondary flex-fill mx-1" data-bs-dismiss="modal" CausesValidation="false" UseSubmitBehavior="false" onclick="Button1_Click"/>
                 </div>
             </div>
         </div>

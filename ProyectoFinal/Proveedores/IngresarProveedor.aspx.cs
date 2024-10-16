@@ -136,7 +136,6 @@ namespace ProyectoFinal.Proveedores
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowproveedorExistenteModal", "var myModal = new bootstrap.Modal(document.getElementById('proveedorExistenteModal')); myModal.show();", true);
 
-                limpiar();
                 return;
             }
             else
@@ -231,6 +230,11 @@ namespace ProyectoFinal.Proveedores
 
             int id = ProveedorExistente.ToList()[0].id;
             Response.Redirect("/Proveedores/BuscarProveedor.aspx?id=" + id);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            limpiar();
         }
     }
 }

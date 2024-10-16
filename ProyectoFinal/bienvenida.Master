@@ -73,7 +73,7 @@
                                     <span>Ventas</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/IngresarProveedor.aspx") %>">Ingresar Proveedores</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Ventas/RealizarVenta.aspx") %>">Ingresar Proveedores</a></li>
                                     <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/BuscarProveedor.aspx") %>">Buscar o Editar Proveedores</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -113,7 +113,6 @@
         </nav>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
         <script src="<%= ResolveUrl("~/CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/js/bootstrap.min.js") %>"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="<%= ResolveUrl("~/JS/PrincipalJS.js") %>"></script>
         <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
     </form>

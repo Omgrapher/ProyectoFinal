@@ -132,7 +132,6 @@ namespace ProyectoFinal
 
             if (clienteExistente.FirstOrDefault() != null)
             {
-                limpiar();
                 lblDatosClienteExistente.Text = $"NIT: {clienteExistente.ToList()[0].Nit.ToString()} <br /> " +
                                         $"Nombre: {clienteExistente.ToList()[0].Nombre.ToString()} {clienteExistente.ToList()[0].Apellido.ToString()}";
 
@@ -235,6 +234,11 @@ namespace ProyectoFinal
         {
             string nitCliente = txtNIT.Text; // Obtén el valor del NIT del cliente
             Response.Redirect("BuscarCliente.aspx?nit=" + nitCliente);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            limpiar();
         }
     }
 }

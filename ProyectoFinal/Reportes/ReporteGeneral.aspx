@@ -12,7 +12,7 @@
             <!-- Card 1 -->
             <div class="col">
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalReporter1">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center card_custom1">
                         <div class="card-body">
                             <i class="bi bi-person-circle display-4 mb-3"></i>
                             <h5 class="card-title">Clientes</h5>
@@ -25,7 +25,7 @@
             <!-- Card 2 -->
             <div class="col">
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalReporter2">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center card_custom1">
                         <div class="card-body">
                             <i class="bi bi-person-circle display-4 mb-3"></i>
                             <h5 class="card-title">Proveedores</h5>
@@ -38,7 +38,7 @@
             <!-- Card 3 -->
             <div class="col">
                 <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modalReporter3">
-                    <div class="card h-100 text-center">
+                    <div class="card h-100 text-center card_custom1">
                         <div class="card-body">
                             <i class="bi bi-person-circle display-4 mb-3"></i>
                             <h5 class="card-title">Ventas</h5>

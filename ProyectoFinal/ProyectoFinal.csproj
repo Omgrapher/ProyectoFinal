@@ -2187,7 +2187,6 @@
     <Compile Include="Clientes\BuscarCliente.aspx.designer.cs">
       <DependentUpon>BuscarCliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="classAlert.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

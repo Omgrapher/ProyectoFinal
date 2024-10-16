@@ -88,9 +88,6 @@ namespace ProyectoFinal
                 }
                 else 
                 {
-                    string script = SweetAlertUtils.ShowAlert("Cliente ya eliminado", "El cliente ya no se encuentra vigente");
-                    ClientScript.RegisterStartupScript(this.GetType(), "ClienteEliminado", script, true);
-
                     Swal.Fire("El cliente ya no se encuentra vigente", "Cliente ya eliminado",SwalIcon.Info);
                 }
             }
