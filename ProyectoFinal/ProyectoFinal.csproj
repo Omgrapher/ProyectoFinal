@@ -2215,6 +2215,7 @@
     <Compile Include="inicioF.aspx.designer.cs">
       <DependentUpon>inicioF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductoSeleccionado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores\BuscarProveedor.aspx.cs">
       <DependentUpon>BuscarProveedor.aspx</DependentUpon>

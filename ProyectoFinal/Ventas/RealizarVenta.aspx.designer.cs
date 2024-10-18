@@ -78,13 +78,22 @@ namespace ProyectoFinal.Ventas
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarProducto;
 
         /// <summary>
-        /// gvProductos control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProductos;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// LabelProductoSeleccionado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelProductoSeleccionado;
 
         /// <summary>
         /// TextBox2 control.
