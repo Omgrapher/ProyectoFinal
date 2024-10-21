@@ -7,9 +7,10 @@ namespace ProyectoFinal
 {
     public class ProductoSeleccionado
     {
-        public int IDProducto { get; set; }
-        public string NombreProducto { get; set; }
+        public int IdProduct { get; set; }
+        public string Producto { get; set; }
         public int Cantidad { get; set; }
-        public decimal PrecioTotal { get; set; }
+        public string Materiales { get; set; }
+        public decimal Sub_Total { get; set; }
     }
 }

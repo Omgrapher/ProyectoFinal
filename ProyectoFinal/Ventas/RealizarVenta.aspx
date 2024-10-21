@@ -129,7 +129,7 @@
                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
                             <label for="txtDescripcion">Descripción de la Venta</label>
                         </div>
-                        <asp:GridView ID="gvProductosSeleccionados" runat="server" CssClass="table table-striped" DataKeyNames="IdProduct">
+                        <asp:GridView ID="gvProductosSeleccionados" runat="server" CssClass="table table-striped" DataKeyNames="IdProduct" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField DataField="IdProduct" HeaderText="id" Visible="false" />
                                 <asp:BoundField DataField="Producto" HeaderText="Producto" />
