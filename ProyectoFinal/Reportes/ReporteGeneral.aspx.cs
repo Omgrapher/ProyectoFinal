@@ -13,5 +13,20 @@ namespace ProyectoFinal.Reportes
         {
 
         }
+
+        protected void btnReporteClientes_Click(object sender, EventArgs e)
+        {
+            // Limpiar los campos del formulario si es necesario
+            txtNombreCliente.Text = string.Empty;
+            txtApellidoCliente.Text = string.Empty;
+            txtNitCliente.Text = string.Empty;
+            ddlMunicipio.SelectedIndex = 0;
+            ddlCredito.SelectedIndex = 0;
+
+            // Registrar el script para mostrar el modal
+            string script = "var myModal = new bootstrap.Modal(document.getElementById('" +
+                           reporteClienteModal.ClientID + "')); myModal.show();";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModal", script, true);
+        }
     }
 }
