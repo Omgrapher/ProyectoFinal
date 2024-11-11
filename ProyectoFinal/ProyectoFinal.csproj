@@ -2258,14 +2258,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bienvenida.Master" />
-    <Content Include="BaseDatos\milinq.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>milinq.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="BaseDatos\milinq.dbml.layout">
-      <DependentUpon>milinq.dbml</DependentUpon>
-    </None>
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.css.map" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.min.css.map" />
     <Content Include="CSS\bootstrap-5.3.3-dist%283%29\bootstrap-5.3.3-dist\css\bootstrap-grid.rtl.css.map" />
@@ -2292,6 +2284,14 @@
     <Content Include="CSS\bootstrap-icons-1.11.3\bootstrap-icons-1.11.3\font\bootstrap-icons.scss" />
     <Content Include="CSS\bootstrap-icons-1.11.3\bootstrap-icons-1.11.3\font\fonts\bootstrap-icons.woff" />
     <Content Include="CSS\bootstrap-icons-1.11.3\bootstrap-icons-1.11.3\font\fonts\bootstrap-icons.woff2" />
+    <Content Include="BaseDatos\milinq.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>milinq.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="BaseDatos\milinq.dbml.layout">
+      <DependentUpon>milinq.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

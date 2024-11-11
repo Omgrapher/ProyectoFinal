@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using Parcial2.Util;
 using System.Web.Security;
-
+using Parcial2.Util;
 
 namespace ProyectoFinal
 {
@@ -16,20 +13,21 @@ namespace ProyectoFinal
     {
         public static string conec = ConfigurationManager.ConnectionStrings["Libreria1ConnectionString"].ConnectionString;
         public string ModalClass { get; set; } = string.Empty;
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
         BaseDatos.milinqDataContext mibd = new BaseDatos.milinqDataContext(conec);
+
+        protected void Page_Load(object sender, EventArgs e) { }
+
         protected void limpiar()
         {
             UserTextBox.Text = PasswordTextBox.Text = "";
         }
+
         protected void LoginButton_Click(object sender, EventArgs e)
         {
             string nombreCompleto;
-            bool isAuthenticated = AuthenticateUser(UserTextBox.Text,PasswordTextBox.Text, out nombreCompleto);
+            int empleadoId; // Para almacenar el id_empleado
 
+            bool isAuthenticated = AuthenticateUser(UserTextBox.Text, PasswordTextBox.Text, out nombreCompleto, out empleadoId);
 
             if (isAuthenticated)
             {
@@ -37,34 +35,39 @@ namespace ProyectoFinal
                 string redirectUrl = "inicioF.aspx";
                 limpiar();
 
-                Swal.Fire("Has iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success,redirectUrl);
+                // Mostrar saludo y redirigir con SweetAlert
+                Swal.Fire("Has iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success, redirectUrl);
 
+                // Guardar nombre del usuario y el id_empleado en sesión
                 Session["UserName"] = nombreCompleto;
+                Session["EmpleadoId"] = empleadoId; // Guardar id_empleado en la sesión
             }
             else
             {
                 limpiar();
-
-                Swal.Fire("Usuario o contraseña incorrectos","¡Error!",SwalIcon.Error);
+                Swal.Fire("Usuario o contraseña incorrectos", "¡Error!", SwalIcon.Error);
             }
         }
 
-        private bool AuthenticateUser(string user, string password, out string NombreCompleto)
+        private bool AuthenticateUser(string user, string password, out string NombreCompleto, out int EmpleadoId)
         {
             NombreCompleto = null;
+            EmpleadoId = 0;
 
-            var UserPass = from u in mibd.Empleados
-                           where user == u.user && password == u.password
-                           select new { 
-                               User = u.user,
-                               Pass = u.password,
-                               nombreEmpleado = u.nombre1+" "+u.apellido1
-                           };
+            var userPass = (from u in mibd.Empleados
+                            where u.user == user && u.password == password
+                            select new
+                            {
+                                User = u.user,
+                                Pass = u.password,
+                                nombreEmpleado = u.nombre1 + " " + u.apellido1,
+                                EmpleadoId = u.id_empleado // Obtener id_empleado
+                            }).FirstOrDefault();
 
-
-            if (UserPass.FirstOrDefault() != null)
+            if (userPass != null)
             {
-                NombreCompleto = UserPass.ToList()[0].nombreEmpleado.ToString();
+                NombreCompleto = userPass.nombreEmpleado;
+                EmpleadoId = userPass.EmpleadoId; // Asignar id_empleado
                 return true;
             }
             else

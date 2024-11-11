@@ -22,7 +22,7 @@ namespace ProyectoFinal.BaseDatos
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LibreriaP")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="LibreriaPrueba")]
 	public partial class milinqDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -42,9 +42,6 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertDepartamento(Departamento instance);
     partial void UpdateDepartamento(Departamento instance);
     partial void DeleteDepartamento(Departamento instance);
-    partial void InsertDetalle_Compra(Detalle_Compra instance);
-    partial void UpdateDetalle_Compra(Detalle_Compra instance);
-    partial void DeleteDetalle_Compra(Detalle_Compra instance);
     partial void InsertDetalle_Venta(Detalle_Venta instance);
     partial void UpdateDetalle_Venta(Detalle_Venta instance);
     partial void DeleteDetalle_Venta(Detalle_Venta instance);
@@ -57,9 +54,6 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertEmpleado(Empleado instance);
     partial void UpdateEmpleado(Empleado instance);
     partial void DeleteEmpleado(Empleado instance);
-    partial void InsertEnca_Compra(Enca_Compra instance);
-    partial void UpdateEnca_Compra(Enca_Compra instance);
-    partial void DeleteEnca_Compra(Enca_Compra instance);
     partial void InsertEnca_Venta(Enca_Venta instance);
     partial void UpdateEnca_Venta(Enca_Venta instance);
     partial void DeleteEnca_Venta(Enca_Venta instance);
@@ -93,6 +87,12 @@ namespace ProyectoFinal.BaseDatos
     partial void InsertTipo_Producto(Tipo_Producto instance);
     partial void UpdateTipo_Producto(Tipo_Producto instance);
     partial void DeleteTipo_Producto(Tipo_Producto instance);
+    partial void InsertEnca_Compra(Enca_Compra instance);
+    partial void UpdateEnca_Compra(Enca_Compra instance);
+    partial void DeleteEnca_Compra(Enca_Compra instance);
+    partial void InsertDetalle_Compra(Detalle_Compra instance);
+    partial void UpdateDetalle_Compra(Detalle_Compra instance);
+    partial void DeleteDetalle_Compra(Detalle_Compra instance);
     #endregion
 		
 		public milinqDataContext(string connection) : 
@@ -151,14 +151,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Detalle_Compra> Detalle_Compras
-		{
-			get
-			{
-				return this.GetTable<Detalle_Compra>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Detalle_Venta> Detalle_Ventas
 		{
 			get
@@ -188,14 +180,6 @@ namespace ProyectoFinal.BaseDatos
 			get
 			{
 				return this.GetTable<Empleado>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Enca_Compra> Enca_Compras
-		{
-			get
-			{
-				return this.GetTable<Enca_Compra>();
 			}
 		}
 		
@@ -284,6 +268,22 @@ namespace ProyectoFinal.BaseDatos
 			get
 			{
 				return this.GetTable<Tipo_Producto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Enca_Compra> Enca_Compras
+		{
+			get
+			{
+				return this.GetTable<Enca_Compra>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Detalle_Compra> Detalle_Compras
+		{
+			get
+			{
+				return this.GetTable<Detalle_Compra>();
 			}
 		}
 	}
@@ -1490,476 +1490,6 @@ namespace ProyectoFinal.BaseDatos
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Detalle_Compra")]
-	public partial class Detalle_Compra : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_detalle_compra;
-		
-		private int _id_compra;
-		
-		private int _id_producto;
-		
-		private int _id_forma_pago;
-		
-		private int _id_empleado;
-		
-		private decimal _precio_venta;
-		
-		private string _descripcion_venta;
-		
-		private decimal _subtotal;
-		
-		private decimal _precio_costo;
-		
-		private System.Nullable<int> _cantidad;
-		
-		private EntitySet<Devolucion_Cliente> _Devolucion_Clientes;
-		
-		private EntityRef<Empleado> _Empleado;
-		
-		private EntityRef<Enca_Compra> _Enca_Compra;
-		
-		private EntityRef<Forma_Pago> _Forma_Pago;
-		
-		private EntityRef<Producto> _Producto;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_detalle_compraChanging(int value);
-    partial void Onid_detalle_compraChanged();
-    partial void Onid_compraChanging(int value);
-    partial void Onid_compraChanged();
-    partial void Onid_productoChanging(int value);
-    partial void Onid_productoChanged();
-    partial void Onid_forma_pagoChanging(int value);
-    partial void Onid_forma_pagoChanged();
-    partial void Onid_empleadoChanging(int value);
-    partial void Onid_empleadoChanged();
-    partial void Onprecio_ventaChanging(decimal value);
-    partial void Onprecio_ventaChanged();
-    partial void Ondescripcion_ventaChanging(string value);
-    partial void Ondescripcion_ventaChanged();
-    partial void OnsubtotalChanging(decimal value);
-    partial void OnsubtotalChanged();
-    partial void Onprecio_costoChanging(decimal value);
-    partial void Onprecio_costoChanged();
-    partial void OncantidadChanging(System.Nullable<int> value);
-    partial void OncantidadChanged();
-    #endregion
-		
-		public Detalle_Compra()
-		{
-			this._Devolucion_Clientes = new EntitySet<Devolucion_Cliente>(new Action<Devolucion_Cliente>(this.attach_Devolucion_Clientes), new Action<Devolucion_Cliente>(this.detach_Devolucion_Clientes));
-			this._Empleado = default(EntityRef<Empleado>);
-			this._Enca_Compra = default(EntityRef<Enca_Compra>);
-			this._Forma_Pago = default(EntityRef<Forma_Pago>);
-			this._Producto = default(EntityRef<Producto>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_detalle_compra", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_detalle_compra
-		{
-			get
-			{
-				return this._id_detalle_compra;
-			}
-			set
-			{
-				if ((this._id_detalle_compra != value))
-				{
-					this.Onid_detalle_compraChanging(value);
-					this.SendPropertyChanging();
-					this._id_detalle_compra = value;
-					this.SendPropertyChanged("id_detalle_compra");
-					this.Onid_detalle_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_compra", DbType="Int NOT NULL")]
-		public int id_compra
-		{
-			get
-			{
-				return this._id_compra;
-			}
-			set
-			{
-				if ((this._id_compra != value))
-				{
-					if (this._Enca_Compra.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_compraChanging(value);
-					this.SendPropertyChanging();
-					this._id_compra = value;
-					this.SendPropertyChanged("id_compra");
-					this.Onid_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_producto", DbType="Int NOT NULL")]
-		public int id_producto
-		{
-			get
-			{
-				return this._id_producto;
-			}
-			set
-			{
-				if ((this._id_producto != value))
-				{
-					if (this._Producto.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_productoChanging(value);
-					this.SendPropertyChanging();
-					this._id_producto = value;
-					this.SendPropertyChanged("id_producto");
-					this.Onid_productoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_forma_pago", DbType="Int NOT NULL")]
-		public int id_forma_pago
-		{
-			get
-			{
-				return this._id_forma_pago;
-			}
-			set
-			{
-				if ((this._id_forma_pago != value))
-				{
-					if (this._Forma_Pago.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_forma_pagoChanging(value);
-					this.SendPropertyChanging();
-					this._id_forma_pago = value;
-					this.SendPropertyChanged("id_forma_pago");
-					this.Onid_forma_pagoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_empleado", DbType="Int NOT NULL")]
-		public int id_empleado
-		{
-			get
-			{
-				return this._id_empleado;
-			}
-			set
-			{
-				if ((this._id_empleado != value))
-				{
-					if (this._Empleado.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_empleadoChanging(value);
-					this.SendPropertyChanging();
-					this._id_empleado = value;
-					this.SendPropertyChanged("id_empleado");
-					this.Onid_empleadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_venta", DbType="Money NOT NULL")]
-		public decimal precio_venta
-		{
-			get
-			{
-				return this._precio_venta;
-			}
-			set
-			{
-				if ((this._precio_venta != value))
-				{
-					this.Onprecio_ventaChanging(value);
-					this.SendPropertyChanging();
-					this._precio_venta = value;
-					this.SendPropertyChanged("precio_venta");
-					this.Onprecio_ventaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion_venta", DbType="NVarChar(200)")]
-		public string descripcion_venta
-		{
-			get
-			{
-				return this._descripcion_venta;
-			}
-			set
-			{
-				if ((this._descripcion_venta != value))
-				{
-					this.Ondescripcion_ventaChanging(value);
-					this.SendPropertyChanging();
-					this._descripcion_venta = value;
-					this.SendPropertyChanged("descripcion_venta");
-					this.Ondescripcion_ventaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subtotal", DbType="Money NOT NULL")]
-		public decimal subtotal
-		{
-			get
-			{
-				return this._subtotal;
-			}
-			set
-			{
-				if ((this._subtotal != value))
-				{
-					this.OnsubtotalChanging(value);
-					this.SendPropertyChanging();
-					this._subtotal = value;
-					this.SendPropertyChanged("subtotal");
-					this.OnsubtotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_costo", DbType="Money NOT NULL")]
-		public decimal precio_costo
-		{
-			get
-			{
-				return this._precio_costo;
-			}
-			set
-			{
-				if ((this._precio_costo != value))
-				{
-					this.Onprecio_costoChanging(value);
-					this.SendPropertyChanging();
-					this._precio_costo = value;
-					this.SendPropertyChanged("precio_costo");
-					this.Onprecio_costoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidad", DbType="Int")]
-		public System.Nullable<int> cantidad
-		{
-			get
-			{
-				return this._cantidad;
-			}
-			set
-			{
-				if ((this._cantidad != value))
-				{
-					this.OncantidadChanging(value);
-					this.SendPropertyChanging();
-					this._cantidad = value;
-					this.SendPropertyChanged("cantidad");
-					this.OncantidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Detalle_Compra_Devolucion_Cliente", Storage="_Devolucion_Clientes", ThisKey="id_detalle_compra", OtherKey="id_detalle_compra")]
-		public EntitySet<Devolucion_Cliente> Devolucion_Clientes
-		{
-			get
-			{
-				return this._Devolucion_Clientes;
-			}
-			set
-			{
-				this._Devolucion_Clientes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empleado_Detalle_Compra", Storage="_Empleado", ThisKey="id_empleado", OtherKey="id_empleado", IsForeignKey=true)]
-		public Empleado Empleado
-		{
-			get
-			{
-				return this._Empleado.Entity;
-			}
-			set
-			{
-				Empleado previousValue = this._Empleado.Entity;
-				if (((previousValue != value) 
-							|| (this._Empleado.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Empleado.Entity = null;
-						previousValue.Detalle_Compras.Remove(this);
-					}
-					this._Empleado.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compras.Add(this);
-						this._id_empleado = value.id_empleado;
-					}
-					else
-					{
-						this._id_empleado = default(int);
-					}
-					this.SendPropertyChanged("Empleado");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Enca_Compra_Detalle_Compra", Storage="_Enca_Compra", ThisKey="id_compra", OtherKey="id_compra", IsForeignKey=true)]
-		public Enca_Compra Enca_Compra
-		{
-			get
-			{
-				return this._Enca_Compra.Entity;
-			}
-			set
-			{
-				Enca_Compra previousValue = this._Enca_Compra.Entity;
-				if (((previousValue != value) 
-							|| (this._Enca_Compra.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Enca_Compra.Entity = null;
-						previousValue.Detalle_Compras.Remove(this);
-					}
-					this._Enca_Compra.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compras.Add(this);
-						this._id_compra = value.id_compra;
-					}
-					else
-					{
-						this._id_compra = default(int);
-					}
-					this.SendPropertyChanged("Enca_Compra");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forma_Pago_Detalle_Compra", Storage="_Forma_Pago", ThisKey="id_forma_pago", OtherKey="id_forma_pago", IsForeignKey=true)]
-		public Forma_Pago Forma_Pago
-		{
-			get
-			{
-				return this._Forma_Pago.Entity;
-			}
-			set
-			{
-				Forma_Pago previousValue = this._Forma_Pago.Entity;
-				if (((previousValue != value) 
-							|| (this._Forma_Pago.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Forma_Pago.Entity = null;
-						previousValue.Detalle_Compras.Remove(this);
-					}
-					this._Forma_Pago.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compras.Add(this);
-						this._id_forma_pago = value.id_forma_pago;
-					}
-					else
-					{
-						this._id_forma_pago = default(int);
-					}
-					this.SendPropertyChanged("Forma_Pago");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Producto_Detalle_Compra", Storage="_Producto", ThisKey="id_producto", OtherKey="id_producto", IsForeignKey=true)]
-		public Producto Producto
-		{
-			get
-			{
-				return this._Producto.Entity;
-			}
-			set
-			{
-				Producto previousValue = this._Producto.Entity;
-				if (((previousValue != value) 
-							|| (this._Producto.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Producto.Entity = null;
-						previousValue.Detalle_Compras.Remove(this);
-					}
-					this._Producto.Entity = value;
-					if ((value != null))
-					{
-						value.Detalle_Compras.Add(this);
-						this._id_producto = value.id_producto;
-					}
-					else
-					{
-						this._id_producto = default(int);
-					}
-					this.SendPropertyChanged("Producto");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Devolucion_Clientes(Devolucion_Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Detalle_Compra = this;
-		}
-		
-		private void detach_Devolucion_Clientes(Devolucion_Cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.Detalle_Compra = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Detalle_Venta")]
 	public partial class Detalle_Venta : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2930,9 +2460,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		private bool _estado;
 		
-		private EntitySet<Detalle_Compra> _Detalle_Compras;
-		
 		private EntitySet<Detalle_Venta> _Detalle_Ventas;
+		
+		private EntitySet<Detalle_Compra> _Detalle_Compras;
 		
 		private EntityRef<Municipio> _Municipio;
 		
@@ -2970,8 +2500,8 @@ namespace ProyectoFinal.BaseDatos
 		
 		public Empleado()
 		{
-			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			this._Detalle_Ventas = new EntitySet<Detalle_Venta>(new Action<Detalle_Venta>(this.attach_Detalle_Ventas), new Action<Detalle_Venta>(this.detach_Detalle_Ventas));
+			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			this._Municipio = default(EntityRef<Municipio>);
 			this._Rol = default(EntityRef<Rol>);
 			OnCreated();
@@ -3225,19 +2755,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empleado_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_empleado", OtherKey="id_empleado")]
-		public EntitySet<Detalle_Compra> Detalle_Compras
-		{
-			get
-			{
-				return this._Detalle_Compras;
-			}
-			set
-			{
-				this._Detalle_Compras.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empleado_Detalle_Venta", Storage="_Detalle_Ventas", ThisKey="id_empleado", OtherKey="id_empleado")]
 		public EntitySet<Detalle_Venta> Detalle_Ventas
 		{
@@ -3248,6 +2765,19 @@ namespace ProyectoFinal.BaseDatos
 			set
 			{
 				this._Detalle_Ventas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empleado_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_empleado", OtherKey="id_empleado")]
+		public EntitySet<Detalle_Compra> Detalle_Compras
+		{
+			get
+			{
+				return this._Detalle_Compras;
+			}
+			set
+			{
+				this._Detalle_Compras.Assign(value);
 			}
 		}
 		
@@ -3339,18 +2869,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		private void attach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empleado = this;
-		}
-		
-		private void detach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Empleado = null;
-		}
-		
 		private void attach_Detalle_Ventas(Detalle_Venta entity)
 		{
 			this.SendPropertyChanging();
@@ -3362,232 +2880,17 @@ namespace ProyectoFinal.BaseDatos
 			this.SendPropertyChanging();
 			entity.Empleado = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Enca_Compra")]
-	public partial class Enca_Compra : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_compra;
-		
-		private System.DateTime _fecha_compra;
-		
-		private decimal _total_compra;
-		
-		private int _total_producto;
-		
-		private int _id_cliente;
-		
-		private EntitySet<Detalle_Compra> _Detalle_Compras;
-		
-		private EntityRef<Cliente> _Cliente;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_compraChanging(int value);
-    partial void Onid_compraChanged();
-    partial void Onfecha_compraChanging(System.DateTime value);
-    partial void Onfecha_compraChanged();
-    partial void Ontotal_compraChanging(decimal value);
-    partial void Ontotal_compraChanged();
-    partial void Ontotal_productoChanging(int value);
-    partial void Ontotal_productoChanged();
-    partial void Onid_clienteChanging(int value);
-    partial void Onid_clienteChanged();
-    #endregion
-		
-		public Enca_Compra()
-		{
-			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
-			this._Cliente = default(EntityRef<Cliente>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_compra", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id_compra
-		{
-			get
-			{
-				return this._id_compra;
-			}
-			set
-			{
-				if ((this._id_compra != value))
-				{
-					this.Onid_compraChanging(value);
-					this.SendPropertyChanging();
-					this._id_compra = value;
-					this.SendPropertyChanged("id_compra");
-					this.Onid_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_compra", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime fecha_compra
-		{
-			get
-			{
-				return this._fecha_compra;
-			}
-			set
-			{
-				if ((this._fecha_compra != value))
-				{
-					this.Onfecha_compraChanging(value);
-					this.SendPropertyChanging();
-					this._fecha_compra = value;
-					this.SendPropertyChanged("fecha_compra");
-					this.Onfecha_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_compra", DbType="Money NOT NULL")]
-		public decimal total_compra
-		{
-			get
-			{
-				return this._total_compra;
-			}
-			set
-			{
-				if ((this._total_compra != value))
-				{
-					this.Ontotal_compraChanging(value);
-					this.SendPropertyChanging();
-					this._total_compra = value;
-					this.SendPropertyChanged("total_compra");
-					this.Ontotal_compraChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_producto", DbType="Int NOT NULL")]
-		public int total_producto
-		{
-			get
-			{
-				return this._total_producto;
-			}
-			set
-			{
-				if ((this._total_producto != value))
-				{
-					this.Ontotal_productoChanging(value);
-					this.SendPropertyChanging();
-					this._total_producto = value;
-					this.SendPropertyChanged("total_producto");
-					this.Ontotal_productoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_cliente", DbType="Int NOT NULL")]
-		public int id_cliente
-		{
-			get
-			{
-				return this._id_cliente;
-			}
-			set
-			{
-				if ((this._id_cliente != value))
-				{
-					if (this._Cliente.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onid_clienteChanging(value);
-					this.SendPropertyChanging();
-					this._id_cliente = value;
-					this.SendPropertyChanged("id_cliente");
-					this.Onid_clienteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Enca_Compra_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_compra", OtherKey="id_compra")]
-		public EntitySet<Detalle_Compra> Detalle_Compras
-		{
-			get
-			{
-				return this._Detalle_Compras;
-			}
-			set
-			{
-				this._Detalle_Compras.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Enca_Compra", Storage="_Cliente", ThisKey="id_cliente", OtherKey="id_cliente", IsForeignKey=true)]
-		public Cliente Cliente
-		{
-			get
-			{
-				return this._Cliente.Entity;
-			}
-			set
-			{
-				Cliente previousValue = this._Cliente.Entity;
-				if (((previousValue != value) 
-							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Cliente.Entity = null;
-						previousValue.Enca_Compras.Remove(this);
-					}
-					this._Cliente.Entity = value;
-					if ((value != null))
-					{
-						value.Enca_Compras.Add(this);
-						this._id_cliente = value.id_cliente;
-					}
-					else
-					{
-						this._id_cliente = default(int);
-					}
-					this.SendPropertyChanged("Cliente");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
 		
 		private void attach_Detalle_Compras(Detalle_Compra entity)
 		{
 			this.SendPropertyChanging();
-			entity.Enca_Compra = this;
+			entity.Empleado = this;
 		}
 		
 		private void detach_Detalle_Compras(Detalle_Compra entity)
 		{
 			this.SendPropertyChanging();
-			entity.Enca_Compra = null;
+			entity.Empleado = null;
 		}
 	}
 	
@@ -3992,11 +3295,11 @@ namespace ProyectoFinal.BaseDatos
 		
 		private int _id_forma_pago;
 		
-		private char _nombre;
-		
-		private EntitySet<Detalle_Compra> _Detalle_Compras;
+		private string _nombre;
 		
 		private EntitySet<Detalle_Venta> _Detalle_Ventas;
+		
+		private EntitySet<Detalle_Compra> _Detalle_Compras;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4004,14 +3307,14 @@ namespace ProyectoFinal.BaseDatos
     partial void OnCreated();
     partial void Onid_forma_pagoChanging(int value);
     partial void Onid_forma_pagoChanged();
-    partial void OnnombreChanging(char value);
+    partial void OnnombreChanging(string value);
     partial void OnnombreChanged();
     #endregion
 		
 		public Forma_Pago()
 		{
-			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			this._Detalle_Ventas = new EntitySet<Detalle_Venta>(new Action<Detalle_Venta>(this.attach_Detalle_Ventas), new Action<Detalle_Venta>(this.detach_Detalle_Ventas));
+			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			OnCreated();
 		}
 		
@@ -4035,8 +3338,8 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="Char(1) NOT NULL")]
-		public char nombre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="Char(100) NOT NULL", CanBeNull=false)]
+		public string nombre
 		{
 			get
 			{
@@ -4055,19 +3358,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forma_Pago_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_forma_pago", OtherKey="id_forma_pago")]
-		public EntitySet<Detalle_Compra> Detalle_Compras
-		{
-			get
-			{
-				return this._Detalle_Compras;
-			}
-			set
-			{
-				this._Detalle_Compras.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forma_Pago_Detalle_Venta", Storage="_Detalle_Ventas", ThisKey="id_forma_pago", OtherKey="id_forma_pago")]
 		public EntitySet<Detalle_Venta> Detalle_Ventas
 		{
@@ -4078,6 +3368,19 @@ namespace ProyectoFinal.BaseDatos
 			set
 			{
 				this._Detalle_Ventas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forma_Pago_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_forma_pago", OtherKey="id_forma_pago")]
+		public EntitySet<Detalle_Compra> Detalle_Compras
+		{
+			get
+			{
+				return this._Detalle_Compras;
+			}
+			set
+			{
+				this._Detalle_Compras.Assign(value);
 			}
 		}
 		
@@ -4101,18 +3404,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		private void attach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Forma_Pago = this;
-		}
-		
-		private void detach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Forma_Pago = null;
-		}
-		
 		private void attach_Detalle_Ventas(Detalle_Venta entity)
 		{
 			this.SendPropertyChanging();
@@ -4120,6 +3411,18 @@ namespace ProyectoFinal.BaseDatos
 		}
 		
 		private void detach_Detalle_Ventas(Detalle_Venta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Forma_Pago = null;
+		}
+		
+		private void attach_Detalle_Compras(Detalle_Compra entity)
+		{
+			this.SendPropertyChanging();
+			entity.Forma_Pago = this;
+		}
+		
+		private void detach_Detalle_Compras(Detalle_Compra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Forma_Pago = null;
@@ -4136,7 +3439,7 @@ namespace ProyectoFinal.BaseDatos
 		
 		private int _id_producto;
 		
-		private char _descripcion_producto;
+		private string _descripcion_producto;
 		
 		private decimal _precio_costo;
 		
@@ -4164,7 +3467,7 @@ namespace ProyectoFinal.BaseDatos
     partial void Onid_inventarioChanged();
     partial void Onid_productoChanging(int value);
     partial void Onid_productoChanged();
-    partial void Ondescripcion_productoChanging(char value);
+    partial void Ondescripcion_productoChanging(string value);
     partial void Ondescripcion_productoChanged();
     partial void Onprecio_costoChanging(decimal value);
     partial void Onprecio_costoChanged();
@@ -4234,8 +3537,8 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion_producto", DbType="Char(1) NOT NULL")]
-		public char descripcion_producto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion_producto", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string descripcion_producto
 		{
 			get
 			{
@@ -4254,7 +3557,7 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_costo", DbType="Money NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_costo", DbType="SmallMoney NOT NULL")]
 		public decimal precio_costo
 		{
 			get
@@ -4274,7 +3577,7 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_venta", DbType="Money NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_venta", DbType="SmallMoney NOT NULL")]
 		public decimal precio_venta
 		{
 			get
@@ -4834,11 +4137,11 @@ namespace ProyectoFinal.BaseDatos
 		
 		private System.Nullable<int> _material_3;
 		
-		private EntitySet<Detalle_Compra> _Detalle_Compras;
-		
 		private EntitySet<Detalle_Venta> _Detalle_Ventas;
 		
 		private EntitySet<Inventario> _Inventarios;
+		
+		private EntitySet<Detalle_Compra> _Detalle_Compras;
 		
 		private EntityRef<Material_Producto> _Material_Producto;
 		
@@ -4862,9 +4165,9 @@ namespace ProyectoFinal.BaseDatos
 		
 		public Producto()
 		{
-			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			this._Detalle_Ventas = new EntitySet<Detalle_Venta>(new Action<Detalle_Venta>(this.attach_Detalle_Ventas), new Action<Detalle_Venta>(this.detach_Detalle_Ventas));
 			this._Inventarios = new EntitySet<Inventario>(new Action<Inventario>(this.attach_Inventarios), new Action<Inventario>(this.detach_Inventarios));
+			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
 			this._Material_Producto = default(EntityRef<Material_Producto>);
 			this._Tipo_Producto = default(EntityRef<Tipo_Producto>);
 			OnCreated();
@@ -4978,19 +4281,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Producto_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_producto", OtherKey="id_producto")]
-		public EntitySet<Detalle_Compra> Detalle_Compras
-		{
-			get
-			{
-				return this._Detalle_Compras;
-			}
-			set
-			{
-				this._Detalle_Compras.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Producto_Detalle_Venta", Storage="_Detalle_Ventas", ThisKey="id_producto", OtherKey="id_producto")]
 		public EntitySet<Detalle_Venta> Detalle_Ventas
 		{
@@ -5014,6 +4304,19 @@ namespace ProyectoFinal.BaseDatos
 			set
 			{
 				this._Inventarios.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Producto_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_producto", OtherKey="id_producto")]
+		public EntitySet<Detalle_Compra> Detalle_Compras
+		{
+			get
+			{
+				return this._Detalle_Compras;
+			}
+			set
+			{
+				this._Detalle_Compras.Assign(value);
 			}
 		}
 		
@@ -5105,18 +4408,6 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		private void attach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Producto = this;
-		}
-		
-		private void detach_Detalle_Compras(Detalle_Compra entity)
-		{
-			this.SendPropertyChanging();
-			entity.Producto = null;
-		}
-		
 		private void attach_Detalle_Ventas(Detalle_Venta entity)
 		{
 			this.SendPropertyChanging();
@@ -5136,6 +4427,18 @@ namespace ProyectoFinal.BaseDatos
 		}
 		
 		private void detach_Inventarios(Inventario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Producto = null;
+		}
+		
+		private void attach_Detalle_Compras(Detalle_Compra entity)
+		{
+			this.SendPropertyChanging();
+			entity.Producto = this;
+		}
+		
+		private void detach_Detalle_Compras(Detalle_Compra entity)
 		{
 			this.SendPropertyChanging();
 			entity.Producto = null;
@@ -5862,7 +5165,7 @@ namespace ProyectoFinal.BaseDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(1) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string nombre
 		{
 			get
@@ -5925,6 +5228,703 @@ namespace ProyectoFinal.BaseDatos
 		{
 			this.SendPropertyChanging();
 			entity.Tipo_Producto = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Enca_Compra")]
+	public partial class Enca_Compra : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_compra;
+		
+		private System.DateTime _fecha_compra;
+		
+		private decimal _total_compra;
+		
+		private int _total_producto;
+		
+		private int _id_cliente;
+		
+		private EntitySet<Detalle_Compra> _Detalle_Compras;
+		
+		private EntityRef<Cliente> _Cliente;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_compraChanging(int value);
+    partial void Onid_compraChanged();
+    partial void Onfecha_compraChanging(System.DateTime value);
+    partial void Onfecha_compraChanged();
+    partial void Ontotal_compraChanging(decimal value);
+    partial void Ontotal_compraChanged();
+    partial void Ontotal_productoChanging(int value);
+    partial void Ontotal_productoChanged();
+    partial void Onid_clienteChanging(int value);
+    partial void Onid_clienteChanged();
+    #endregion
+		
+		public Enca_Compra()
+		{
+			this._Detalle_Compras = new EntitySet<Detalle_Compra>(new Action<Detalle_Compra>(this.attach_Detalle_Compras), new Action<Detalle_Compra>(this.detach_Detalle_Compras));
+			this._Cliente = default(EntityRef<Cliente>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_compra", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_compra
+		{
+			get
+			{
+				return this._id_compra;
+			}
+			set
+			{
+				if ((this._id_compra != value))
+				{
+					this.Onid_compraChanging(value);
+					this.SendPropertyChanging();
+					this._id_compra = value;
+					this.SendPropertyChanged("id_compra");
+					this.Onid_compraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_compra", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime fecha_compra
+		{
+			get
+			{
+				return this._fecha_compra;
+			}
+			set
+			{
+				if ((this._fecha_compra != value))
+				{
+					this.Onfecha_compraChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_compra = value;
+					this.SendPropertyChanged("fecha_compra");
+					this.Onfecha_compraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_compra", DbType="Money NOT NULL")]
+		public decimal total_compra
+		{
+			get
+			{
+				return this._total_compra;
+			}
+			set
+			{
+				if ((this._total_compra != value))
+				{
+					this.Ontotal_compraChanging(value);
+					this.SendPropertyChanging();
+					this._total_compra = value;
+					this.SendPropertyChanged("total_compra");
+					this.Ontotal_compraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_producto", DbType="Int NOT NULL")]
+		public int total_producto
+		{
+			get
+			{
+				return this._total_producto;
+			}
+			set
+			{
+				if ((this._total_producto != value))
+				{
+					this.Ontotal_productoChanging(value);
+					this.SendPropertyChanging();
+					this._total_producto = value;
+					this.SendPropertyChanged("total_producto");
+					this.Ontotal_productoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_cliente", DbType="Int NOT NULL")]
+		public int id_cliente
+		{
+			get
+			{
+				return this._id_cliente;
+			}
+			set
+			{
+				if ((this._id_cliente != value))
+				{
+					if (this._Cliente.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_clienteChanging(value);
+					this.SendPropertyChanging();
+					this._id_cliente = value;
+					this.SendPropertyChanged("id_cliente");
+					this.Onid_clienteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Enca_Compra_Detalle_Compra", Storage="_Detalle_Compras", ThisKey="id_compra", OtherKey="id_compra")]
+		public EntitySet<Detalle_Compra> Detalle_Compras
+		{
+			get
+			{
+				return this._Detalle_Compras;
+			}
+			set
+			{
+				this._Detalle_Compras.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Cliente_Enca_Compra", Storage="_Cliente", ThisKey="id_cliente", OtherKey="id_cliente", IsForeignKey=true)]
+		public Cliente Cliente
+		{
+			get
+			{
+				return this._Cliente.Entity;
+			}
+			set
+			{
+				Cliente previousValue = this._Cliente.Entity;
+				if (((previousValue != value) 
+							|| (this._Cliente.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cliente.Entity = null;
+						previousValue.Enca_Compras.Remove(this);
+					}
+					this._Cliente.Entity = value;
+					if ((value != null))
+					{
+						value.Enca_Compras.Add(this);
+						this._id_cliente = value.id_cliente;
+					}
+					else
+					{
+						this._id_cliente = default(int);
+					}
+					this.SendPropertyChanged("Cliente");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Detalle_Compras(Detalle_Compra entity)
+		{
+			this.SendPropertyChanging();
+			entity.Enca_Compra = this;
+		}
+		
+		private void detach_Detalle_Compras(Detalle_Compra entity)
+		{
+			this.SendPropertyChanging();
+			entity.Enca_Compra = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Detalle_Compra")]
+	public partial class Detalle_Compra : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_detalle_compra;
+		
+		private int _id_compra;
+		
+		private int _id_producto;
+		
+		private int _id_forma_pago;
+		
+		private int _id_empleado;
+		
+		private decimal _precio_venta;
+		
+		private string _descripcion_venta;
+		
+		private decimal _subtotal;
+		
+		private decimal _precio_costo;
+		
+		private System.Nullable<int> _cantidad;
+		
+		private EntitySet<Devolucion_Cliente> _Devolucion_Clientes;
+		
+		private EntityRef<Enca_Compra> _Enca_Compra;
+		
+		private EntityRef<Empleado> _Empleado;
+		
+		private EntityRef<Forma_Pago> _Forma_Pago;
+		
+		private EntityRef<Producto> _Producto;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_detalle_compraChanging(int value);
+    partial void Onid_detalle_compraChanged();
+    partial void Onid_compraChanging(int value);
+    partial void Onid_compraChanged();
+    partial void Onid_productoChanging(int value);
+    partial void Onid_productoChanged();
+    partial void Onid_forma_pagoChanging(int value);
+    partial void Onid_forma_pagoChanged();
+    partial void Onid_empleadoChanging(int value);
+    partial void Onid_empleadoChanged();
+    partial void Onprecio_ventaChanging(decimal value);
+    partial void Onprecio_ventaChanged();
+    partial void Ondescripcion_ventaChanging(string value);
+    partial void Ondescripcion_ventaChanged();
+    partial void OnsubtotalChanging(decimal value);
+    partial void OnsubtotalChanged();
+    partial void Onprecio_costoChanging(decimal value);
+    partial void Onprecio_costoChanged();
+    partial void OncantidadChanging(System.Nullable<int> value);
+    partial void OncantidadChanged();
+    #endregion
+		
+		public Detalle_Compra()
+		{
+			this._Devolucion_Clientes = new EntitySet<Devolucion_Cliente>(new Action<Devolucion_Cliente>(this.attach_Devolucion_Clientes), new Action<Devolucion_Cliente>(this.detach_Devolucion_Clientes));
+			this._Enca_Compra = default(EntityRef<Enca_Compra>);
+			this._Empleado = default(EntityRef<Empleado>);
+			this._Forma_Pago = default(EntityRef<Forma_Pago>);
+			this._Producto = default(EntityRef<Producto>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_detalle_compra", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_detalle_compra
+		{
+			get
+			{
+				return this._id_detalle_compra;
+			}
+			set
+			{
+				if ((this._id_detalle_compra != value))
+				{
+					this.Onid_detalle_compraChanging(value);
+					this.SendPropertyChanging();
+					this._id_detalle_compra = value;
+					this.SendPropertyChanged("id_detalle_compra");
+					this.Onid_detalle_compraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_compra", DbType="Int NOT NULL")]
+		public int id_compra
+		{
+			get
+			{
+				return this._id_compra;
+			}
+			set
+			{
+				if ((this._id_compra != value))
+				{
+					if (this._Enca_Compra.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_compraChanging(value);
+					this.SendPropertyChanging();
+					this._id_compra = value;
+					this.SendPropertyChanged("id_compra");
+					this.Onid_compraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_producto", DbType="Int NOT NULL")]
+		public int id_producto
+		{
+			get
+			{
+				return this._id_producto;
+			}
+			set
+			{
+				if ((this._id_producto != value))
+				{
+					if (this._Producto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_productoChanging(value);
+					this.SendPropertyChanging();
+					this._id_producto = value;
+					this.SendPropertyChanged("id_producto");
+					this.Onid_productoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_forma_pago", DbType="Int NOT NULL")]
+		public int id_forma_pago
+		{
+			get
+			{
+				return this._id_forma_pago;
+			}
+			set
+			{
+				if ((this._id_forma_pago != value))
+				{
+					if (this._Forma_Pago.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_forma_pagoChanging(value);
+					this.SendPropertyChanging();
+					this._id_forma_pago = value;
+					this.SendPropertyChanged("id_forma_pago");
+					this.Onid_forma_pagoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_empleado", DbType="Int NOT NULL")]
+		public int id_empleado
+		{
+			get
+			{
+				return this._id_empleado;
+			}
+			set
+			{
+				if ((this._id_empleado != value))
+				{
+					if (this._Empleado.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_empleadoChanging(value);
+					this.SendPropertyChanging();
+					this._id_empleado = value;
+					this.SendPropertyChanged("id_empleado");
+					this.Onid_empleadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_venta", DbType="Money NOT NULL")]
+		public decimal precio_venta
+		{
+			get
+			{
+				return this._precio_venta;
+			}
+			set
+			{
+				if ((this._precio_venta != value))
+				{
+					this.Onprecio_ventaChanging(value);
+					this.SendPropertyChanging();
+					this._precio_venta = value;
+					this.SendPropertyChanged("precio_venta");
+					this.Onprecio_ventaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descripcion_venta", DbType="NVarChar(200)")]
+		public string descripcion_venta
+		{
+			get
+			{
+				return this._descripcion_venta;
+			}
+			set
+			{
+				if ((this._descripcion_venta != value))
+				{
+					this.Ondescripcion_ventaChanging(value);
+					this.SendPropertyChanging();
+					this._descripcion_venta = value;
+					this.SendPropertyChanged("descripcion_venta");
+					this.Ondescripcion_ventaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subtotal", DbType="Money NOT NULL")]
+		public decimal subtotal
+		{
+			get
+			{
+				return this._subtotal;
+			}
+			set
+			{
+				if ((this._subtotal != value))
+				{
+					this.OnsubtotalChanging(value);
+					this.SendPropertyChanging();
+					this._subtotal = value;
+					this.SendPropertyChanged("subtotal");
+					this.OnsubtotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_precio_costo", DbType="Money NOT NULL")]
+		public decimal precio_costo
+		{
+			get
+			{
+				return this._precio_costo;
+			}
+			set
+			{
+				if ((this._precio_costo != value))
+				{
+					this.Onprecio_costoChanging(value);
+					this.SendPropertyChanging();
+					this._precio_costo = value;
+					this.SendPropertyChanged("precio_costo");
+					this.Onprecio_costoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cantidad", DbType="Int")]
+		public System.Nullable<int> cantidad
+		{
+			get
+			{
+				return this._cantidad;
+			}
+			set
+			{
+				if ((this._cantidad != value))
+				{
+					this.OncantidadChanging(value);
+					this.SendPropertyChanging();
+					this._cantidad = value;
+					this.SendPropertyChanged("cantidad");
+					this.OncantidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Detalle_Compra_Devolucion_Cliente", Storage="_Devolucion_Clientes", ThisKey="id_detalle_compra", OtherKey="id_detalle_compra")]
+		public EntitySet<Devolucion_Cliente> Devolucion_Clientes
+		{
+			get
+			{
+				return this._Devolucion_Clientes;
+			}
+			set
+			{
+				this._Devolucion_Clientes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Enca_Compra_Detalle_Compra", Storage="_Enca_Compra", ThisKey="id_compra", OtherKey="id_compra", IsForeignKey=true)]
+		public Enca_Compra Enca_Compra
+		{
+			get
+			{
+				return this._Enca_Compra.Entity;
+			}
+			set
+			{
+				Enca_Compra previousValue = this._Enca_Compra.Entity;
+				if (((previousValue != value) 
+							|| (this._Enca_Compra.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Enca_Compra.Entity = null;
+						previousValue.Detalle_Compras.Remove(this);
+					}
+					this._Enca_Compra.Entity = value;
+					if ((value != null))
+					{
+						value.Detalle_Compras.Add(this);
+						this._id_compra = value.id_compra;
+					}
+					else
+					{
+						this._id_compra = default(int);
+					}
+					this.SendPropertyChanged("Enca_Compra");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Empleado_Detalle_Compra", Storage="_Empleado", ThisKey="id_empleado", OtherKey="id_empleado", IsForeignKey=true)]
+		public Empleado Empleado
+		{
+			get
+			{
+				return this._Empleado.Entity;
+			}
+			set
+			{
+				Empleado previousValue = this._Empleado.Entity;
+				if (((previousValue != value) 
+							|| (this._Empleado.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Empleado.Entity = null;
+						previousValue.Detalle_Compras.Remove(this);
+					}
+					this._Empleado.Entity = value;
+					if ((value != null))
+					{
+						value.Detalle_Compras.Add(this);
+						this._id_empleado = value.id_empleado;
+					}
+					else
+					{
+						this._id_empleado = default(int);
+					}
+					this.SendPropertyChanged("Empleado");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Forma_Pago_Detalle_Compra", Storage="_Forma_Pago", ThisKey="id_forma_pago", OtherKey="id_forma_pago", IsForeignKey=true)]
+		public Forma_Pago Forma_Pago
+		{
+			get
+			{
+				return this._Forma_Pago.Entity;
+			}
+			set
+			{
+				Forma_Pago previousValue = this._Forma_Pago.Entity;
+				if (((previousValue != value) 
+							|| (this._Forma_Pago.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Forma_Pago.Entity = null;
+						previousValue.Detalle_Compras.Remove(this);
+					}
+					this._Forma_Pago.Entity = value;
+					if ((value != null))
+					{
+						value.Detalle_Compras.Add(this);
+						this._id_forma_pago = value.id_forma_pago;
+					}
+					else
+					{
+						this._id_forma_pago = default(int);
+					}
+					this.SendPropertyChanged("Forma_Pago");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Producto_Detalle_Compra", Storage="_Producto", ThisKey="id_producto", OtherKey="id_producto", IsForeignKey=true)]
+		public Producto Producto
+		{
+			get
+			{
+				return this._Producto.Entity;
+			}
+			set
+			{
+				Producto previousValue = this._Producto.Entity;
+				if (((previousValue != value) 
+							|| (this._Producto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Producto.Entity = null;
+						previousValue.Detalle_Compras.Remove(this);
+					}
+					this._Producto.Entity = value;
+					if ((value != null))
+					{
+						value.Detalle_Compras.Add(this);
+						this._id_producto = value.id_producto;
+					}
+					else
+					{
+						this._id_producto = default(int);
+					}
+					this.SendPropertyChanged("Producto");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Devolucion_Clientes(Devolucion_Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Detalle_Compra = this;
+		}
+		
+		private void detach_Devolucion_Clientes(Devolucion_Cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.Detalle_Compra = null;
 		}
 	}
 }

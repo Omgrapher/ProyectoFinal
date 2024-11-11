@@ -111,18 +111,12 @@
                 <h2 class="accordion-header" id="carritoProductosAccordionHeader">
                     <button class="accordion-button" type="button" aria-expanded="true">
                         Detalle de Venta
-       
                     </button>
                 </h2>
                 <div id="carritoProductosAccordion" class="accordion-collapse show" aria-labelledby="carritoProductosAccordionHeader">
                     <div class="accordion-body">
                         <div class="form-floating mb-3">
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select">
-                                <asp:ListItem Text="Seleccione forma de pago" Value="" />
-                                <asp:ListItem Text="Efectivo" Value="Efectivo" />
-                                <asp:ListItem Text="Tarjeta de Crédito" Value="Tarjeta" />
-                                <asp:ListItem Text="Transferencia" Value="Transferencia" />
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select"></asp:DropDownList>
                             <label for="ddlFormaPago">Forma de Pago</label>
                         </div>
                         <div class="form-floating mb-3">
@@ -138,13 +132,19 @@
                                 <asp:BoundField DataField="Sub_Total" HeaderText="SubTotal" />
                             </Columns>
                         </asp:GridView>
+
+                        <!-- Contenedor para los botones de acción -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <asp:Button ID="btnRealizarVenta" runat="server" CssClass="btn btn-primary" Text="Realizar Venta" OnClick="btnRealizarVenta_Click"/>
+                            <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-secondary" Text="Limpiar" OnClick="btnLimpiar_Click"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <!-- Toast Cliente Seleccionado -->
+
+            <!-- Toast Cliente Seleccionado -->
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="toastClienteSeleccionado" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-body bg-success text-white text-center">

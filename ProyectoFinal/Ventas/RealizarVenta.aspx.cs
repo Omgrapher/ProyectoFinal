@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Services;
@@ -20,6 +21,44 @@ namespace ProyectoFinal.Ventas
         private void limpiar()
         {
             txtBuscarCliente.Text = "";
+            GridViewResultado.Visible = false;
+            GridView1.Visible = false;
+            txtBuscarProducto.Text = "";
+            Session["ProductosSeleccionados"] = new List<ProductoSeleccionado>();
+            Label1.Text = "";
+            lblClienteSeleccionado.Text = "";
+            LabelProductoSeleccionado.Text = "";
+
+            // Enlazar el GridView a la lista vacía
+            GridView1.DataSource = null;
+            GridViewResultado=null;
+            gvProductosSeleccionados.DataSource = null; // Opcional, o usa una lista vacía
+            gvProductosSeleccionados.DataBind();
+
+        }
+        protected void cargarFormaDePago()
+        {
+            var FP = from f in mibd.Forma_Pagos
+                     select new
+                     {
+                         id = f.id_forma_pago,
+                         nombre = f.nombre
+                     };
+
+            // Verificar si hay datos
+            if (FP.Any())
+            {
+                DropDownList1.DataSource = FP;
+                DropDownList1.DataTextField = "nombre";
+                DropDownList1.DataValueField = "id";
+                DropDownList1.DataBind();
+                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            }
+            else
+            {
+                // Si no hay datos, se podría mostrar un mensaje de advertencia
+                DropDownList1.Items.Insert(0, new ListItem("No hay formas de pago disponibles", String.Empty));
+            }
         }
         private void CargarDatosCliente(int pageIndex)
         {
@@ -75,6 +114,7 @@ namespace ProyectoFinal.Ventas
                     // Mostrar el cliente seleccionado en el Label
                     lblClienteSeleccionado.Text = $"{clienteSeleccionado.nombre1_cliente} {clienteSeleccionado.nombre2_cliente} {clienteSeleccionado.apellido1_cliente} {clienteSeleccionado.apellido2_cliente}";
                     lblClienteSeleccionado.CssClass = ""; // Remover la clase d-none para mostrar el label
+                    Session["ClienteID"] = clienteSeleccionado.id_cliente;
                     string script = @"
                         var myToast = new bootstrap.Toast(document.getElementById('toastClienteSeleccionado'));
                          myToast.show();
@@ -92,6 +132,7 @@ namespace ProyectoFinal.Ventas
             {
                 GridViewResultado.Visible = false;
                 GridView1.Visible = false;
+                cargarFormaDePago();
                 ViewState["ProductosSeleccionados"] = new List<dynamic>(); // Inicializar el ViewState
             }
         }
@@ -251,6 +292,105 @@ namespace ProyectoFinal.Ventas
             }
         }
 
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
 
+        protected void btnRealizarVenta_Click(object sender, EventArgs e)
+        {
+            using (TransactionScope transa = new TransactionScope())
+            {
+                try
+                {
+                    // Obtener los datos de la venta
+                    decimal totalVenta = 0;
+                    int totalProductos = 0;
+                    DateTime fechaVenta = DateTime.Now;
+                    int formaPago = Convert.ToInt32(DropDownList1.SelectedValue);
+                    string descripcionVenta = TextBox1.Text;
+
+                    // Obtener el ID del empleado desde la sesión
+                    string empleadoId = Session["EmpleadoID"]?.ToString();
+                    if (string.IsNullOrEmpty(empleadoId))
+                    {
+                        throw new Exception("Error al identificar el empleado. Inicie sesión nuevamente.");
+                    }
+
+                    // Obtener la lista de productos seleccionados
+                    var productosSeleccionados = Session["ProductosSeleccionados"] as List<ProductoSeleccionado>;
+                    if (productosSeleccionados == null || !productosSeleccionados.Any())
+                    {
+                        throw new Exception("No hay productos seleccionados para realizar la venta.");
+                    }
+
+                    // Calcular el total de la venta y el total de productos
+                    foreach (var producto in productosSeleccionados)
+                    {
+                        totalVenta += producto.Sub_Total;
+                        totalProductos += producto.Cantidad;
+                    }
+
+                    // Insertar en Enca_Venta
+                    var nuevaVenta = new Enca_Compra
+                    {
+                        fecha_compra = fechaVenta,
+                        total_compra = totalVenta,
+                        total_producto = totalProductos,
+                    };
+                    mibd.Enca_Compras.InsertOnSubmit(nuevaVenta);
+                    mibd.SubmitChanges(); // Guardar para obtener el ID de la venta
+
+                    // Obtener el ID de la venta recién creada
+                    int ventaId = nuevaVenta.id_compra;
+
+                    // Insertar en Detalle_Venta y actualizar Inventario
+                    foreach (var producto in productosSeleccionados)
+                    {
+                        // Obtener el precio de costo y el producto desde la base de datos
+                        var productoBD = mibd.Inventarios.FirstOrDefault(i => i.id_producto == producto.IdProduct);
+                        if (productoBD == null || productoBD.cant_disponible < producto.Cantidad)
+                        {
+                            throw new Exception($"Stock insuficiente para el producto {producto.Producto}.");
+                        }
+
+                        // Crear detalle de la venta
+                        var detalleVenta = new Detalle_Compra
+                        {
+                            id_compra = ventaId,
+                            id_producto = producto.IdProduct,
+                            id_forma_pago = formaPago,
+                            id_empleado = Convert.ToInt32(empleadoId),
+                            precio_venta = producto.Sub_Total / producto.Cantidad, // Precio unitario
+                            descripcion_venta = descripcionVenta,
+                            subtotal = producto.Sub_Total,
+                            precio_costo = productoBD.precio_costo,
+                            cantidad = producto.Cantidad
+                        };
+                        mibd.Detalle_Compras.InsertOnSubmit(detalleVenta);
+
+                        // Actualizar Inventario
+                        productoBD.cant_disponible -= producto.Cantidad;
+                    }
+
+                    // Guardar todos los cambios en la base de datos
+                    mibd.SubmitChanges();
+
+                    // Completar la transacción
+                    transa.Complete();
+
+                    // Mensaje de éxito y limpieza del carrito
+                    string successMessage = "Venta realizada con éxito.";
+                    Swal.Fire(successMessage, "Venta Realizada con exito", SwalIcon.Success);
+                    limpiar();
+                }
+                catch (Exception ex)
+                {
+                    transa.Dispose();
+                    string errorMessage = "Ha ocurrido un error al intentar realizar la venta: " + ex.Message;
+                    Swal.Fire(errorMessage, "Error", SwalIcon.Error);
+                }
+            }
+        }
     }
 }

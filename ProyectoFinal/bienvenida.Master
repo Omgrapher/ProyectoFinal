@@ -73,12 +73,7 @@
                                     <span>Ventas</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
-                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Ventas/RealizarVenta.aspx") %>">Ingresar Proveedores</a></li>
-                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/BuscarProveedor.aspx") %>">Buscar o Editar Proveedores</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/EliminarProveedor.aspx") %>">Eliminar Proveedor</a></li>
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Ventas/RealizarVenta.aspx") %>">Realizar Venta</a></li>
                                 </ul>
                             </li>
 
