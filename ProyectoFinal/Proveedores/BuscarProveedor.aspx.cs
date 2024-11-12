@@ -24,7 +24,7 @@ namespace ProyectoFinal.Proveedores
 
         private void CargarDatos(int pageIndex)
         {
-            var buscar = from b in mibd.Proveedores
+            var buscar = from b in mibd.Proveedors
                          where (b.nombre_proveedores.Contains(TextBoxBuscar.Text))
                                && b.estado == true
                          select new
@@ -90,7 +90,7 @@ namespace ProyectoFinal.Proveedores
             string id = Request.QueryString["id"];
             if (!string.IsNullOrEmpty(id))
             {
-                var cargar = from c in mibd.Proveedores
+                var cargar = from c in mibd.Proveedors
                              where c.id_proveedores == Convert.ToInt32(id)
                              select new
                              {
@@ -171,7 +171,7 @@ namespace ProyectoFinal.Proveedores
             string id = GridViewResultado.SelectedRow.Cells[0].Text;
             if (!string.IsNullOrEmpty(id))
             {
-                var cargar = from c in mibd.Proveedores
+                var cargar = from c in mibd.Proveedors
                              where c.id_proveedores == Convert.ToInt32(id)
                              select new
                              {
@@ -241,7 +241,7 @@ namespace ProyectoFinal.Proveedores
             {
                 string id = GridViewResultado.SelectedRow.Cells[0].Text;
 
-                var proveedor = (from p in mibd.Proveedores
+                var proveedor = (from p in mibd.Proveedors
                                where p.id_proveedores == Convert.ToInt32(id)
                                select p).FirstOrDefault();
 

@@ -69,27 +69,25 @@ namespace ProyectoFinal
             ddlMunicipio.DataBind();
         }
 
-        protected int GenerarCodigoUnico()
-        {
-            Random random = new Random();
-            int codigoUnico;
-            bool codigoExiste;
-            do
-            {
-                codigoUnico = random.Next(1000, 9999);
-                codigoExiste = mibd.Clientes.Any(c => c.id_cliente == codigoUnico);
-            } while (codigoExiste);
+        //protected int GenerarCodigoUnico()
+        //{
+        //    Random random = new Random();
+        //    int codigoUnico;
+        //    bool codigoExiste;
+        //    do
+        //    {
+        //        codigoUnico = random.Next(1000, 9999);
+        //        codigoExiste = mibd.Clientes.Any(c => c.id_cliente == codigoUnico);
+        //    } while (codigoExiste);
 
-            return codigoUnico;
-        }
+        //    return codigoUnico;
+        //}
 
         protected void guardarCliente()
         {
-            int codigoAlumno = GenerarCodigoUnico();
 
             Cliente nuevoCliente = new Cliente
             {
-                id_cliente = codigoAlumno,
                 nombre1_cliente = txtPrimerNombre.Text.Trim(),
                 nombre2_cliente = txtSegundoNombre.Text.Trim(),
                 apellido1_cliente = txtPrimerApellido.Text.Trim(),
@@ -173,12 +171,9 @@ namespace ProyectoFinal
             {
                 try
                 {
-                    // Crear el nuevo cliente
-                    int codigoCliente = GenerarCodigoUnico();
 
                     Cliente nuevoCliente = new Cliente
                     {
-                        id_cliente = codigoCliente,
                         nombre1_cliente = txtPrimerNombre.Text.Trim(),
                         nombre2_cliente = txtSegundoNombre.Text.Trim(),
                         apellido1_cliente = txtPrimerApellido.Text.Trim(),
@@ -196,11 +191,9 @@ namespace ProyectoFinal
                     mibd.Clientes.InsertOnSubmit(nuevoCliente);
                     mibd.SubmitChanges();
 
-                    int codigoCuenta = GenerarCodigoUnico();
                     // Crear la cuenta bancaria
                     Cuenta_Bancaria_Cliente nuevaCuenta = new Cuenta_Bancaria_Cliente
                     {
-                        id_cuenta_cliente = codigoCuenta,
                         banco = TxtNBanco.Text.Trim(),
                         no_cuenta = TxtBoxNoCuenta.Text.Trim(),
                         descripcion_cuenta = TxtBoxDes.Text.Trim(),

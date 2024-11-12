@@ -21,7 +21,7 @@ namespace ProyectoFinal.Proveedores
         }
         private void CargarDatos(int pageIndex)
         {
-            var buscar = from b in mibd.Proveedores
+            var buscar = from b in mibd.Proveedors
                          where (b.nombre_proveedores.Contains(TextBoxBuscar.Text))
                                && b.estado == true
                          select new
@@ -72,7 +72,7 @@ namespace ProyectoFinal.Proveedores
         {
             try
             {
-                var proveedor = (from p in mibd.Proveedores
+                var proveedor = (from p in mibd.Proveedors
                                where p.id_proveedores == Convert.ToInt32(id) && p.estado == true
                                select p).FirstOrDefault();
 

@@ -1,4 +1,4 @@
-﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="bienvenida.master.cs" Inherits="ProyectoFinal.bienvenida" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="bienvenida.master.cs" Inherits="ProyectoFinal.bienvenida" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Librería San Bartolomé</title>
-    <link href="<%= ResolveUrl("~/CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/css/bootstrap.min.css")%>" rel="stylesheet"/>
+    <link href="<%= ResolveUrl("~/CSS/bootstrap-5.3.3-dist(3)/bootstrap-5.3.3-dist/css/bootstrap.min.css")%>" rel="stylesheet" />
     <link rel="stylesheet" href="<%= ResolveUrl("~/CSS/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css") %>" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="<%= ResolveUrl("~/CSS/principalCSS.css") %>" rel="stylesheet" />
@@ -65,6 +65,16 @@
                                     <li><a class="dropdown-item" href="<%= ResolveUrl("~/Proveedores/EliminarProveedor.aspx") %>">Eliminar Proveedor</a></li>
                                 </ul>
                             </li>
+                            <!-- PRODUCTOS -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-receipt me-2" style="font-size: 1.5rem;"></i>
+                                    <span>Productos</span>
+                                </a>
+                                <ul class="dropdown-menu nav-customColor">
+                                    <li><a class="dropdown-item" href="<%= ResolveUrl("~/Productos/BuscarProducto.aspx") %>">Buscar Producto</a></li>
+                                </ul>
+                            </li>
 
                             <!-- VENTAS -->
                             <li class="nav-item dropdown">
@@ -80,7 +90,7 @@
                             <!-- REPORTES -->
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center" href="<%= ResolveUrl("~/Reportes/ReporteGeneral.aspx") %>" role="button" aria-expanded="false">
-                                    <i class="bi bi-file-earmark-pdf me-2" style="font-size: 1.5rem;"></i>
+                                    <i class="bi bi-file-earmark-spreadsheet me-2" style="font-size: 1.5rem;"></i>
                                     <span>Reportes</span>
                                 </a>
                             </li>
@@ -99,7 +109,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li class="dropdown-item-btn">
-                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-outline-danger btn-sm" CausesValidation="false" UseSubmitBehavior="false"/>
+                                <asp:Button ID="ButtonCerrarSesion" runat="server" Text="Cerrar Sesión" OnClick="OnClickButtonCerrarSesion" CssClass="btn btn-outline-danger btn-sm" CausesValidation="false" UseSubmitBehavior="false" />
                             </li>
                         </ul>
                     </div>

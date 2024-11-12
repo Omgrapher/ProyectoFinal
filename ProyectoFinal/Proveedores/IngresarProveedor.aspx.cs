@@ -88,9 +88,8 @@ namespace ProyectoFinal.Proveedores
             // Generar código único para el proveedor
             int codigoProveedor = GenerarCodigoUnico();
 
-                Proveedore nuevoProveedor = new Proveedore()
+                Proveedor nuevoProveedor = new Proveedor()
                 {
-                    id_proveedores = codigoProveedor,
                     nombre_proveedores = txtPrimerNombre.Text.Trim(),
                     direccion = txtDireccion.Text.Trim(),
                     telefono_proveedor = txtTelefono.Text.Trim(),
@@ -101,8 +100,8 @@ namespace ProyectoFinal.Proveedores
                     estado = true
                 };
 
-                // Insertar el proveedor en la base de datos
-                mibd.Proveedores.InsertOnSubmit(nuevoProveedor);
+            // Insertar el proveedor en la base de datos
+                mibd.Proveedors.InsertOnSubmit(nuevoProveedor);
                 mibd.SubmitChanges();
         }
         protected void Page_Load(object sender, EventArgs e)
@@ -118,7 +117,7 @@ namespace ProyectoFinal.Proveedores
         {
             string nombreProv = txtPrimerNombre.Text.Trim();
 
-            var ProveedorExistente = from p in mibd.Proveedores
+            var ProveedorExistente = from p in mibd.Proveedors
                                      where p.nombre_proveedores.Contains(nombreProv) && p.estado == true
                                      select new
                                      {
@@ -157,9 +156,9 @@ namespace ProyectoFinal.Proveedores
             }
             catch (Exception ex)
             {
+                limpiar();
                 string errorMessage = "Ha ocurrido un error al intentar guardar al proveedor: " + ex.Message;
                 Swal.Fire(errorMessage, "Error", SwalIcon.Error);
-                limpiar();
             }
         }
 
@@ -171,9 +170,8 @@ namespace ProyectoFinal.Proveedores
                 {
                     int codigoProveedor = GenerarCodigoUnico();
 
-                        Proveedore nuevoProveedor = new Proveedore()
+                        Proveedor nuevoProveedor = new Proveedor()
                         {
-                            id_proveedores = codigoProveedor,
                             nombre_proveedores = txtPrimerNombre.Text.Trim(),
                             direccion = txtDireccion.Text.Trim(),
                             telefono_proveedor = txtTelefono.Text.Trim(),
@@ -183,7 +181,7 @@ namespace ProyectoFinal.Proveedores
                             id_credito = chkCredito.Checked ? 1 : 0,
                             estado = true
                         };
-                        mibd.Proveedores.InsertOnSubmit(nuevoProveedor);
+                        mibd.Proveedors.InsertOnSubmit(nuevoProveedor);
                         mibd.SubmitChanges();
 
                     int codigoCuenta = GenerarCodigoUnico();
@@ -191,7 +189,6 @@ namespace ProyectoFinal.Proveedores
 
                     Cuentas_Bancarias_Proveedore nuevaCuenta = new Cuentas_Bancarias_Proveedore
                     {
-                        id_cuenta_provee = codigoCuenta,
                         banco = TxtNBanco.Text.Trim(),
                         no_cuenta = TxtBoxNoCuenta.Text.Trim(),
                         descripcion_cuenta = TxtBoxDes.Text.Trim(),
@@ -219,13 +216,12 @@ namespace ProyectoFinal.Proveedores
         protected void btnEditarCliente_Click(object sender, EventArgs e)
         {
             string nombreProv = txtPrimerNombre.Text.Trim();
-            var ProveedorExistente = from p in mibd.Proveedores
+            var ProveedorExistente = from p in mibd.Proveedors
                                      where p.nombre_proveedores == nombreProv && p.estado == true
                                      select new
                                      {
                                          id = p.id_proveedores,
                                          nombre = p.nombre_proveedores,
-                                         apellido = p.apellido_proveedor
                                      };
 
             int id = ProveedorExistente.ToList()[0].id;

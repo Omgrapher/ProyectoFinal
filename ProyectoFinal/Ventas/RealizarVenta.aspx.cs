@@ -28,7 +28,7 @@ namespace ProyectoFinal.Ventas
             Label1.Text = "";
             lblClienteSeleccionado.Text = "";
             LabelProductoSeleccionado.Text = "";
-
+            TextBox1.Text = "";
             // Enlazar el GridView a la lista vacía
             GridView1.DataSource = null;
             GridViewResultado=null;
@@ -332,17 +332,18 @@ namespace ProyectoFinal.Ventas
                     }
 
                     // Insertar en Enca_Venta
-                    var nuevaVenta = new Enca_Compra
+                    var nuevaVenta = new Enca_Venta
                     {
-                        fecha_compra = fechaVenta,
-                        total_compra = totalVenta,
+                        fecha_venta = fechaVenta,
+                        total_venta = totalVenta,
                         total_producto = totalProductos,
+                        id_cliente = Convert.ToInt32(Session["ClienteID"])
                     };
-                    mibd.Enca_Compras.InsertOnSubmit(nuevaVenta);
+                    mibd.Enca_Ventas.InsertOnSubmit(nuevaVenta);
                     mibd.SubmitChanges(); // Guardar para obtener el ID de la venta
 
                     // Obtener el ID de la venta recién creada
-                    int ventaId = nuevaVenta.id_compra;
+                    int ventaId = nuevaVenta.id_venta;
 
                     // Insertar en Detalle_Venta y actualizar Inventario
                     foreach (var producto in productosSeleccionados)
@@ -355,9 +356,9 @@ namespace ProyectoFinal.Ventas
                         }
 
                         // Crear detalle de la venta
-                        var detalleVenta = new Detalle_Compra
+                        var detalleVenta = new Detalle_Venta
                         {
-                            id_compra = ventaId,
+                            id_venta = ventaId,
                             id_producto = producto.IdProduct,
                             id_forma_pago = formaPago,
                             id_empleado = Convert.ToInt32(empleadoId),
@@ -367,7 +368,7 @@ namespace ProyectoFinal.Ventas
                             precio_costo = productoBD.precio_costo,
                             cantidad = producto.Cantidad
                         };
-                        mibd.Detalle_Compras.InsertOnSubmit(detalleVenta);
+                        mibd.Detalle_Ventas.InsertOnSubmit(detalleVenta);
 
                         // Actualizar Inventario
                         productoBD.cant_disponible -= producto.Cantidad;
