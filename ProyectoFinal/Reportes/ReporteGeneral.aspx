@@ -69,7 +69,7 @@
                     onclick="document.getElementById('<%= btnReporteProveedores.ClientID %>').click();">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
                         <div class="icon-wrapper mb-3">
-                            <i class="bi bi-people-fill display-4 text-primary"></i>
+                            <i class="bi bi-truck display-4 text-primary"></i>
                         </div>
                         <h5 class="card-title fw-bold mb-2">Reporte de Proveedores</h5>
                         <p class="card-text text-muted mb-3">Genera informes detallados de tus proveedores</p>
@@ -95,7 +95,7 @@
                     onclick="document.getElementById('<%= btnReporteVentas.ClientID %>').click();">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
                         <div class="icon-wrapper mb-3">
-                            <i class="bi bi-people-fill display-4 text-primary"></i>
+                            <i class="bi bi-graph-up-arrow display-4 text-primary"></i>
                         </div>
                         <h5 class="card-title fw-bold mb-2">Reporte de Ventas</h5>
                         <p class="card-text text-muted mb-3">Genera informes detallados de tus ventas</p>

@@ -198,7 +198,7 @@ namespace ProyectoFinal.Reportes
                     Response.AddHeader("content-disposition", "attachment;filename=ReporteVentas.xlsx");
                     Response.BinaryWrite(excelBytes);
                     Response.End();
-                    limpiar();
+                    //limpiar();
                 }
             }
             catch (Exception ex)

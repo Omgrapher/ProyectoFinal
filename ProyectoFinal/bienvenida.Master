@@ -68,7 +68,7 @@
                             <!-- PRODUCTOS -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-receipt me-2" style="font-size: 1.5rem;"></i>
+                                    <i class="bi bi-eraser-fill me-2" style="font-size: 1.5rem;"></i>
                                     <span>Productos</span>
                                 </a>
                                 <ul class="dropdown-menu nav-customColor">
