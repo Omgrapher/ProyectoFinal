@@ -72,7 +72,7 @@
                         <asp:GridView ID="GridView1" CssClass="table table-bordered" runat="server" AutoGenerateColumns="false" DataKeyNames="IdProduct"
                             AllowPaging="true" PageSize="5" Visible="false" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand">
                             <Columns>
-                                <asp:BoundField DataField="IdProduct" HeaderText="id" visible="false"/>
+                                <asp:BoundField DataField="IdProduct" HeaderText="id" Visible="false" />
                                 <asp:BoundField DataField="Producto" HeaderText="Producto" />
                                 <asp:BoundField DataField="Stock" HeaderText="Stock" />
                                 <asp:BoundField DataField="Materiales" HeaderText="Materiales" />
@@ -99,7 +99,7 @@
                             <div id="divP" class="col-12 col-md-8 d-flex align-items-center">
                                 <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control me-2" placeholder="Cantidad"></asp:TextBox>
 
-                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-outline-success" Text="Agregar Producto" onclick="Button1_Click"/>
+                                <asp:Button ID="Button1" runat="server" CssClass="btn btn-outline-success" Text="Agregar Producto" OnClick="Button1_Click" />
                             </div>
                         </div>
                     </div>
@@ -132,11 +132,15 @@
                                 <asp:BoundField DataField="Sub_Total" HeaderText="SubTotal" />
                             </Columns>
                         </asp:GridView>
-
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-auto">
+                                <asp:Label ID="txtTotalVenta" runat="server" class="col-form-label fw-bold" Text="Total:"></asp:Label>
+                            </div>
+                        </div>
                         <!-- Contenedor para los botones de acción -->
                         <div class="d-flex justify-content-between mt-4">
-                            <asp:Button ID="btnRealizarVenta" runat="server" CssClass="btn btn-primary" Text="Realizar Venta" OnClick="btnRealizarVenta_Click"/>
-                            <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-secondary" Text="Limpiar" OnClick="btnLimpiar_Click"/>
+                            <asp:Button ID="btnRealizarVenta" runat="server" CssClass="btn btn-primary" Text="Realizar Venta" OnClick="btnRealizarVenta_Click" />
+                            <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-secondary" Text="Limpiar" OnClick="btnLimpiar_Click" />
                         </div>
                     </div>
                 </div>
@@ -145,60 +149,60 @@
 
 
             <!-- Toast Cliente Seleccionado -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="toastClienteSeleccionado" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-body bg-success text-white text-center">
-                    Cliente seleccionado.
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="toastClienteSeleccionado" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body bg-success text-white text-center">
+                        Cliente seleccionado.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="toastProductoSeleccionado" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-body bg-success text-white text-center">
-                    Producto seleccionado.
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="toastProductoSeleccionado" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body bg-success text-white text-center">
+                        Producto seleccionado.
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <script>
-            // Guardar el estado del acordeón
-            document.addEventListener('DOMContentLoaded', function () {
-                var acordeonProducto = document.getElementById('productoAccordion');
-                var acordeonCliente = document.getElementById('clienteAccordion');
+            <script>
+                // Guardar el estado del acordeón
+                document.addEventListener('DOMContentLoaded', function () {
+                    var acordeonProducto = document.getElementById('productoAccordion');
+                    var acordeonCliente = document.getElementById('clienteAccordion');
 
-                // Restaurar el estado del acordeón basado en localStorage
-                if (localStorage.getItem('productoAccordion') === 'true') {
-                    var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: true });
-                } else {
-                    var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: false });
-                }
+                    // Restaurar el estado del acordeón basado en localStorage
+                    if (localStorage.getItem('productoAccordion') === 'true') {
+                        var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: true });
+                    } else {
+                        var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: false });
+                    }
 
-                // Almacenar el estado del acordeón cada vez que se colapsa o expande
-                acordeonProducto.addEventListener('hidden.bs.collapse', function () {
-                    localStorage.setItem('productoAccordion', 'false');
+                    // Almacenar el estado del acordeón cada vez que se colapsa o expande
+                    acordeonProducto.addEventListener('hidden.bs.collapse', function () {
+                        localStorage.setItem('productoAccordion', 'false');
+                    });
+                    acordeonProducto.addEventListener('shown.bs.collapse', function () {
+                        localStorage.setItem('productoAccordion', 'true');
+                    });
                 });
-                acordeonProducto.addEventListener('shown.bs.collapse', function () {
-                    localStorage.setItem('productoAccordion', 'true');
+
+
+                // Restaurar estado del acordeón en el cliente al cargar la página después del postback
+                document.addEventListener('DOMContentLoaded', function () {
+                    var acordeonProducto = document.getElementById('productoAccordion');
+                    var acordeonCliente = document.getElementById('clienteAccordion');
+
+                    // Restaurar el acordeón del producto
+                    if (localStorage.getItem('productoAccordion') === 'true') {
+                        var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: true });
+                    }
+
+                    // Restaurar el acordeón del cliente
+                    if (localStorage.getItem('clienteAccordion') === 'true') {
+                        var clienteAccordion = new bootstrap.Collapse(acordeonCliente, { toggle: true });
+                    }
                 });
-            });
-
-
-            // Restaurar estado del acordeón en el cliente al cargar la página después del postback
-            document.addEventListener('DOMContentLoaded', function () {
-                var acordeonProducto = document.getElementById('productoAccordion');
-                var acordeonCliente = document.getElementById('clienteAccordion');
-
-                // Restaurar el acordeón del producto
-                if (localStorage.getItem('productoAccordion') === 'true') {
-                    var productoAccordion = new bootstrap.Collapse(acordeonProducto, { toggle: true });
-                }
-
-                // Restaurar el acordeón del cliente
-                if (localStorage.getItem('clienteAccordion') === 'true') {
-                    var clienteAccordion = new bootstrap.Collapse(acordeonCliente, { toggle: true });
-                }
-            });
-        </script>
+            </script>
 </asp:Content>

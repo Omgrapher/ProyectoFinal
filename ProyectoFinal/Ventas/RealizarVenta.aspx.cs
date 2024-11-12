@@ -34,7 +34,26 @@ namespace ProyectoFinal.Ventas
             GridViewResultado=null;
             gvProductosSeleccionados.DataSource = null; // Opcional, o usa una lista vacía
             gvProductosSeleccionados.DataBind();
+            CalcularTotalVenta();
 
+        }
+        private void CalcularTotalVenta()
+        {
+            // Obtener la lista de productos seleccionados desde la sesión
+            var productosSeleccionados = Session["ProductosSeleccionados"] as List<ProductoSeleccionado>;
+            if (productosSeleccionados != null && productosSeleccionados.Any())
+            {
+                // Sumar todos los subtotales
+                decimal totalVenta = productosSeleccionados.Sum(p => p.Sub_Total);
+
+                // Asignar el total al TextBox
+                txtTotalVenta.Text = "Q " + totalVenta.ToString("N2");
+            }
+            else
+            {
+                // Si no hay productos, el total es cero
+                txtTotalVenta.Text = "Q 0.00";
+            }
         }
         protected void cargarFormaDePago()
         {
@@ -266,6 +285,7 @@ namespace ProyectoFinal.Ventas
                         gvProductosSeleccionados.DataSource = productosSeleccionados;
                         gvProductosSeleccionados.DataBind();
 
+                        CalcularTotalVenta();
                         // Limpiar el TextBox de cantidad
                         TextBox2.Text = "";
 
@@ -281,14 +301,13 @@ namespace ProyectoFinal.Ventas
                 }
                 else
                 {
-                    // Manejar el error de cantidad
-                    Response.Write("<script>alert('Por favor, ingrese una cantidad válida.');</script>");
+                    Swal.Fire("Por favor, ingrese una cantidad válida.", "Advertencia", SwalIcon.Warning);
                 }
             }
             else
             {
                 // Manejar el error si no se ha seleccionado un producto
-                Response.Write("<script>alert('Por favor, seleccione un producto primero.');</script>");
+                Swal.Fire("Por favor, seleccione un producto primero..", "Advertencia", SwalIcon.Warning);
             }
         }
 
@@ -379,7 +398,7 @@ namespace ProyectoFinal.Ventas
 
                     // Completar la transacción
                     transa.Complete();
-
+                    CalcularTotalVenta();
                     // Mensaje de éxito y limpieza del carrito
                     string successMessage = "Venta realizada con éxito.";
                     Swal.Fire(successMessage, "Venta Realizada con exito", SwalIcon.Success);
