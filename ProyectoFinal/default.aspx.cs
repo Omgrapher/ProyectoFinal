@@ -36,7 +36,7 @@ namespace ProyectoFinal
                 limpiar();
 
                 // Mostrar saludo y redirigir con SweetAlert
-                Swal.Fire("Has iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success, redirectUrl);
+                Swal.Fire("Haz iniciado sesión correctamente", $"¡Hola, {nombreCompleto}!", SwalIcon.Success, redirectUrl);
 
                 // Guardar nombre del usuario y el id_empleado en sesión
                 Session["UserName"] = nombreCompleto;

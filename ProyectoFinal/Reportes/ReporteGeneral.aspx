@@ -49,11 +49,11 @@
                         </div>
                         <h5 class="card-title fw-bold mb-2">Reporte de Clientes</h5>
                         <p class="card-text text-muted mb-3">Genera informes detallados de tu cartera de clientes</p>
-                        <div class="mt-auto">
+                        <%--<div class="mt-auto">
                             <span class="btn btn-outline-primary btn-sm">
                                 <i class="bi bi-file-earmark-text me-2"></i>Generar Reporte
                             </span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -73,11 +73,11 @@
                         </div>
                         <h5 class="card-title fw-bold mb-2">Reporte de Proveedores</h5>
                         <p class="card-text text-muted mb-3">Genera informes detallados de tus proveedores</p>
-                        <div class="mt-auto">
+                        <%--<div class="mt-auto">
                             <span class="btn btn-outline-primary btn-sm">
                                 <i class="bi bi-file-earmark-text me-2"></i>Generar Reporte
                             </span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -99,11 +99,11 @@
                         </div>
                         <h5 class="card-title fw-bold mb-2">Reporte de Ventas</h5>
                         <p class="card-text text-muted mb-3">Genera informes detallados de tus ventas</p>
-                        <div class="mt-auto">
+                        <%--<div class="mt-auto">
                             <span class="btn btn-outline-primary btn-sm">
                                 <i class="bi bi-file-earmark-text me-2"></i>Ver Filtros
                             </span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>

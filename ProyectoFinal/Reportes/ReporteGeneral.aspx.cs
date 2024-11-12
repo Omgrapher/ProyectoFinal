@@ -24,42 +24,9 @@ namespace ProyectoFinal.Reportes
             txtNombreCliente.Text = txtNitCliente.Text = txtApellidoCliente.Text = "";
             txtFechaInicio.Text = txtFechaFin.Text = "";
         }
-        protected void cargarMuni()
-        {
-            var muni = from m in mibd.Municipios
-                       select new
-                       {
-                           id = m.id_muni,
-                           nombre = m.nombre_muni
-                       };
-            ddlMunicipio.DataSource = muni;
-            ddlMunicipio.DataTextField = "nombre";
-            ddlMunicipio.DataValueField = "id";
-            ddlMunicipio.DataBind();
-            ddlMunicipio.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-        }
-        protected void cargarEstado()
-        {
-            var es = from e in mibd.Estado_Creditos
-                     select new 
-                     {
-                        id=e.id_credito,
-                        nombre=e.nombre
-                     };
-            ddlCredito.DataSource= es;
-            ddlCredito.DataTextField = "nombre";
-            ddlCredito.DataValueField= "id";
-            ddlCredito.DataBind();
-            ddlCredito.Items.Insert(0, new ListItem(String.Empty, String.Empty));
-
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                cargarEstado();
-                cargarMuni();
-            }
+           
         }
         //REPORTE VENTAS
         public class VentaReporte
@@ -92,8 +59,6 @@ namespace ProyectoFinal.Reportes
             {
                 db = context;
             }
-
-            // Método para generar el reporte de ventas con fechas opcionales
             public byte[] GenerarReporteVentas(DateTime? fechaInicio = null, DateTime? fechaFin = null)
             {
                 // Si no se proporcionan fechas, se omiten los filtros
@@ -120,7 +85,6 @@ namespace ProyectoFinal.Reportes
                                 PrecioCosto = det.precio_costo
                             };
 
-                // Aplicar filtros por fecha si se proporcionan
                 if (fechaInicio.HasValue && fechaFin.HasValue)
                 {
                     query = query.Where(enc => Convert.ToDateTime(enc.FechaVenta)>= fechaInicio.Value &&  Convert.ToDateTime(enc.FechaVenta) <= fechaFin.Value);
@@ -143,6 +107,16 @@ namespace ProyectoFinal.Reportes
                 using (var workbook = new XSSFWorkbook())
                 {
                     var sheet = workbook.CreateSheet("Reporte de Ventas");
+
+                    // Crear estilo para el encabezado
+                    var headerStyle = workbook.CreateCellStyle();
+                    var font = workbook.CreateFont();
+                    font.IsBold = true;
+                    headerStyle.SetFont(font);
+                    headerStyle.FillForegroundColor = IndexedColors.LightBlue.Index;
+                    headerStyle.FillPattern = FillPattern.SolidForeground;
+
+                    font.Color = IndexedColors.White.Index;
 
                     // Crear encabezados
                     var headerRow = sheet.CreateRow(0);
@@ -230,7 +204,6 @@ namespace ProyectoFinal.Reportes
             catch (Exception ex)
             {
                 limpiar();
-                // Manejo de errores
                 Swal.Fire("Error al generar el reporte: " + ex.Message, "Error", SwalIcon.Error);
             }
         }
@@ -289,6 +262,30 @@ namespace ProyectoFinal.Reportes
                 using (var workbook = new XSSFWorkbook())
                 {
                     var sheet = workbook.CreateSheet("Reporte de Proveedores");
+
+                    // Crear estilo para el encabezado
+                    var headerStyle = workbook.CreateCellStyle();
+                    var font = workbook.CreateFont();
+                    font.IsBold = true;
+                    headerStyle.SetFont(font);
+                    headerStyle.FillForegroundColor = IndexedColors.LightBlue.Index;
+                    headerStyle.FillPattern = FillPattern.SolidForeground;
+
+                    font.Color = IndexedColors.White.Index;
+
+                    // Centrar el contenido horizontal y verticalmente
+                    headerStyle.Alignment = HorizontalAlignment.Center;  // Centrar horizontalmente
+                    headerStyle.VerticalAlignment = VerticalAlignment.Center;  // Centrar verticalmente
+
+                    // Establecer márgenes de celda (si es necesario)
+                    headerStyle.LeftBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde izquierdo
+                    headerStyle.RightBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde derecho
+                    headerStyle.TopBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde superior
+                    headerStyle.BottomBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde inferior
+                    headerStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
 
                     // Crear encabezados
                     var headerRow = sheet.CreateRow(0);
@@ -362,22 +359,6 @@ namespace ProyectoFinal.Reportes
 
 
         //REPORTE CLIENTES
-        public class Cliente
-        {
-            public int id_cliente { get; set; }
-            public string nombre1_cliente { get; set; }
-            public string nombre2_cliente { get; set; }
-            public string apellido1_cliente { get; set; }
-            public string apellido2_cliente { get; set; }
-            public string direccion { get; set; }
-            public string telefono { get; set; }
-            public string email { get; set; }
-            public string nit_cliente { get; set; }
-            public int id_muni { get; set; }
-            public int id_credito { get; set; }
-            public bool estado { get; set; }
-        }
-
         public class ClienteReporte
         {
             public string Nombres { get; set; }
@@ -395,7 +376,7 @@ namespace ProyectoFinal.Reportes
 
         public class ReporteClienteGenerator
         {
-            private readonly milinqDataContext db; // Tu contexto de Entity Framework
+            private readonly milinqDataContext db; 
 
             public ReporteClienteGenerator(milinqDataContext context)
             {
@@ -439,6 +420,24 @@ namespace ProyectoFinal.Reportes
                     var font = workbook.CreateFont();
                     font.IsBold = true;
                     headerStyle.SetFont(font);
+                    headerStyle.FillForegroundColor = IndexedColors.LightBlue.Index; 
+                    headerStyle.FillPattern = FillPattern.SolidForeground;  
+
+                    font.Color = IndexedColors.White.Index;
+
+                    // Centrar el contenido horizontal y verticalmente
+                    headerStyle.Alignment = HorizontalAlignment.Center;  // Centrar horizontalmente
+                    headerStyle.VerticalAlignment = VerticalAlignment.Center;  // Centrar verticalmente
+
+                    // Establecer márgenes de celda (si es necesario)
+                    headerStyle.LeftBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde izquierdo
+                    headerStyle.RightBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde derecho
+                    headerStyle.TopBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde superior
+                    headerStyle.BottomBorderColor = IndexedColors.Black.Index;  // Establecer color para el borde inferior
+                    headerStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+                    headerStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
 
                     // Crear encabezados
                     var headerRow = sheet.CreateRow(0);
